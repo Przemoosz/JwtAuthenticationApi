@@ -1,0 +1,11 @@
+# Build Files
+JwtAuthenticationApi/bin/*
+JwtAuthenticationApi/obj/*
+JwtAuthenticationApi.UnitTests/bin/*
+JwtAuthenticationApi.UnitTests/obj/*
+
+# App Settings
+JwtAuthenticationApi/appsettings.json
+
+# VS Files
+.vs/*
