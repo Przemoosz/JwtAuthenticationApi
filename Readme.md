@@ -1,16 +1,19 @@
 # JWT Authentication API System
 
 ## Description
-Jwt authentication api system is a .NET Core Web API. System provides endpoints for creating user and logging user with to receive Json Web Token (JWT) that could be used in external applications. Generated token will have claims that You can use in your app to authorize user. API also will prvide endpoints for administrator.
+Jwt authentication api system is a .NET Core Web API. System provides endpoints for creating user and logging user with to receive Json Web Token (JWT) that could be used in external applications. 
+Generated token will have claims that You can use in your app to authorize user. 
+API also will provide endpoints for administrator.
 
 ## Background
-Application is based on ASP.NET Core Web Api 6.0 (.NET 6) and uses Azure SQL as database. Unit test project is also based on .NET 6. C# language verion is 10.
+Application is based on ASP.NET Core Web Api 6.0 (.NET 6) and uses Azure SQL as database. Unit test project is also based on .NET 6.
+C# language version is 10.
 
 ## Branches
 - JAA-0-SetUpSolutionAndProjects - Set up JWT Authentication API project and JWT Authentication API unit tests project.
 - JAA-1-SetUpDatabaseWithUserAndSaltTables - Set up model for user and user password salt.
 - JAA-2-ImplementPasswordHashing - Implement password hashing based on salt and pepper.
-- JAA-3-ImplementVerifyHashedPassword - Implement password veryfying.
+- JAA-3-ImplementVerifyHashedPassword - Implement password verifying.
 - JAA-4-ImplementRegisterEndpoint - Implement register endpoint
 - JAA-5-ImplementJWTFactory - Implement class that will create JWT based on secret and claims.
 - JAA-6-ImplementLogInEndpoint - Implement log in endpoint that returns JWT.
@@ -19,7 +22,7 @@ Application is based on ASP.NET Core Web Api 6.0 (.NET 6) and uses Azure SQL as 
 ## Architecture
 TODO
 
-## Local Instalation
+## Local Installation
 
 1. Clone repository from main branch.
 2. Create appsettings.json file and provide connection strings (Look - Configuration).
@@ -49,13 +52,13 @@ TODO
     ```
     This command will update your password salt database.
 
-4. In this same file type:
+4. In this same location type:
 ```
 dotnet run
 ```
-To run application localy. After this you should see in console that application is running. Hit CTRL+C to stop application.
+To run application locally. After this you should see in console that application is running. Hit CTRL+C to stop application.
 
-## Nugets
+## Nuget Packages
 - Any - ver. 9.2.0
 - coverlet.collector - ver. 3.2.0
 - EmailValidation - ver. 1.0.8
@@ -73,7 +76,8 @@ To run application localy. After this you should see in console that application
 
 
 ## Configuration
-To run your app corectly you have to provide correct values in appsettings.json file in JwtAuthentiationApi file. Json file should looks like this:
+To run your app correctly you have to provide correct values in appsettings.json file in JwtAuthenticationApi file. 
+Json file should look like this:
 ```json
 {
     "Logging": {
