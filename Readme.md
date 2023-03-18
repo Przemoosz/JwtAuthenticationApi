@@ -19,13 +19,50 @@ Application is based on ASP.NET Core Web Api 6.0 (.NET 6) and uses Azure SQL as 
 ## Architecture
 TODO
 
-## Instalation
-TODO
+## Local Instalation
+
+1. Clone repository from main branch.
+2. Create appsettings.json file and provide connection strings (Look - Configuration).
+3. Go to JwtAuthenticationApi project file, and open powershell.
+    
+    A.  Type
+    ``` 
+     dotnet ef migrations add InitialMigrationForUser --context UserContext
+    ```
+    This will create initial migration for user identity database.
+
+    B.  Type 
+    ``` dotnet
+     dotnet ef migrations add InitialMigrationForPasswordSalt --context PasswordSaltContext
+    ```
+    This will create initial migration for password salt database.
+
+    C. Type:
+    ```
+    dotnet ef database update --context UserContext
+    ```
+    This command will update your user identity database.
+
+    D. Type:
+    ```
+    dotnet ef database update --context PasswordSaltContext
+    ```
+    This command will update your password salt database.
+
+4. In this same file type:
+```
+dotnet run
+```
+To run application localy. After this you should see in console that application is running. Hit CTRL+C to stop application.
 
 ## Nugets
 - Any - ver. 9.2.0
 - coverlet.collector - ver. 3.2.0
+- EmailValidation - ver. 1.0.8
 - FluentAssertions - ver. 6.10.0
+- Microsoft.EntityFrameworkCore - ver. 7.0.4
+- Microsoft.EntityFrameworkCore.Design - ver. 7.0.4
+- Microsoft.EntityFrameworkCore.SqlServer - ver. 7.0.4
 - Microsoft.NET.Test.Sdk - ver. 17.5.0
 - NSubstitute - ver. 5.0.0
 - NUnit - ver. 3.13.3
