@@ -1,3 +1,5 @@
+using JwtAuthenticationApi.DatabaseContext;
+using JwtAuthenticationApi.Models;
 using JwtAuthenticationApi.Models.Options;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Options;
@@ -10,34 +12,31 @@ namespace JwtAuthenticationApi.Controllers
 	[Route("[controller]")]
 	public class WeatherForecastController : ControllerBase
 	{
-		private static readonly string[] Summaries = new[]
-		{
-		"Freezing", "Bracing", "Chilly", "Cool", "Mild", "Warm", "Balmy", "Hot", "Sweltering", "Scorching"
-		};
-
 		private readonly ILogger<WeatherForecastController> _logger;
 		private readonly IOptions<DatabaseConnectionStrings> _options;
+		private readonly IUserContext _userContext;
+		private readonly IPasswordSaltContext _passwordSaltContext;
 
-		public WeatherForecastController(ILogger<WeatherForecastController> logger, IOptions<DatabaseConnectionStrings> options)
+		public WeatherForecastController(ILogger<WeatherForecastController> logger,
+			IOptions<DatabaseConnectionStrings> options, IUserContext userContext,
+			IPasswordSaltContext passwordSaltContext)
 		{
 			_logger = logger;
 			_options = options;
+			_userContext = userContext;
+			_passwordSaltContext = passwordSaltContext;
 		}
 
 		[HttpGet(Name = "GetWeatherForecast")]
-		public IEnumerable<WeatherForecast> Get()
+		public async Task Get()
 		{
 			Console.WriteLine(_options.Value.IdentityDatabaseConnectionString);
 			Console.WriteLine(_options.Value.SaltDatabaseConnectionString);
-
-
-			return Enumerable.Range(1, 5).Select(index => new WeatherForecast
-			{
-				Date = DateTime.Now.AddDays(index),
-				TemperatureC = Random.Shared.Next(-20, 55),
-				Summary = Summaries[Random.Shared.Next(Summaries.Length)]
-			})
-			.ToArray();
+			await _userContext.Users.AddAsync(new UserModel(){Id = Guid.NewGuid(), CreationDate = DateTime.UtcNow, Email = "dd", HashedPassword = "hashed", UserName = "type"});
+			await _passwordSaltContext.PasswordSalt.AddAsync(new PasswordSaltModel()
+				{ Id = Guid.NewGuid(), Salt = "salt", UserId = Guid.NewGuid() });
+			await _userContext.SaveChangesAsync();
+			await _passwordSaltContext.SaveChangesAsync();
 		}
 	}
 }
