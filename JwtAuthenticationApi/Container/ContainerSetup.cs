@@ -12,6 +12,7 @@
 		{
 			builder.Services.Configure<DatabaseConnectionStrings>(
 				builder.Configuration.GetSection(nameof(DatabaseConnectionStrings)));
+			builder.Services.Configure<PasswordPepper>(builder.Configuration.GetSection(nameof(PasswordPepper)));
 		}
 
 		public static void RegisterUserIdentityDatabaseContext(this WebApplicationBuilder builder)
