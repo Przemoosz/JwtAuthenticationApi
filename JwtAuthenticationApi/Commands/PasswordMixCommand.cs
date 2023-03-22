@@ -1,9 +1,11 @@
 ﻿namespace JwtAuthenticationApi.Commands
 {
 	using Abstraction.Commands;
+	using Exceptions;
+	using Models;
 
 	/// <summary>
-	/// Command that is responsible to mix password in predefined way. Implements <see cref="ICommand{TResult}"/>.
+	/// Command that is responsible for mixing password in predefined way. Implements <see cref="ICommand{TResult}"/>.
 	/// </summary>
 	public sealed class PasswordMixCommand: ICommand<string>
 	{
@@ -28,11 +30,31 @@
 		/// Executes password mixing with pepper and salt.
 		/// </summary>
 		/// <param name="cancellationToken">CancellationToken.</param>
-		/// <returns>A task that represents the asynchronous password mix operation. The task result contains mixed password.</returns>
-		public Task<string> ExecuteAsync(CancellationToken cancellationToken)
+		/// <exception cref="CommandExecutionException"/>
+		/// <exception cref="ArgumentException"/>
+		/// <returns>A task that represents the asynchronous password mix operation.
+		/// The task result contains <see cref="Result{TResult}"/> object that contains mixed password.</returns>
+		public Task<Result<string>> ExecuteAsync(CancellationToken cancellationToken)
 		{
+			if (string.IsNullOrEmpty(_password))
+			{
+				throw new CommandExecutionException($"Cannot execute {nameof(PasswordMixCommand)} command.",
+					new ArgumentException("Provided password can not be null or empty value."));
+			}
+
+			if (string.IsNullOrEmpty(_salt))
+			{
+				throw new CommandExecutionException($"Cannot execute {nameof(PasswordMixCommand)} command.",
+					new ArgumentException("Provided salt can not be null or empty value."));
+			}
+
+			if (string.IsNullOrEmpty(_pepper))
+			{
+				throw new CommandExecutionException($"Cannot execute {nameof(PasswordMixCommand)} command.",
+					new ArgumentException("Provided pepper can not be null or empty value."));
+			}
 			var mixedPassword = $"{_password}{_pepper}{_salt}";
-			return Task.FromResult(mixedPassword);
+			return Task.FromResult(new Result<string>(mixedPassword, true));
 		}
 	}
 }

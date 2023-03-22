@@ -1,11 +1,9 @@
-using JwtAuthenticationApi.DatabaseContext;
-using JwtAuthenticationApi.Models.Options;
-using Microsoft.EntityFrameworkCore;
-
 namespace JwtAuthenticationApi
 {
 	using Container;
+	using System.Diagnostics.CodeAnalysis;
 
+	[ExcludeFromCodeCoverage]
 	internal static class JwtAuthenticationApi
 	{
 		public static async Task Main(string[] args)

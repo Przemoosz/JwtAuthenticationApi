@@ -1,4 +1,6 @@
-﻿namespace JwtAuthenticationApi.Abstraction.Commands
+﻿using JwtAuthenticationApi.Commands.Models;
+
+namespace JwtAuthenticationApi.Abstraction.Commands
 {
 	/// <summary>
 	/// Defines base method that should be implemented command classes.
@@ -11,6 +13,6 @@
 		/// </summary>
 		/// <param name="cancellationToken">Cancellation token.</param>
 		/// <returns>A task that represents the asynchronous command execution. The task result contains command execution result.</returns>
-		Task<TResult> ExecuteAsync(CancellationToken cancellationToken);
+		Task<Result<TResult>> ExecuteAsync(CancellationToken cancellationToken);
 	}
 }
