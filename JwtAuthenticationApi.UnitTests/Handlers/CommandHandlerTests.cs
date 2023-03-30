@@ -1,11 +1,11 @@
-﻿using JwtAuthenticationApi.Abstraction.Commands;
-using JwtAuthenticationApi.Commands.Models;
-using JwtAuthenticationApi.Handlers;
-using TddXt.AnyRoot.Strings;
-using static TddXt.AnyRoot.Root;
-
-namespace JwtAuthenticationApi.UnitTests.Handlers
+﻿namespace JwtAuthenticationApi.UnitTests.Handlers
 {
+	using JwtAuthenticationApi.Abstraction.Commands;
+	using JwtAuthenticationApi.Commands.Models;
+	using JwtAuthenticationApi.Handlers;
+	using TddXt.AnyRoot.Strings;
+	using static TddXt.AnyRoot.Root;
+
 	[TestFixture]
 	public class CommandHandlerTests
 	{
@@ -29,7 +29,7 @@ namespace JwtAuthenticationApi.UnitTests.Handlers
 			var result = await _uut.HandleAsync(command, CancellationToken.None);
 
 			// Assert
-			result.Should().Be(stringResult);
+			result.Value.Should().Be(stringResult);
 		}
 	}
 }

@@ -1,10 +1,9 @@
-﻿using JwtAuthenticationApi.Commands.Models;
-
-namespace JwtAuthenticationApi.UnitTests.Commands
+﻿namespace JwtAuthenticationApi.UnitTests.Commands
 {
 	using JwtAuthenticationApi.Commands;
 	using TddXt.AnyRoot.Strings;
 	using Exceptions;
+	using JwtAuthenticationApi.Commands.Models;
 	using static TddXt.AnyRoot.Root;
 
 	[TestFixture]

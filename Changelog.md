@@ -2,6 +2,17 @@
 
 Changelog for JwtAuthenticationApi System. 
 
+## [0.2.0] - xx.03.2023 - JAA-2-ImplementPasswordHashing
+
+### Added
+- Command pattern with ICommand<T> and CommandHandler.
+- Pepper 
+- Password mixing comand that combines passwor, salt and pepper.
+- Password hasing service, that hashes password using SHA256.
+- SaltProvider class, that provides salt from database.
+- SaltService that creates and saves new salt for provided user.
+- Tests for all new classes.
+
 ## [0.1.0] - 18.03.2023 - JAA-1-SetUpDatabaseWithUserAndSaltTables
 
 ### Added

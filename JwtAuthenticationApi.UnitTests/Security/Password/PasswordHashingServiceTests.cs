@@ -34,7 +34,7 @@ namespace JwtAuthenticationApi.UnitTests.Security.Password
 			const string salt = "SALT";
 			const string pepper = "PEPPER";
 			const string password = "PASSWORD";
-			const string expectedHash = "";
+			const string expectedHash = "FsjT2moPUhUXzwImF0vUbj+Rd4QFgfYvOFcKbqSL4rY=";
 			const string mixedPassword = $"{password}{pepper}{salt}";
 			ICommand<string> command = Substitute.For<ICommand<string>>();
 			_passwordOptions.Value.Returns(new PasswordPepper() { Pepper = pepper });
@@ -47,7 +47,6 @@ namespace JwtAuthenticationApi.UnitTests.Security.Password
 
 			// Arrange
 			actual.Should().Be(expectedHash);
-
 		}
 	}
 }

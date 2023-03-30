@@ -1,23 +1,27 @@
-﻿using JwtAuthenticationApi.Models;
-
-namespace JwtAuthenticationApi.Security.Password.Salt
+﻿namespace JwtAuthenticationApi.Security.Password.Salt
 {
-	using DatabaseContext;
+	using Commands.Models;
+	using Models;
 
-	public sealed class SaltProvider
+	public sealed class SaltProvider: ISaltProvider
 	{
-		private readonly IPasswordSaltContext _context;
+		private readonly ISaltService _saltService;
 
-		public SaltProvider(IPasswordSaltContext context)
+		public SaltProvider(ISaltService saltService)
 		{
-			_context = context;
+			_saltService = saltService;
 		}
 
-		public async Task<string> GetPasswordSalt(UserModel user)
+		public async Task<string> GetPasswordSaltAsync(UserModel user, CancellationToken cancellationToken)
 		{
+			Result<string> saltFromDatabase = await _saltService.GetSaltAsync(user, cancellationToken);
+			if (saltFromDatabase.IsSuccessful)
+			{
+				return saltFromDatabase.Value;
+			}
 
+			string createdSalt = await _saltService.CreateAndSaveSaltAsync(user, cancellationToken);
+			return createdSalt;
 		}
-
-
 	}
 }
