@@ -29,7 +29,7 @@
 			_saltService.CreateAndSaveSaltAsync(user).Returns(salt);
 			
 			// Act
-			string actual = await _uut.GetPasswordSaltAsync(user);
+			string actual = await _uut.GetPasswordSaltAsync(user, CancellationToken.None);
 
 			// Assert
 			actual.Should().Be(salt);
@@ -45,7 +45,7 @@
 			_saltService.GetSaltAsync(user).Returns(getSaltResult);
 
 			// Act
-			string actual = await _uut.GetPasswordSaltAsync(user);
+			string actual = await _uut.GetPasswordSaltAsync(user, CancellationToken.None);
 
 			// Assert
 			actual.Should().Be(salt);

@@ -32,4 +32,8 @@
     <ProjectReference Include="..\JwtAuthenticationApi\JwtAuthenticationApi.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Factories\Wrappers\" />
+  </ItemGroup>
+
 </Project>

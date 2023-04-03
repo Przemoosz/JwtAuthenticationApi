@@ -13,5 +13,8 @@ JwtAuthenticationApi/appsettings.json
 # VS Files
 .vs/*
 
+# Resharper Files
+JwtAuthenticationApi.sln.DotSettings.user
+
 # Other Files
 .idea/*

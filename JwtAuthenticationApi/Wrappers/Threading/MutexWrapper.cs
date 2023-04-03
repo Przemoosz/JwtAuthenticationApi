@@ -1,5 +1,8 @@
 ﻿namespace JwtAuthenticationApi.Wrappers.Threading
 {
+	/// <summary>
+	/// <see cref="Mutex"/> wrapper.
+	/// </summary>
 	public class MutexWrapper: IMutexWrapper
 	{
 		private readonly Mutex _mutex;
@@ -12,7 +15,6 @@
 		public void WaitOne()
 		{
 			_mutex.WaitOne();
-			
 		}
 
 		public void ReleaseMutex()

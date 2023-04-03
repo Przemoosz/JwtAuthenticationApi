@@ -39,5 +39,14 @@ namespace JwtAuthenticationApi.Controllers
 			await _userContext.SaveChangesAsync();
 			// await _passwordSaltContext.SaveChangesAsync();
 		}
+
+		[HttpGet("TestBlocking")]
+		public async Task GetTestBlocking()
+		{
+			Console.WriteLine($"hi from thread - {Thread.CurrentThread.ManagedThreadId}");
+			Thread.Sleep(4000);
+			Console.WriteLine("Done");
+			Thread.Sleep(1000);
+		}
 	}
 }

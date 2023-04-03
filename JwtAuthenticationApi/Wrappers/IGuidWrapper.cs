@@ -1,6 +1,11 @@
-﻿namespace JwtAuthenticationApi.Wrappers;
-
-public interface IGuidWrapper
+﻿namespace JwtAuthenticationApi.Wrappers
 {
-	Guid CreateGuid();
+	/// <summary>
+	/// Defines method for <see cref="Guid"/> wrapper.
+	/// </summary>
+	public interface IGuidWrapper
+	{
+		/// <inheritdoc cref="Guid.NewGuid"/>
+		Guid CreateGuid();
+	}
 }

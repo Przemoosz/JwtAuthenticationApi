@@ -1,13 +1,12 @@
-﻿using JwtAuthenticationApi.Factories.Wrappers;
-using JwtAuthenticationApi.Wrappers.Threading;
-
-namespace JwtAuthenticationApi.Security.Password.Salt
+﻿namespace JwtAuthenticationApi.Security.Password.Salt
 {
 	using Commands.Models;
 	using Wrappers;
 	using Microsoft.EntityFrameworkCore;
 	using DatabaseContext;
 	using Models;
+	using Factories.Wrappers;
+	using Wrappers.Threading;
 
 	public sealed class SaltService: ISaltService
 	{
@@ -34,9 +33,10 @@ namespace JwtAuthenticationApi.Security.Password.Salt
 				await _context.PasswordSalt.AddAsync(passwordSaltContext, cancellationToken);
 				await _context.SaveChangesAsync(cancellationToken);
 			}
-			catch (DbUpdateException ex)
+			catch (DbUpdateException)
 			{
-
+				// TODO
+				// LOGGER
 				throw;
 			}
 			finally
@@ -48,11 +48,14 @@ namespace JwtAuthenticationApi.Security.Password.Salt
 
 		public async Task<Result<string>> GetSaltAsync(UserModel user, CancellationToken cancellationToken = new CancellationToken())
 		{
+			IMutexWrapper mutexLock = _mutexWrapperFactory.Create(true, user.Id.ToString());
+			mutexLock.WaitOne();
 			PasswordSaltModel passwordSaltModel = await _context.PasswordSalt.FirstOrDefaultAsync(u => u.UserId.Equals(user.Id), cancellationToken);
 			if (passwordSaltModel is null)
 			{
 				return new Result<string>(null, false);
 			}
+			mutexLock.ReleaseMutex();
 			return new Result<string>(passwordSaltModel.Salt, true);
 		}
 	}
