@@ -4,7 +4,7 @@
 	using System.ComponentModel.DataAnnotations;
 
 	/// <summary>
-	/// User model, that will be saved in database. Inherits <see cref="ModelBase"/>
+	/// User model, that will be saved in database. Inherits <see cref="ModelBase"/>.
 	/// </summary>
 	public sealed class UserModel: ModelBase
 	{

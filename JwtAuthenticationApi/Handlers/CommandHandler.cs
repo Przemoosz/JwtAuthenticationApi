@@ -4,11 +4,12 @@
     using Commands.Models;
 
 	/// <summary>
-	/// Implementation of <see cref="ICommandHandler"/>.Provides environment that will handle commands in asynchronous way.
+	/// Implementation of <see cref="ICommandHandler"/>. Provides environment that will handle commands in asynchronous way.
 	/// </summary>
 	public sealed class CommandHandler : ICommandHandler
     {
-	    public async Task<Result<TResult>> HandleAsync<TResult>(ICommand<TResult> command, CancellationToken cancellationToken = new CancellationToken())
+	    /// <inheritdoc/>
+		public async Task<Result<TResult>> HandleAsync<TResult>(ICommand<TResult> command, CancellationToken cancellationToken = new CancellationToken())
         {
             return await command.ExecuteAsync(cancellationToken);
         }

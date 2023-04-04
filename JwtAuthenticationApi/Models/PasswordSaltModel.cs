@@ -4,7 +4,7 @@
 	using Abstraction.Models;
 
 	/// <summary>
-	/// Password salt model, that will be saved in database. Inherits <see cref="ModelBase"/>
+	/// Password salt model, that will be saved in database. Inherits <see cref="ModelBase"/>.
 	/// </summary>
 	public sealed class PasswordSaltModel: ModelBase
 	{

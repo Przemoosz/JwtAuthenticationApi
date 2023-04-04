@@ -7,19 +7,28 @@
 	using Commands.Factory;
 	using Handlers;
 
+	/// <inheritdoc/>
 	public class PasswordHashingService: IPasswordHashingService
 	{
 		private readonly IOptions<PasswordPepper> _passwordPepperOptions;
 		private readonly ICommandHandler _commandHandler;
 		private readonly ICommandsFactory _commandsFactory;
 
-		public PasswordHashingService(IOptions<PasswordPepper> passwordPepperOptions, ICommandHandler commandHandler, ICommandsFactory commandsFactory)
+		/// <summary>
+		/// Initializes new instance of <see cref="PasswordHashingService"/> class.
+		/// </summary>
+		/// <param name="passwordPepperOptions">Password pepper option as <see cref="IOptions{TOptions}"/>.</param>
+		/// <param name="commandHandler">Command Handler.</param>
+		/// <param name="commandsFactory">Commands Factory.</param>
+		public PasswordHashingService(IOptions<PasswordPepper> passwordPepperOptions, ICommandHandler commandHandler,
+			ICommandsFactory commandsFactory)
 		{
 			_passwordPepperOptions = passwordPepperOptions;
 			_commandHandler = commandHandler;
 			_commandsFactory = commandsFactory;
 		}
 
+		/// <inheritdoc/>
 		public async Task<string> HashAsync(string password, string salt, CancellationToken cancellationToken = new CancellationToken())
 		{
 			using (var hashingAlgorithm = SHA256.Create())

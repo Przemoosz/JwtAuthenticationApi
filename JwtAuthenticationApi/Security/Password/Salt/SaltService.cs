@@ -8,12 +8,19 @@
 	using Factories.Wrappers;
 	using Wrappers.Threading;
 
+	/// <inheritdoc/>
 	public sealed class SaltService: ISaltService
 	{
 		private readonly IPasswordSaltContext _context;
 		private readonly IGuidWrapper _guidWrapper;
 		private readonly IMutexWrapperFactory _mutexWrapperFactory;
 
+		/// <summary>
+		/// Initializes new instance of <see cref="SaltService"/> class.
+		/// </summary>
+		/// <param name="context">Password salt database context.</param>
+		/// <param name="guidWrapper">Guid wrapper.</param>
+		/// <param name="mutexWrapperFactory">Mutex wrapper factory.</param>
 		public SaltService(IPasswordSaltContext context, IGuidWrapper guidWrapper, IMutexWrapperFactory mutexWrapperFactory)
 		{
 			_context = context;
@@ -21,7 +28,7 @@
 			_mutexWrapperFactory = mutexWrapperFactory;
 		}
 
-		// TODO MUTEX
+		/// <inheritdoc/>
 		public async Task<string> CreateAndSaveSaltAsync(UserModel user, CancellationToken cancellationToken = new CancellationToken())
 		{
 			IMutexWrapper mutexLock = _mutexWrapperFactory.Create(true, user.Id.ToString());
@@ -46,6 +53,7 @@
 			return salt;
 		}
 
+		/// <inheritdoc/>
 		public async Task<Result<string>> GetSaltAsync(UserModel user, CancellationToken cancellationToken = new CancellationToken())
 		{
 			IMutexWrapper mutexLock = _mutexWrapperFactory.Create(true, user.Id.ToString());
