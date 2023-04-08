@@ -1,8 +1,11 @@
 ﻿namespace JwtAuthenticationApi.Wrappers.Threading
 {
+	using System.Diagnostics.CodeAnalysis;
+
 	/// <summary>
 	/// <see cref="Mutex"/> wrapper.
 	/// </summary>
+	[ExcludeFromCodeCoverage]
 	public class MutexWrapper: IMutexWrapper
 	{
 		private readonly Mutex _mutex;

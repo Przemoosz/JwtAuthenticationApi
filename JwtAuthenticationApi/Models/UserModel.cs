@@ -2,10 +2,12 @@
 {
 	using Abstraction.Models;
 	using System.ComponentModel.DataAnnotations;
+	using System.Diagnostics.CodeAnalysis;
 
 	/// <summary>
 	/// User model, that will be saved in database. Inherits <see cref="ModelBase"/>.
 	/// </summary>
+	[ExcludeFromCodeCoverage]
 	public sealed class UserModel: ModelBase
 	{
 		/// <summary>

@@ -1,10 +1,13 @@
 ﻿namespace JwtAuthenticationApi.Commands.Models
 {
+	using System.Diagnostics.CodeAnalysis;
+
 	/// <summary>
 	/// Represents a result of command execution.
 	/// </summary>
 	/// <typeparam name="TResult">Result type.</typeparam>
-    public sealed class Result<TResult>
+	[ExcludeFromCodeCoverage]
+	public sealed class Result<TResult>
     {
 		/// <summary>
 		/// Result value.

@@ -1,8 +1,11 @@
 ﻿namespace JwtAuthenticationApi.Models.Options
 {
+	using System.Diagnostics.CodeAnalysis;
+
 	/// <summary>
 	/// Stores password pepper.
 	/// </summary>
+	[ExcludeFromCodeCoverage]
 	public sealed class PasswordPepper
 	{
 		/// <summary>

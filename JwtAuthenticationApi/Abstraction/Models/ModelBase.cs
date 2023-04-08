@@ -1,8 +1,11 @@
 ﻿namespace JwtAuthenticationApi.Abstraction.Models
 {
+	using System.Diagnostics.CodeAnalysis;
+
 	/// <summary>
 	/// Base class for all models in relational databases.
 	/// </summary>
+	[ExcludeFromCodeCoverage]
 	public abstract class ModelBase
 	{
 		/// <summary>

@@ -1,14 +1,12 @@
-﻿using System.Windows.Input;
-using JwtAuthenticationApi.Abstraction.Commands;
-using JwtAuthenticationApi.Commands.Models;
-
-namespace JwtAuthenticationApi.UnitTests.Security.Password
+﻿namespace JwtAuthenticationApi.UnitTests.Security.Password
 {
 	using JwtAuthenticationApi.Commands.Factory;
 	using JwtAuthenticationApi.Handlers;
 	using Models.Options;
 	using JwtAuthenticationApi.Security.Password;
 	using Microsoft.Extensions.Options;
+	using JwtAuthenticationApi.Abstraction.Commands;
+	using JwtAuthenticationApi.Commands.Models;
 
 	[TestFixture]
 	public class PasswordHashingServiceTests

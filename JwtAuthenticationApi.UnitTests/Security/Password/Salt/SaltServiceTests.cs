@@ -1,9 +1,4 @@
-﻿using System.Data;
-using JwtAuthenticationApi.Factories.Wrappers;
-using JwtAuthenticationApi.Wrappers.Threading;
-using NSubstitute.ExceptionExtensions;
-
-namespace JwtAuthenticationApi.UnitTests.Security.Password.Salt
+﻿namespace JwtAuthenticationApi.UnitTests.Security.Password.Salt
 {
 	using JwtAuthenticationApi.Commands.Models;
 	using DatabaseContext;
@@ -13,6 +8,9 @@ namespace JwtAuthenticationApi.UnitTests.Security.Password.Salt
 	using Microsoft.EntityFrameworkCore;
 	using MockQueryable.NSubstitute;
 	using TddXt.AnyRoot.Strings;
+	using JwtAuthenticationApi.Factories.Wrappers;
+	using JwtAuthenticationApi.Wrappers.Threading;
+	using NSubstitute.ExceptionExtensions;
 	using static TddXt.AnyRoot.Root;
 
 	[TestFixture]

@@ -5,9 +5,11 @@ namespace JwtAuthenticationApi.Controllers
 	using Models.Options;
 	using Microsoft.AspNetCore.Mvc;
 	using Microsoft.Extensions.Options;
+	using System.Diagnostics.CodeAnalysis;
 
 	[ApiController]
 	[Route("[controller]")]
+	[ExcludeFromCodeCoverage]
 	public class TestController : ControllerBase
 	{
 		private readonly ILogger<TestController> _logger;
