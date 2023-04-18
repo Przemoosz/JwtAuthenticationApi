@@ -13,6 +13,7 @@ C# language version is 10.
 - JAA-0-SetUpSolutionAndProjects - Set up JWT Authentication API project and JWT Authentication API unit tests project.
 - JAA-1-SetUpDatabaseWithUserAndSaltTables - Set up model for user and user password salt.
 - JAA-2-ImplementPasswordHashing - Implement password hashing based on salt and pepper.
+- JAA-3-ImplementLoggingUsingSerilog - Implement logging using serilog.
 - JAA-3-ImplementVerifyHashedPassword - Implement password verifying.
 - JAA-4-ImplementRegisterEndpoint - Implement register endpoint
 - JAA-5-ImplementJWTFactory - Implement class that will create JWT based on secret and claims.
@@ -90,6 +91,9 @@ Json file should look like this:
     "DatabaseConnectionStrings": {
         "IdentityDatabaseConnectionString": "Connection string to identity database",
         "SaltDatabaseConnectionString": "Connection string to database that contains salt"
+    },
+    "PasswordPepper": {
+        "Pepper": "Your secret password pepper, It is better to have it as long as possible"
     }
 }
 ```

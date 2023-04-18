@@ -1,7 +1,13 @@
-﻿namespace JwtAuthenticationApi.Abstraction.DatabaseContext;
-
-public interface IContext
+﻿namespace JwtAuthenticationApi.Abstraction.DatabaseContext
 {
-    Task<int> SaveChangesAsync();
-    Task<int> SaveChangesAsync(CancellationToken cancellationToken);
+	/// <summary>
+	/// Base interface for database contexts. Defines saving methods.
+	/// </summary>
+	public interface IContext
+	{
+		/// <inheritdoc cref="Microsoft.EntityFrameworkCore.DbContext.SaveChangesAsync"/>
+		Task<int> SaveChangesAsync();
+		/// <inheritdoc cref="Microsoft.EntityFrameworkCore.DbContext.SaveChangesAsync"/>
+		Task<int> SaveChangesAsync(CancellationToken cancellationToken);
+	}
 }

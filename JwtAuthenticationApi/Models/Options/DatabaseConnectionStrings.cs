@@ -1,8 +1,11 @@
 ﻿namespace JwtAuthenticationApi.Models.Options
 {
+	using System.Diagnostics.CodeAnalysis;
+
 	/// <summary>
 	/// Stores connection strings to databases.
 	/// </summary>
+	[ExcludeFromCodeCoverage]
 	public sealed class DatabaseConnectionStrings
 	{
 		/// <summary>
