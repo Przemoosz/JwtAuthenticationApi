@@ -15,7 +15,7 @@ namespace JwtAuthenticationApi
 			builder.RegisterOptions();
 			builder.RegisterUserIdentityDatabaseContext();
 			builder.RegisterPasswordSaltDatabaseContext();
-
+			builder.SetupSerilog();
 			var app = builder.Build();
 			
 			if (app.Environment.IsDevelopment())
