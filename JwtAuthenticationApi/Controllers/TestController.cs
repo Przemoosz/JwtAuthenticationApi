@@ -1,3 +1,4 @@
+using JwtAuthenticationApi.Security.Password.Salt;
 using ILogger = Serilog.ILogger;
 
 namespace JwtAuthenticationApi.Controllers
@@ -20,10 +21,12 @@ namespace JwtAuthenticationApi.Controllers
 		private readonly IPasswordSaltContext _passwordSaltContext;
 		private readonly IOptions<PasswordPepper> _passwordPepperOptions;
 		private readonly ILogger _seriLogger;
+		private readonly ISaltService _saltService;
 
 		public TestController(ILogger<TestController> logger,
 			IOptions<DatabaseConnectionStrings> options, IUserContext userContext,
-			IPasswordSaltContext passwordSaltContext, IOptions<PasswordPepper> passwordPepperOptions, ILogger seriLogger)
+			IPasswordSaltContext passwordSaltContext, IOptions<PasswordPepper> passwordPepperOptions, ILogger seriLogger,
+			ISaltService saltService)
 		{
 			_logger = logger;
 			_options = options;
@@ -31,13 +34,14 @@ namespace JwtAuthenticationApi.Controllers
 			_passwordSaltContext = passwordSaltContext;
 			_passwordPepperOptions = passwordPepperOptions;
 			_seriLogger = seriLogger;
+			_saltService = saltService;
 		}
 
 		[HttpGet("GetTestData")]
 		public async Task Get()
 		{
 			_seriLogger.Error("fff");
-			throw new NullReferenceException();
+			await _saltService.GetSaltAsync(new UserModel() { Id = Guid.NewGuid() });
 			// Console.WriteLine(_passwordPepperOptions.Value.Pepper);
 			// // Console.WriteLine(_options.Value.IdentityDatabaseConnectionString);
 			// // Console.WriteLine(_options.Value.SaltDatabaseConnectionString);
