@@ -105,7 +105,6 @@
 			}
 			_logger.Information($"Received password salt for user: {user.Id}");
 			return new Result<string>(passwordSaltModel.Salt, true);
-
 		}
 	}
 }

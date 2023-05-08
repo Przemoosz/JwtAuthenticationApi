@@ -2,6 +2,19 @@
 
 Changelog for JwtAuthenticationApi System. 
 
+## [0.3.0] - 07.05.2023 - JAA-3-ImplementLoggingUsingSerilog
+
+### Added
+- NuGet packages: Serilog, Polly, Serilog.AspNetCore, Serilog.Enrichers.Thread, Serilog.Sinks.Async, Serilog.Sinks.Console, 
+Serilog.Sinks.File, SerilogWeb.Classic
+
+
+
+### Changed
+
+### Removed
+- Microsoft.Extensions.Logging.ILogger is no longer basic logging system.
+
 ## [0.2.0] - 05.03.2023 - JAA-2-ImplementPasswordHashing
 
 ### Added
@@ -23,7 +36,7 @@ Changelog for JwtAuthenticationApi System.
 ### Changed
 - Container is now set up using extensions methods.
 - Updated Readme.md.
-~~~~
+
 ### Removed
 - WeatherForecastController with its endpoints.
 

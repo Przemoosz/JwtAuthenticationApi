@@ -11,7 +11,10 @@ namespace JwtAuthenticationApi
 		public static async Task Main(string[] args)
 		{
 			WebApplicationBuilder builder = WebApplication.CreateBuilder(args);
-			builder.Services.AddControllers(); 
+			builder.Services.AddControllers(s =>
+			{
+				s.ReturnHttpNotAcceptable = true;
+			}); 
 			builder.Services.AddEndpointsApiExplorer();
 			builder.Services.AddSwaggerGen();
 			builder.RegisterOptions();
@@ -20,7 +23,6 @@ namespace JwtAuthenticationApi
 			builder.SetupSerilog();
 			builder.RegisterServices();
 			var app = builder.Build();
-			
 			if (app.Environment.IsDevelopment())
 			{
 				app.UseSwagger();
