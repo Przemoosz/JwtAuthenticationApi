@@ -9,11 +9,20 @@ Changelog for JwtAuthenticationApi System.
 Serilog.Sinks.File, SerilogWeb.Classic
 - LoggerSetup class that setup ILogger from Serilog.
 - Logging in SaltService.
-- Retry policy in SaltService.
+- Retry policy in SaltService using Polly.
+- Tests for all new classes.
+- New tests for polly in SaltService.
 - PollySleepingIntervalsFactory class that creates sleeping intervals for Polly.
+- Semaphore wrapper and semaphore wrapper factory.
+- RegisterServices method in ContainerSetup.
+- SettingsNotProvided Exception.
+- ReturnHttpNotAcceptable option in setup.
+- Try-Catch statements in SaltService. 
 
 ### Changed
-- Mutex lock in SaltService is no longer initialy owned, 
+- Lock in SaltService is now done using Semaphore.
+- All tests received "Pararelizable" attribute.
+- Tests in SaltService.
 
 ### Removed
 - Microsoft.Extensions.Logging.ILogger is no longer basic logging system.
