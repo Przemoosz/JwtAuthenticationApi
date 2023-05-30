@@ -3,7 +3,7 @@
 	using JwtAuthenticationApi.Factories.Polly;
 
 
-	[TestFixture]
+	[TestFixture, Parallelizable]
 	public class PollySleepingIntervalsFactoryTests
 	{
 		private PollySleepingIntervalsFactory _uut;

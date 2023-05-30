@@ -62,9 +62,10 @@ namespace JwtAuthenticationApi.Container
 		{
 			builder.Services.AddTransient<ISaltProvider, SaltProvider>();
 			builder.Services.AddTransient<ISaltService, SaltService>();
-			builder.Services.AddTransient<IGuidWrapper, GuidWrapper>();
-			builder.Services.AddTransient<IMutexWrapperFactory, MutexWrapperFactory>();
-			builder.Services.AddTransient<IPollySleepingIntervalsFactory, PollySleepingIntervalsFactory>();
+			builder.Services.AddSingleton<IGuidWrapper, GuidWrapper>();
+			builder.Services.AddSingleton<IMutexWrapperFactory, MutexWrapperFactory>();
+			builder.Services.AddSingleton<IPollySleepingIntervalsFactory, PollySleepingIntervalsFactory>();
+			builder.Services.AddSingleton<ISemaphoreWrapperFactory, SemaphoreWrapperFactory>();
 		}
 	}
 }

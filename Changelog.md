@@ -7,10 +7,13 @@ Changelog for JwtAuthenticationApi System.
 ### Added
 - NuGet packages: Serilog, Polly, Serilog.AspNetCore, Serilog.Enrichers.Thread, Serilog.Sinks.Async, Serilog.Sinks.Console, 
 Serilog.Sinks.File, SerilogWeb.Classic
-
-
+- LoggerSetup class that setup ILogger from Serilog.
+- Logging in SaltService.
+- Retry policy in SaltService.
+- PollySleepingIntervalsFactory class that creates sleeping intervals for Polly.
 
 ### Changed
+- Mutex lock in SaltService is no longer initialy owned, 
 
 ### Removed
 - Microsoft.Extensions.Logging.ILogger is no longer basic logging system.

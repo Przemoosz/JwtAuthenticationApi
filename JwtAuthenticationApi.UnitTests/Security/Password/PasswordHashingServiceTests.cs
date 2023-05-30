@@ -8,7 +8,7 @@
 	using JwtAuthenticationApi.Abstraction.Commands;
 	using JwtAuthenticationApi.Commands.Models;
 
-	[TestFixture]
+	[TestFixture, Parallelizable]
 	public class PasswordHashingServiceTests
 	{
 		private IOptions<PasswordPepper> _passwordOptions;

@@ -6,7 +6,7 @@
 	using TddXt.AnyRoot.Strings;
 	using static TddXt.AnyRoot.Root;
 
-	[TestFixture]
+	[TestFixture, Parallelizable]
 	public class CommandHandlerTests
 	{
 		private CommandHandler _uut;

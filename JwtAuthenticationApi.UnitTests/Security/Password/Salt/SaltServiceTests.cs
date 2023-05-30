@@ -15,29 +15,30 @@
 	using NSubstitute.ExceptionExtensions;
 	using static TddXt.AnyRoot.Root;
 
-	[TestFixture]
+	[TestFixture, Parallelizable]
 	public class SaltServiceTests
 	{
 		private IPasswordSaltContext _passwordSaltContext;
 		private SaltService _uut;
 		private IGuidWrapper _guidWrapper;
-		private IMutexWrapperFactory _mutexWrapperFactory;
-		private IMutexWrapper _mutexWrapper;
 		private IPollySleepingIntervalsFactory _pollySleepingIntervalsFactory;
 		private ILogger _logger;
+		private ISemaphoreWrapper _semaphoreWrapper;
+		private ISemaphoreWrapperFactory _semaphoreWrapperFactory;
 
 		[SetUp]
 		public void SetUp()
 		{
 			_passwordSaltContext = Substitute.For<IPasswordSaltContext>();
 			_guidWrapper = Substitute.For<IGuidWrapper>();
-			_mutexWrapperFactory = Substitute.For<IMutexWrapperFactory>();
-			_mutexWrapper = Substitute.For<IMutexWrapper>();
-			_mutexWrapperFactory.Create(Arg.Any<bool>(), Arg.Any<string>()).Returns(_mutexWrapper);
+			_semaphoreWrapper = Substitute.For<ISemaphoreWrapper>();
+			_semaphoreWrapperFactory = Substitute.For<ISemaphoreWrapperFactory>();
+			_semaphoreWrapperFactory.Create(Arg.Any<int>(), Arg.Any<int>(), Arg.Any<string>())
+				.Returns(_semaphoreWrapper);
 			_pollySleepingIntervalsFactory = Substitute.For<IPollySleepingIntervalsFactory>();
 			_logger = Substitute.For<ILogger>();
-			_uut = new SaltService(_passwordSaltContext, _guidWrapper, _mutexWrapperFactory,
-				_pollySleepingIntervalsFactory, _logger);
+			_uut = new SaltService(_passwordSaltContext, _guidWrapper,
+				_pollySleepingIntervalsFactory,_semaphoreWrapperFactory, _logger);
 		}
 
 		[Test]
@@ -96,7 +97,7 @@
 			actual.IsSuccessful.Should().BeTrue();
 			actual.Value.Should().Be(salt);
 			_passwordSaltContext.PasswordSalt.ReceivedWithAnyArgs(2);
-			_mutexWrapper.Received(1).ReleaseMutex();
+			_semaphoreWrapper.Received(1).Release();
 		}
 
 		[Test]
@@ -120,7 +121,7 @@
 			actual.IsSuccessful.Should().BeFalse();
 			actual.Value.Should().Be(null);
 			_passwordSaltContext.PasswordSalt.ReceivedWithAnyArgs(3);
-			_mutexWrapper.Received(1).ReleaseMutex();
+			_semaphoreWrapper.Received(1).Release();
 		}
 
 		[Test]
@@ -144,7 +145,7 @@
 		}
 
 		[Test]
-		public async Task ShouldReleaseMutexAfterDatabaseExceptionOccursInSavingSaltMethod()
+		public async Task ShouldReleaseSemaphoreAfterDatabaseExceptionOccursInSavingSaltMethod()
 		{
 			// Arrange
 			UserModel user = Any.Instance<UserModel>();
@@ -160,11 +161,11 @@
 
 			// Act & Assert
 			await func.Should().ThrowAsync<DbUpdateException>();
-			_mutexWrapper.Received(1).ReleaseMutex();
+			_semaphoreWrapper.Received(1).Release();
 		}
 
 		[Test]
-		public async Task ShouldReleaseMutexAfterExceptionOccursInGettingSaltMethod()
+		public async Task ShouldReleaseSemaphoreAfterExceptionOccursInGettingSaltMethod()
 		{
 			// Arrange
 			Guid userId = Guid.NewGuid();
@@ -177,11 +178,11 @@
 				.Throws<Exception>();
 			_passwordSaltContext.PasswordSalt.Returns(saltDbSet);
 
-			Func<Task<Result<string>>> func = async () => await _uut.GetSaltAsync(user);
+			await _uut.GetSaltAsync(user);
 				
 			// Act & Assert
-			await func.Should().ThrowAsync<Exception>();
-			_mutexWrapper.Received(1).ReleaseMutex();
+			_logger.Received(1).Error(Arg.Any<Exception>(), Arg.Any<string>());
+			_semaphoreWrapper.Received(1).Release();
 		}
 
 		[Test]
@@ -205,7 +206,7 @@
 			// Assert
 			actual.Should().Be(salt.ToString());
 			await _passwordSaltContext.ReceivedWithAnyArgs(3).SaveChangesAsync(Arg.Any<CancellationToken>());
-			_mutexWrapper.Received(1).ReleaseMutex();
+			_semaphoreWrapper.Received(1).Release();
 		}
 
 		[Test]
@@ -229,7 +230,7 @@
 			// Act & Assert
 			await function.Should().ThrowAsync<DbUpdateException>();
 			await _passwordSaltContext.ReceivedWithAnyArgs(3).SaveChangesAsync(Arg.Any<CancellationToken>());
-			_mutexWrapper.Received(1).ReleaseMutex();
+			_semaphoreWrapper.Received(1).Release();
 		}
 	}
 }

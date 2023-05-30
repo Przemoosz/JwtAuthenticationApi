@@ -6,7 +6,7 @@
 	using JwtAuthenticationApi.Commands.Models;
 	using static TddXt.AnyRoot.Root;
 
-	[TestFixture]
+	[TestFixture, Parallelizable]
 	public class PasswordMixCommandTests
 	{
 		[Test]
