@@ -72,6 +72,15 @@ To run application locally. After this you should see in console that applicatio
 - NUnit - ver. 3.13.3
 - NUnit.Analyzers - ver. 3.6.1
 - NUnit3TestAdapter - ver. 4.4.2
+- Polly - ver. 7.2.3
+- Serilog - ver 2.12.0
+- Serilog.AspNetCore - ver. 6.1.0
+- Serilog.Enrichers.Thread ver. 3.1.0
+- Serilog.Sinks.Async ver. 1.5.0
+- Serilog.Sinks.Console ver. 4.1.0
+- Serilog.Sinks.File ver. 5.0.0
+- SerilogWeb.Classic ver. 5.1.66
+- SerilogWeb.Classic.WebApi ver. 4.0.5
 - Swashbuckle.AspNetCore - ver. 6.5.0
 - TddXt.Any.Extensibility - ver. 6.7.0
 
