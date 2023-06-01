@@ -2,7 +2,7 @@
 {
 	using JwtAuthenticationApi.Wrappers;
 
-	[TestFixture]
+	[TestFixture, Parallelizable]
 	public class GuidWrapperTests
 	{
 		private GuidWrapper _uut;

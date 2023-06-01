@@ -5,7 +5,7 @@
 	using JwtAuthenticationApi.Security.Password.Salt;
 	using static TddXt.AnyRoot.Root;
 
-	[TestFixture]
+	[TestFixture, Parallelizable]
 	public class SaltProviderTests
 	{
 		private ISaltService _saltService;

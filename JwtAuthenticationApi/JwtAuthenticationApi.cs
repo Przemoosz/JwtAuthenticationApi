@@ -1,23 +1,28 @@
+using JwtAuthenticationApi.Container.Logger;
+
 namespace JwtAuthenticationApi
 {
-	using Container;
-	using System.Diagnostics.CodeAnalysis;
+    using Container;
+    using System.Diagnostics.CodeAnalysis;
 
-	[ExcludeFromCodeCoverage]
+    [ExcludeFromCodeCoverage]
 	internal static class JwtAuthenticationApi
 	{
 		public static async Task Main(string[] args)
 		{
 			WebApplicationBuilder builder = WebApplication.CreateBuilder(args);
-			builder.Services.AddControllers(); 
+			builder.Services.AddControllers(s =>
+			{
+				s.ReturnHttpNotAcceptable = true;
+			}); 
 			builder.Services.AddEndpointsApiExplorer();
 			builder.Services.AddSwaggerGen();
 			builder.RegisterOptions();
 			builder.RegisterUserIdentityDatabaseContext();
 			builder.RegisterPasswordSaltDatabaseContext();
-
+			builder.SetupSerilog();
+			builder.RegisterServices();
 			var app = builder.Build();
-			
 			if (app.Environment.IsDevelopment())
 			{
 				app.UseSwagger();

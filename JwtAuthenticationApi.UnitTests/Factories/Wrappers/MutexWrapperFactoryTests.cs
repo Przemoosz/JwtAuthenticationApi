@@ -3,7 +3,7 @@
     using JwtAuthenticationApi.Factories.Wrappers;
     using JwtAuthenticationApi.Wrappers.Threading;
 
-    [TestFixture]
+    [TestFixture, Parallelizable]
     public class MutexWrapperFactoryTests
     {
         private MutexWrapperFactory _uut;

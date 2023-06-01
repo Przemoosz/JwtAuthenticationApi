@@ -1,4 +1,10 @@
-﻿namespace JwtAuthenticationApi.Container
+﻿using JwtAuthenticationApi.Factories.Polly;
+using JwtAuthenticationApi.Factories.Wrappers;
+using JwtAuthenticationApi.Security.Password.Salt;
+using JwtAuthenticationApi.Wrappers;
+using JwtAuthenticationApi.Wrappers.Threading;
+
+namespace JwtAuthenticationApi.Container
 {
 	using DatabaseContext;
 	using Models.Options;
@@ -50,6 +56,16 @@
 						$"{nameof(DatabaseConnectionStrings)}:{nameof(DatabaseConnectionStrings.SaltDatabaseConnectionString)}")
 					.Value);
 			});
+		}
+
+		public static void RegisterServices(this WebApplicationBuilder builder)
+		{
+			builder.Services.AddTransient<ISaltProvider, SaltProvider>();
+			builder.Services.AddTransient<ISaltService, SaltService>();
+			builder.Services.AddSingleton<IGuidWrapper, GuidWrapper>();
+			builder.Services.AddSingleton<IMutexWrapperFactory, MutexWrapperFactory>();
+			builder.Services.AddSingleton<IPollySleepingIntervalsFactory, PollySleepingIntervalsFactory>();
+			builder.Services.AddSingleton<ISemaphoreWrapperFactory, SemaphoreWrapperFactory>();
 		}
 	}
 }

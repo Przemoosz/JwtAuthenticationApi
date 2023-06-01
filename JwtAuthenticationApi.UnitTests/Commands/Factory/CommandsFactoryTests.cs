@@ -4,7 +4,7 @@
 	using JwtAuthenticationApi.Abstraction.Commands;
 	using JwtAuthenticationApi.Commands;
 
-	[TestFixture]
+	[TestFixture, Parallelizable]
 	public class CommandsFactoryTests
 	{
 		private CommandsFactory _uut;
