@@ -23,6 +23,7 @@ Serilog.Sinks.File, SerilogWeb.Classic
 - Lock in SaltService is now done using Semaphore.
 - All tests received "Pararelizable" attribute.
 - Tests in SaltService.
+- Switched to Widnows VM in github actions to gain ability to use semaphore.
 
 ### Removed
 - Microsoft.Extensions.Logging.ILogger is no longer basic logging system.
