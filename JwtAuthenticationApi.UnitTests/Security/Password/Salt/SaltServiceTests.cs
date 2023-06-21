@@ -1,21 +1,22 @@
 ﻿namespace JwtAuthenticationApi.UnitTests.Security.Password.Salt
 {
-	using JwtAuthenticationApi.Factories.Polly;
-	using Serilog;
-	using JwtAuthenticationApi.Commands.Models;
-	using DatabaseContext;
-	using Models;
-	using JwtAuthenticationApi.Security.Password.Salt;
-	using JwtAuthenticationApi.Wrappers;
-	using Microsoft.EntityFrameworkCore;
-	using MockQueryable.NSubstitute;
-	using TddXt.AnyRoot.Strings;
-	using JwtAuthenticationApi.Factories.Wrappers;
-	using JwtAuthenticationApi.Wrappers.Threading;
-	using NSubstitute.ExceptionExtensions;
-	using static TddXt.AnyRoot.Root;
+    using JwtAuthenticationApi.Factories.Polly;
+    using Serilog;
+    using JwtAuthenticationApi.Commands.Models;
+    using DatabaseContext;
+    using Models;
+    using JwtAuthenticationApi.Security.Password.Salt;
+    using JwtAuthenticationApi.Wrappers;
+    using Microsoft.EntityFrameworkCore;
+    using MockQueryable.NSubstitute;
+    using TddXt.AnyRoot.Strings;
+    using JwtAuthenticationApi.Factories.Wrappers;
+    using JwtAuthenticationApi.Wrappers.Threading;
+    using NSubstitute.ExceptionExtensions;
+    using static TddXt.AnyRoot.Root;
+    using JwtAuthenticationApi.Models.Password;
 
-	[TestFixture, Parallelizable]
+    [TestFixture, Parallelizable]
 	public class SaltServiceTests
 	{
 		private IPasswordSaltContext _passwordSaltContext;

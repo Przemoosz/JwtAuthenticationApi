@@ -1,13 +1,15 @@
-﻿namespace JwtAuthenticationApi.DatabaseContext
-{
-	using Abstraction.DatabaseContext;
-	using Models;
-	using Microsoft.EntityFrameworkCore;
+﻿using JwtAuthenticationApi.Models.Password;
 
-	/// <summary>
-	/// Defines properties for password salt database context.
-	/// </summary>
-	public interface IPasswordSaltContext : IContext
+namespace JwtAuthenticationApi.DatabaseContext
+{
+    using Abstraction.DatabaseContext;
+    using Models;
+    using Microsoft.EntityFrameworkCore;
+
+    /// <summary>
+    /// Defines properties for password salt database context.
+    /// </summary>
+    public interface IPasswordSaltContext : IContext
 	{
 		/// <summary>
 		/// Gets password salt database set.

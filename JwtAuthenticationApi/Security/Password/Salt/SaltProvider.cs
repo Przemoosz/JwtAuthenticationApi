@@ -22,13 +22,13 @@
 		/// <inheritdoc/>
 		public async Task<string> GetPasswordSaltAsync(UserModel user, CancellationToken cancellationToken)
 		{
-			Result<string> saltFromDatabase = await _saltService.GetSaltAsync(user, cancellationToken);
+			Result<string> saltFromDatabase = await _saltService.GetSaltAsync(user.Id, cancellationToken);
 			if (saltFromDatabase.IsSuccessful)
 			{
 				return saltFromDatabase.Value;
 			}
 
-			string createdSalt = await _saltService.CreateAndSaveSaltAsync(user, cancellationToken);
+			string createdSalt = await _saltService.CreateAndSaveSaltAsync(user.Id, cancellationToken);
 			return createdSalt;
 		}
 	}

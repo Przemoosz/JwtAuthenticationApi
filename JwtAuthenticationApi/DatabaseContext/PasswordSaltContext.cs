@@ -1,14 +1,14 @@
 ﻿namespace JwtAuthenticationApi.DatabaseContext
 {
-	using Models;
-	using Microsoft.EntityFrameworkCore;
-	using System.Diagnostics.CodeAnalysis;
+    using Models;
+    using Microsoft.EntityFrameworkCore;
+    using System.Diagnostics.CodeAnalysis;
 
-	/// <summary>
-	/// Represents database context that contains password salt table and handles saving changes.
-	/// Inherits from <see cref="DbContext"/>.
-	/// </summary>
-	[ExcludeFromCodeCoverage]
+    /// <summary>
+    /// Represents database context that contains password salt table and handles saving changes.
+    /// Inherits from <see cref="DbContext"/>.
+    /// </summary>
+    [ExcludeFromCodeCoverage]
 	public sealed class PasswordSaltContext : DbContext, IPasswordSaltContext
 	{
 		/// <inheritdoc/>

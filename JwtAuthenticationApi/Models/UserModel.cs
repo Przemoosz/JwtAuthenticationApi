@@ -1,7 +1,6 @@
 ﻿namespace JwtAuthenticationApi.Models
 {
 	using Abstraction.Models;
-	using System.ComponentModel.DataAnnotations;
 	using System.Diagnostics.CodeAnalysis;
 
 	/// <summary>
@@ -13,25 +12,29 @@
 		/// <summary>
 		/// Gets or sets username.
 		/// </summary>
-		[Required]
 		public string UserName { get; set; }
 
 		/// <summary>
 		/// Gets or sets user hashed password.
 		/// </summary>
-		[Required]
 		public string HashedPassword { get; set; }
 
 		/// <summary>
 		/// Gets or sets user email.
 		/// </summary>
-		[Required]
 		public string Email { get; set; }
 
 		/// <summary>
 		/// Gets <see cref="DateTime"/> value whether this user was created.
 		/// </summary>
-		[Required]
 		public DateTime CreationDate { get; init; }
+
+		public UserModel(Guid id, string userName, string hashedPassword, string email) : base(id)
+		{
+			UserName = userName;
+			HashedPassword = hashedPassword;
+			Email = email;
+			CreationDate = DateTime.UtcNow;
+		}
 	}
 }

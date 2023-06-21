@@ -41,7 +41,7 @@ namespace JwtAuthenticationApi.Controllers
 		public async Task Get()
 		{
 			_seriLogger.Error("fff");
-			await _saltService.GetSaltAsync(new UserModel() { Id = Guid.NewGuid() });
+			// await _saltService.GetSaltAsync(new UserModel() { Id = Guid.NewGuid() });
 			// Console.WriteLine(_passwordPepperOptions.Value.Pepper);
 			// // Console.WriteLine(_options.Value.IdentityDatabaseConnectionString);
 			// // Console.WriteLine(_options.Value.SaltDatabaseConnectionString);
