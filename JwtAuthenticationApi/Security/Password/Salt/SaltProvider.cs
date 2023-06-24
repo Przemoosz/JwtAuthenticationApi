@@ -20,15 +20,15 @@
 		}
 		
 		/// <inheritdoc/>
-		public async Task<string> GetPasswordSaltAsync(UserModel user, CancellationToken cancellationToken)
+		public async Task<string> GetPasswordSaltAsync(Guid userId, CancellationToken cancellationToken)
 		{
-			Result<string> saltFromDatabase = await _saltService.GetSaltAsync(user.Id, cancellationToken);
+			Result<string> saltFromDatabase = await _saltService.GetSaltAsync(userId, cancellationToken);
 			if (saltFromDatabase.IsSuccessful)
 			{
 				return saltFromDatabase.Value;
 			}
 
-			string createdSalt = await _saltService.CreateAndSaveSaltAsync(user.Id, cancellationToken);
+			string createdSalt = await _saltService.CreateAndSaveSaltAsync(userId, cancellationToken);
 			return createdSalt;
 		}
 	}

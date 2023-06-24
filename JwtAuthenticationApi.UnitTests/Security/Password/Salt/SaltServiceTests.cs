@@ -46,7 +46,7 @@
 		public async Task ShouldCreateAndSaveNewSalt()
 		{
 			// Arrange
-			UserModel user = Any.Instance<UserModel>();
+			Guid userId = Guid.NewGuid();
 			Guid salt = Guid.NewGuid();
 			IEnumerable<PasswordSaltModel> saltSource = Enumerable.Empty<PasswordSaltModel>();
 			DbSet<PasswordSaltModel> saltDbSet = saltSource.AsQueryable().BuildMockDbSet();
@@ -54,7 +54,7 @@
 			_passwordSaltContext.PasswordSalt.Returns(saltDbSet);
 
 			// Act
-			var actual = await _uut.CreateAndSaveSaltAsync(user);
+			var actual = await _uut.CreateAndSaveSaltAsync(userId);
 
 			// Assert
 			actual.Should().Be(salt.ToString());
@@ -65,13 +65,13 @@
 		public async Task ShouldReturnNotSuccessfulResultIfUserDoesNotExists()
 		{
 			// Arrange
-			UserModel user = Any.Instance<UserModel>();
+			Guid userId = Guid.NewGuid();
 			IEnumerable<PasswordSaltModel> saltSource = Enumerable.Empty<PasswordSaltModel>();
 			DbSet<PasswordSaltModel> saltDbSet = saltSource.AsQueryable().BuildMockDbSet();
 			_passwordSaltContext.PasswordSalt.Returns(saltDbSet);
 
 			// Act
-			Result<string> actual = await _uut.GetSaltAsync(user);
+			Result<string> actual = await _uut.GetSaltAsync(userId);
 
 			// Assert
 			actual.IsSuccessful.Should().BeFalse();
@@ -84,15 +84,14 @@
 			// Arrange
 			Guid userId = Guid.NewGuid();
 			string salt = Any.String();
-			UserModel user = new UserModel() { Id = userId };
-			PasswordSaltModel passwordSalt = new PasswordSaltModel() { Id = Guid.Empty, UserId = userId, Salt = salt };
+			PasswordSaltModel passwordSalt = new PasswordSaltModel(Guid.Empty, salt, userId);
 			IEnumerable<PasswordSaltModel> saltSource = new List<PasswordSaltModel>(1) { passwordSalt };
 			DbSet<PasswordSaltModel> saltDbSet = saltSource.AsQueryable().BuildMockDbSet();
 			_passwordSaltContext.PasswordSalt.Returns(x => throw new Exception(), x => saltDbSet);
 			_pollySleepingIntervalsFactory.CreateLinearInterval(Arg.Any<uint>(), Arg.Any<uint>(), Arg.Any<uint>())
 				.Returns(new List<TimeSpan>(2) { TimeSpan.Zero, TimeSpan.Zero });
 			// Act
-			var actual = await _uut.GetSaltAsync(user);
+			var actual = await _uut.GetSaltAsync(userId);
 
 			// Assert
 			actual.IsSuccessful.Should().BeTrue();
@@ -107,8 +106,7 @@
 			// Arrange
 			Guid userId = Guid.NewGuid();
 			string salt = Any.String();
-			UserModel user = new UserModel() { Id = userId };
-			PasswordSaltModel passwordSalt = new PasswordSaltModel() { Id = Guid.Empty, UserId = userId, Salt = salt };
+			PasswordSaltModel passwordSalt = new PasswordSaltModel(Guid.Empty, salt, userId);
 			IEnumerable<PasswordSaltModel> saltSource = new List<PasswordSaltModel>(1) { passwordSalt };
 			DbSet<PasswordSaltModel> saltDbSet = saltSource.AsQueryable().BuildMockDbSet();
 			_passwordSaltContext.PasswordSalt.Returns(x => throw new Exception(), x => throw new Exception(), x => throw new Exception(),x => saltDbSet);
@@ -116,7 +114,7 @@
 				.Returns(new List<TimeSpan>(2) { TimeSpan.Zero, TimeSpan.Zero });
 
 			// Act
-			var actual = await _uut.GetSaltAsync(user);
+			var actual = await _uut.GetSaltAsync(userId);
 
 			// Assert
 			actual.IsSuccessful.Should().BeFalse();
@@ -131,14 +129,13 @@
 			// Arrange
 			Guid userId = Guid.NewGuid();
 			string salt = Any.String();
-			UserModel user = new UserModel(){Id = userId};
-			PasswordSaltModel passwordSalt = new PasswordSaltModel(){Id = Guid.Empty, UserId = userId, Salt = salt};
+			PasswordSaltModel passwordSalt = new PasswordSaltModel(Guid.Empty, salt, userId);
 			IEnumerable<PasswordSaltModel> saltSource = new List<PasswordSaltModel>(1) { passwordSalt };
 			DbSet<PasswordSaltModel> saltDbSet = saltSource.AsQueryable().BuildMockDbSet();
 			_passwordSaltContext.PasswordSalt.Returns(saltDbSet);
 
 			// Act
-			var actual = await _uut.GetSaltAsync(user);
+			var actual = await _uut.GetSaltAsync(userId);
 
 			// Assert
 			actual.IsSuccessful.Should().BeTrue();
@@ -149,7 +146,7 @@
 		public async Task ShouldReleaseSemaphoreAfterDatabaseExceptionOccursInSavingSaltMethod()
 		{
 			// Arrange
-			UserModel user = Any.Instance<UserModel>();
+			Guid userId = Guid.NewGuid();
 			Guid salt = Guid.NewGuid();
 			IEnumerable<PasswordSaltModel> saltSource = Enumerable.Empty<PasswordSaltModel>();
 			DbSet<PasswordSaltModel> saltDbSet = saltSource.AsQueryable().BuildMockDbSet();
@@ -158,7 +155,7 @@
 			_passwordSaltContext.SaveChangesAsync(Arg.Any<CancellationToken>())
 				.ThrowsAsync(new DbUpdateException());
 
-			Func<Task<string>> func = async () => await _uut.CreateAndSaveSaltAsync(user);
+			Func<Task<string>> func = async () => await _uut.CreateAndSaveSaltAsync(userId);
 
 			// Act & Assert
 			await func.Should().ThrowAsync<DbUpdateException>();
@@ -171,15 +168,14 @@
 			// Arrange
 			Guid userId = Guid.NewGuid();
 			string salt = Any.String();
-			UserModel user = new UserModel() { Id = userId };
-			PasswordSaltModel passwordSalt = new PasswordSaltModel() { Id = Guid.Empty, UserId = userId, Salt = salt };
+			PasswordSaltModel passwordSalt = new PasswordSaltModel(Guid.Empty, salt, userId);
 			IEnumerable<PasswordSaltModel> saltSource = new List<PasswordSaltModel>(1) { passwordSalt };
 			DbSet<PasswordSaltModel> saltDbSet = saltSource.AsQueryable().BuildMockDbSet();
 			_pollySleepingIntervalsFactory.CreateLinearInterval(Arg.Any<uint>(), Arg.Any<uint>(), Arg.Any<uint>())
 				.Throws<Exception>();
 			_passwordSaltContext.PasswordSalt.Returns(saltDbSet);
 
-			await _uut.GetSaltAsync(user);
+			await _uut.GetSaltAsync(userId);
 				
 			// Act & Assert
 			_logger.Received(1).Error(Arg.Any<Exception>(), Arg.Any<string>());
@@ -190,7 +186,7 @@
 		public async Task ShouldRetrySavingChangesIfExceptionOccurs()
 		{
 			// Arrange
-			UserModel user = Any.Instance<UserModel>();
+			Guid userId = Guid.NewGuid();
 			Guid salt = Guid.NewGuid();
 			IEnumerable<PasswordSaltModel> saltSource = Enumerable.Empty<PasswordSaltModel>();
 			DbSet<PasswordSaltModel> saltDbSet = saltSource.AsQueryable().BuildMockDbSet();
@@ -202,7 +198,7 @@
 				.Returns(new List<TimeSpan>(2) { TimeSpan.Zero, TimeSpan.Zero });
 			
 			// Act
-			var actual = await _uut.CreateAndSaveSaltAsync(user);
+			var actual = await _uut.CreateAndSaveSaltAsync(userId);
 
 			// Assert
 			actual.Should().Be(salt.ToString());
@@ -214,7 +210,7 @@
 		public async Task ShouldThrowExceptionIfExceptionStillOccursAfterRetries()
 		{
 			// Arrange
-			UserModel user = Any.Instance<UserModel>();
+			Guid userId = Guid.NewGuid();
 			Guid salt = Guid.NewGuid();
 			IEnumerable<PasswordSaltModel> saltSource = Enumerable.Empty<PasswordSaltModel>();
 			DbSet<PasswordSaltModel> saltDbSet = saltSource.AsQueryable().BuildMockDbSet();
@@ -226,7 +222,7 @@
 			_pollySleepingIntervalsFactory.CreateLinearInterval(Arg.Any<uint>(), Arg.Any<uint>(), Arg.Any<uint>())
 				.Returns(new List<TimeSpan>(2) { TimeSpan.Zero, TimeSpan.Zero });
 
-			Func<Task<string>> function = async () => await _uut.CreateAndSaveSaltAsync(user);
+			Func<Task<string>> function = async () => await _uut.CreateAndSaveSaltAsync(userId);
 
 			// Act & Assert
 			await function.Should().ThrowAsync<DbUpdateException>();

@@ -25,7 +25,7 @@ namespace JwtAuthenticationApi.Authentication.Registration
 			// If can not create user clean salt for user
 			Guid userId = Guid.NewGuid();
 
-			var saltForUser = _saltService
+			// var saltForUser = _saltService.CreateAndSaveSaltAsync()
 			throw new NotImplementedException();
 		}
 	}

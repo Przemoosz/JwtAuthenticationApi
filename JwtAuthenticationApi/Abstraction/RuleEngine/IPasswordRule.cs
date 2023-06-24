@@ -1,4 +1,4 @@
-﻿using JwtAuthenticationApi.Validators.Password.RuleEngine;
+﻿using JwtAuthenticationApi.Models.Password;
 
 namespace JwtAuthenticationApi.Abstraction.RuleEngine
 {

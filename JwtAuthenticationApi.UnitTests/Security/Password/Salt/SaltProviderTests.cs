@@ -22,14 +22,14 @@
 		public async Task ShouldCreateSaltIfUserIsNotInDatabase()
 		{
 			// Arrange
-			UserModel user = Any.Instance<UserModel>();
+			Guid userId = Guid.Empty;
 			string salt = Guid.NewGuid().ToString();
 			Result<string> getSaltResult = new Result<string>(null, false);
-			_saltService.GetSaltAsync(user).Returns(getSaltResult);
-			_saltService.CreateAndSaveSaltAsync(user).Returns(salt);
+			_saltService.GetSaltAsync(userId).Returns(getSaltResult);
+			_saltService.CreateAndSaveSaltAsync(userId).Returns(salt);
 			
 			// Act
-			string actual = await _uut.GetPasswordSaltAsync(user, CancellationToken.None);
+			string actual = await _uut.GetPasswordSaltAsync(userId, CancellationToken.None);
 
 			// Assert
 			actual.Should().Be(salt);
@@ -39,13 +39,13 @@
 		public async Task ShouldReturnSaltFromDatabaseIfUserIsInDatabase()
 		{
 			// Arrange
-			UserModel user = Any.Instance<UserModel>();
+			Guid userId = Guid.Empty;
 			string salt = Guid.NewGuid().ToString();
 			Result<string> getSaltResult = new Result<string>(salt, true);
-			_saltService.GetSaltAsync(user).Returns(getSaltResult);
+			_saltService.GetSaltAsync(userId).Returns(getSaltResult);
 
 			// Act
-			string actual = await _uut.GetPasswordSaltAsync(user, CancellationToken.None);
+			string actual = await _uut.GetPasswordSaltAsync(userId, CancellationToken.None);
 
 			// Assert
 			actual.Should().Be(salt);

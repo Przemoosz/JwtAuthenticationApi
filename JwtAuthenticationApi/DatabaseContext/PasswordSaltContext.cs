@@ -1,4 +1,6 @@
-﻿namespace JwtAuthenticationApi.DatabaseContext
+﻿using JwtAuthenticationApi.Models.Password;
+
+namespace JwtAuthenticationApi.DatabaseContext
 {
     using Models;
     using Microsoft.EntityFrameworkCore;

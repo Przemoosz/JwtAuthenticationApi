@@ -4,7 +4,7 @@ using JwtAuthenticationApi.Wrappers.Threading;
 namespace JwtAuthenticationApi.UnitTests.Factories.Wrappers
 {
 	[TestFixture, Parallelizable]
-	public class SemaphoreWrapperFactoryTest
+	public class SemaphoreWrapperFactoryTests
 	{
 		private SemaphoreWrapperFactory _uut;
 
