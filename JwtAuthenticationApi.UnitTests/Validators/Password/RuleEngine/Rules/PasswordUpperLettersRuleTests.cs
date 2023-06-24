@@ -8,12 +8,12 @@
 	[TestFixture, Parallelizable, RuleTest]
 	public sealed class PasswordUpperLettersRuleTests
 	{
-		private PasswordUpperLettersRule _sut;
+		private UpperLettersRule _sut;
 
 		[SetUp]
 		public void SetUp()
 		{
-			_sut = new PasswordUpperLettersRule();
+			_sut = new UpperLettersRule();
 		}
 
 		[Test]

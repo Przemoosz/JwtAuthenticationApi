@@ -6,7 +6,7 @@
 	using Constants;
 
 
-	public class PasswordUpperLettersRule: IPasswordRule
+	public class UpperLettersRule: IRule<PasswordContext>
 	{
 		public void Evaluate(PasswordContext context)
 		{

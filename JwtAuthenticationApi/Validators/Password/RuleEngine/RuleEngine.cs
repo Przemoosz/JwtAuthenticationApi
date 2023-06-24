@@ -3,9 +3,9 @@
     using Abstraction.RuleEngine;
     using Models.Password;
 
-    public class PasswordRuleEngine : IPasswordRuleEngine
+    public class RuleEngine : IRuleEngine<PasswordContext>
     {
-        public void Validate(PasswordContext context, IEnumerable<IPasswordRule> rules)
+        public void Validate(PasswordContext context, IEnumerable<IRule<PasswordContext>> rules)
         {
             foreach (var passwordRule in rules)
             {

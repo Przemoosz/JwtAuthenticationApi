@@ -10,12 +10,12 @@
 	[TestFixture, Parallelizable, RuleTest]
 	public sealed class PasswordLengthRuleTests
 	{
-		private PasswordLengthRule _sut;
+		private LengthRule _sut;
 
 		[SetUp]
 		public void SetUp()
 		{
-			_sut = new PasswordLengthRule();
+			_sut = new LengthRule();
 		}
 
 		[Test]

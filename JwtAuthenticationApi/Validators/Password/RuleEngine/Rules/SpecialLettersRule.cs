@@ -5,7 +5,7 @@
 	using Exceptions;
 	using Models.Password;
 
-	public class PasswordSpecialLettersRule : IPasswordRule
+	public class SpecialLettersRule : IRule<PasswordContext>
 	{
 		public void Evaluate(PasswordContext context)
 		{

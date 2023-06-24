@@ -8,12 +8,12 @@
 	[TestFixture, Parallelizable, RuleTest]
 	public sealed class PasswordSpecialLettersRuleTests
 	{
-		private PasswordSpecialLettersRule _sut;
+		private SpecialLettersRule _sut;
 
 		[SetUp]
 		public void SetUp()
 		{
-			_sut = new PasswordSpecialLettersRule();
+			_sut = new SpecialLettersRule();
 		}
 
 		[Test]

@@ -2,16 +2,15 @@
 {
     using Abstraction.RuleEngine;
     using Exceptions;
-    using Constants;
     using Models.Password;
 
-	public sealed class PasswordLengthRule: IPasswordRule
+	public class EqualityRule: IRule<PasswordContext>
 	{
 		public void Evaluate(PasswordContext context)
 		{
-			if (context.PasswordLength < JaaConstants.MinPasswordLength || context.PasswordLength > JaaConstants.MaxPasswordLength)
+			if (!context.Password.Equals(context.PasswordConfirmation))
 			{
-				throw new PasswordValidationException("Password length is not valid.");
+				throw new PasswordValidationException("Provided passwords are not equal.");
 			}
 		}
 

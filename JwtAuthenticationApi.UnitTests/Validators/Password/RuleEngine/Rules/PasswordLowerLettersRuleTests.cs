@@ -9,12 +9,12 @@
 	[TestFixture, Parallelizable, RuleTest]
 	public sealed class PasswordLowerLettersRuleTests
 	{
-		private PasswordLowerLettersRule _sut;
+		private LowerLettersRule _sut;
 
 		[SetUp]
 		public void SetUp()
 		{
-			_sut = new PasswordLowerLettersRule();
+			_sut = new LowerLettersRule();
 		}
 
 		[Test]

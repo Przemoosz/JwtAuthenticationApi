@@ -8,12 +8,12 @@
 	[TestFixture, Parallelizable, RuleTest]
 	public class PasswordEqualityRuleTests
 	{
-		private PasswordEqualityRule _sut;
+		private EqualityRule _sut;
 
 		[SetUp]
 		public void SetUp()
 		{
-			_sut = new PasswordEqualityRule();
+			_sut = new EqualityRule();
 		}
 
 		[Test]

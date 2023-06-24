@@ -5,7 +5,7 @@
 	using Exceptions;
 	using Models.Password;
 
-	public class PasswordLowerLettersRule : IPasswordRule
+	public class LowerLettersRule : IRule<PasswordContext>
 	{
 		public void Evaluate(PasswordContext context)
 		{
