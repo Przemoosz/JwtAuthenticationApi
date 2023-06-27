@@ -3,7 +3,7 @@
     using Abstraction.RuleEngine;
     using Models.Password;
 
-    public class RuleEngine : IRuleEngine<PasswordContext>
+    public class PasswordRuleEngine : IRuleEngine<PasswordContext>
     {
         public void Validate(PasswordContext context, IEnumerable<IRule<PasswordContext>> rules)
         {
