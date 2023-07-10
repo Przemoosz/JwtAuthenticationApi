@@ -13,7 +13,7 @@
 	{
 		private IOptions<PasswordPepper> _passwordOptions;
 		private ICommandHandler _commandHandler;
-		private ICommandsFactory _commandFactory;
+		private ICommandFactory _commandFactory;
 		private PasswordHashingService _uut;
 
 		[SetUp]
@@ -21,7 +21,7 @@
 		{
 			_passwordOptions = Substitute.For<IOptions<PasswordPepper>>();
 			_commandHandler = Substitute.For<ICommandHandler>();
-			_commandFactory = Substitute.For<ICommandsFactory>();
+			_commandFactory = Substitute.For<ICommandFactory>();
 			_uut = new PasswordHashingService(_passwordOptions, _commandHandler, _commandFactory);
 		}
 

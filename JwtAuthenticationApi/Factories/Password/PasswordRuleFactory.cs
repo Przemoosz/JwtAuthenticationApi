@@ -1,9 +1,9 @@
-﻿namespace JwtAuthenticationApi.Factories.Password
+﻿using JwtAuthenticationApi.Validators.Password.Rules;
+
+namespace JwtAuthenticationApi.Factories.Password
 {
 	using Abstraction.RuleEngine;
 	using Models.Password;
-	using Validators.Password.RuleEngine.Rules;
-
 	public sealed class PasswordRuleFactory: IPasswordRuleFactory
 	{
 		public IRule<PasswordContext> CreateEqualityRule() => new EqualityRule();

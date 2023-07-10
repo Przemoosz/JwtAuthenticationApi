@@ -1,10 +1,32 @@
-﻿namespace JwtAuthenticationApi.Exceptions;
-
-public class PasswordValidationException : Exception
+﻿namespace JwtAuthenticationApi.Exceptions
 {
-    public PasswordValidationException() : base() { }
+	using System.Diagnostics.CodeAnalysis;
 
-    public PasswordValidationException(string message) : base(message) { }
+	/// <summary>
+	/// Represents one or more errors that occurs during password validation process.
+	/// </summary>
+	[ExcludeFromCodeCoverage]
+	public class PasswordValidationException : Exception
+	{
+		/// <summary>
+		/// Initializes new instance of <see cref="PasswordValidationException"/> class.
+		/// </summary>
+		public PasswordValidationException() : base()
+		{
+		}
 
-    public PasswordValidationException(string message, Exception innerException) : base(message, innerException) { }
+		/// <summary>
+		/// Initializes new instance of <see cref="PasswordValidationException"/> class with error.
+		/// </summary>
+		public PasswordValidationException(string message) : base(message)
+		{
+		}
+
+		/// <summary>
+		/// Initializes new instance of <see cref="PasswordValidationException"/> class with error message and inner exception.
+		/// </summary>
+		public PasswordValidationException(string message, Exception innerException) : base(message, innerException)
+		{
+		}
+	}
 }

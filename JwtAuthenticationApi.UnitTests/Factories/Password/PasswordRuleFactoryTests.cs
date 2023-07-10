@@ -1,12 +1,12 @@
 ﻿namespace JwtAuthenticationApi.UnitTests.Factories.Password
 {
-	using Abstraction.RuleEngine;
-	using JwtAuthenticationApi.Factories.Password;
-	using JwtAuthenticationApi.Models.Password;
-	using TestHelpers.Attributes;
-	using JwtAuthenticationApi.Validators.Password.RuleEngine.Rules;
+    using Abstraction.RuleEngine;
+    using JwtAuthenticationApi.Factories.Password;
+    using JwtAuthenticationApi.Models.Password;
+    using TestHelpers.Attributes;
+    using JwtAuthenticationApi.Validators.Password.Rules;
 
-	[TestFixture, Parallelizable, FactoryTest]
+    [TestFixture, Parallelizable, FactoryTest]
 	public sealed class PasswordRuleFactoryTests
 	{
 		private PasswordRuleFactory _sut;

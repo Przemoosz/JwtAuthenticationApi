@@ -4,17 +4,17 @@ using JwtAuthenticationApi.Models.Password;
 
 namespace JwtAuthenticationApi.UnitTests.Validators.Password.RuleEngine
 {
-	using JwtAuthenticationApi.Validators.Password.RuleEngine;
+    using JwtAuthenticationApi.Validators.Password;
 
-	[TestFixture, Parallelizable]
+    [TestFixture, Parallelizable]
 	public sealed class PasswordRuleEngineTests
 	{
-		private PasswordRuleEngine _sut;
+		private RuleEngine<PasswordContext> _sut;
 
 		[SetUp]
 		public void SetUp()
 		{
-			_sut = new PasswordRuleEngine();
+			_sut = new RuleEngine<PasswordContext>();
 		}
 
 		[Test]
@@ -25,7 +25,7 @@ namespace JwtAuthenticationApi.UnitTests.Validators.Password.RuleEngine
 			IRule<PasswordContext> firstRule = Substitute.For<IRule<PasswordContext>>();
 			IRule<PasswordContext> secondRule = Substitute.For<IRule<PasswordContext>>();
 			List<IRule<PasswordContext>> rules = new List<IRule<PasswordContext>>(2);
-			rules.AddRules<PasswordContext>(firstRule, secondRule);
+			rules.AddRules(firstRule, secondRule);
 			firstRule.CanEvaluateRule(passwordContext).Returns(true);
 			secondRule.CanEvaluateRule(passwordContext).Returns(true);
 

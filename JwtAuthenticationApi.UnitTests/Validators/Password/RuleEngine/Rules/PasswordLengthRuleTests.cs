@@ -1,13 +1,12 @@
 ﻿namespace JwtAuthenticationApi.UnitTests.Validators.Password.RuleEngine.Rules
 {
-	using Constants;
-	using Exceptions;
-	using JwtAuthenticationApi.Models.Password;
-	using TestHelpers.Attributes;
-	using JwtAuthenticationApi.Validators.Password.RuleEngine.Rules;
+    using Constants;
+    using Exceptions;
+    using JwtAuthenticationApi.Models.Password;
+    using TestHelpers.Attributes;
+    using JwtAuthenticationApi.Validators.Password.Rules;
 
-
-	[TestFixture, Parallelizable, RuleTest]
+    [TestFixture, Parallelizable, RuleTest]
 	public sealed class PasswordLengthRuleTests
 	{
 		private LengthRule _sut;

@@ -5,7 +5,6 @@
 
 	public class PasswordContextFactory: IPasswordContextFactory
 	{
-
 		public PasswordContext Create(string password, string passwordConfirmation)
 		{
 			int totalUpperCase = 0;

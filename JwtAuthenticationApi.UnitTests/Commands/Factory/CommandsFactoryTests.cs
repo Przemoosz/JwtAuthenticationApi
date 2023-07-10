@@ -1,18 +1,19 @@
 ﻿namespace JwtAuthenticationApi.UnitTests.Commands.Factory
 {
-	using JwtAuthenticationApi.Commands.Factory;
-	using JwtAuthenticationApi.Abstraction.Commands;
-	using JwtAuthenticationApi.Commands;
+    using JwtAuthenticationApi.Commands.Factory;
+    using JwtAuthenticationApi.Abstraction.Commands;
+    using JwtAuthenticationApi.Commands;
+    using Models;
 
-	[TestFixture, Parallelizable]
+    [TestFixture, Parallelizable]
 	public class CommandsFactoryTests
 	{
-		private CommandsFactory _uut;
+		private CommandFactory _uut;
 
 		[SetUp]
 		public void SetUp()
 		{
-			_uut = new CommandsFactory();
+			_uut = new CommandFactory();
 		}
 
 		[Test]
@@ -25,6 +26,18 @@
 			actual.Should().NotBeNull();
 			actual.Should().BeOfType<PasswordMixCommand>();
 			actual.Should().BeAssignableTo<ICommand<string>>();
+		}
+
+		[Test]
+		public void ShouldCreateUserModelFromRequestCommand()
+		{
+			// Act
+			var actual = _uut.CreateUserModelFromRequestCommand(null, null);
+
+			// Assert
+			actual.Should().NotBeNull();
+			actual.Should().BeOfType<CreateUserModelFromRequestCommand>();
+			actual.Should().BeAssignableTo<ICommand<UserModel>>();
 		}
 	}
 }

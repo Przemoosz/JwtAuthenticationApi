@@ -1,15 +1,22 @@
-﻿using JwtAuthenticationApi.Factories.Polly;
-using JwtAuthenticationApi.Factories.Wrappers;
-using JwtAuthenticationApi.Security.Password.Salt;
-using JwtAuthenticationApi.Wrappers;
-using JwtAuthenticationApi.Wrappers.Threading;
+﻿using JwtAuthenticationApi.Authentication.Registration;
 
 namespace JwtAuthenticationApi.Container
 {
-	using DatabaseContext;
-	using Models.Options;
-	using Microsoft.EntityFrameworkCore;
-	using System.Diagnostics.CodeAnalysis;
+    using DatabaseContext;
+    using Models.Options;
+    using Microsoft.EntityFrameworkCore;
+    using System.Diagnostics.CodeAnalysis;
+    using Abstraction.RuleEngine;
+    using Commands.Factory;
+    using Factories.Password;
+    using Factories.Polly;
+    using Factories.Wrappers;
+    using Handlers;
+    using Security.Password;
+    using Security.Password.Salt;
+    using Validators.Password;
+    using Wrappers;
+    using Wrappers.Threading;
 
 	/// <summary>
 	/// Defines extensions methods for container setup.
@@ -63,6 +70,16 @@ namespace JwtAuthenticationApi.Container
 			builder.Services.AddTransient<ISaltProvider, SaltProvider>();
 			builder.Services.AddTransient<ISaltService, SaltService>();
 			builder.Services.AddSingleton<IGuidWrapper, GuidWrapper>();
+			builder.Services.AddTransient<IPasswordHashingService, PasswordHashingService>();
+			builder.Services.AddTransient<ICommandFactory, CommandFactory>();
+			builder.Services.AddTransient<ICommandHandler, CommandHandler>();
+
+			builder.Services.AddTransient<IPasswordValidator, PasswordValidator>();
+			builder.Services.AddTransient(typeof(IRuleEngine<>), typeof(RuleEngine<>));
+			builder.Services.AddTransient<IPasswordContextFactory, PasswordContextFactory>();
+			builder.Services.AddTransient<IPasswordRuleFactory, PasswordRuleFactory>();
+			builder.Services.AddTransient<IUserRegisterService, UserRegisterService>();
+
 			builder.Services.AddSingleton<IMutexWrapperFactory, MutexWrapperFactory>();
 			builder.Services.AddSingleton<IPollySleepingIntervalsFactory, PollySleepingIntervalsFactory>();
 			builder.Services.AddSingleton<ISemaphoreWrapperFactory, SemaphoreWrapperFactory>();
