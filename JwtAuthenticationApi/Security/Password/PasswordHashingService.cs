@@ -29,7 +29,7 @@
 		}
 
 		/// <inheritdoc/>
-		public async Task<string> HashAsync(string password, string salt, CancellationToken cancellationToken = new CancellationToken())
+		public async Task<string> HashPasswordAsync(string password, string salt, CancellationToken cancellationToken = new CancellationToken())
 		{
 			using (var hashingAlgorithm = SHA256.Create())
 			{

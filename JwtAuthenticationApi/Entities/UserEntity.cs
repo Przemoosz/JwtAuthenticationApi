@@ -1,14 +1,10 @@
-﻿using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
-
-namespace JwtAuthenticationApi.Entities
+﻿namespace JwtAuthenticationApi.Entities
 {
-	[Obsolete]
-	public class UserEntity
+	using Abstraction.Entity;
+	using System.ComponentModel.DataAnnotations.Schema;
+
+	public class UserEntity: EntityBase
 	{
-		[Key]
-		[DatabaseGenerated(DatabaseGeneratedOption.Identity)] // generate for insert new only
-		public Guid Id { get; set; }
 		/// <summary>
 		/// Gets or sets username.
 		/// </summary>
@@ -24,17 +20,18 @@ namespace JwtAuthenticationApi.Entities
 		/// </summary>
 		public string Email { get; set; }
 
+
 		/// <summary>
 		/// Gets <see cref="DateTime"/> value whether this user was created.
 		/// </summary>
 		public DateTime CreationDate { get; init; }
 
-		// public UserEntity(Guid id, string userName, string hashedPassword, string email) : base(id)
-		// {
-		// 	UserName = userName;
-		// 	HashedPassword = hashedPassword;
-		// 	Email = email;
-		// 	CreationDate = DateTime.UtcNow;
-		// }
+		public UserEntity(string userName, string hashedPassword, string email)
+		{
+			UserName = userName;
+			HashedPassword = hashedPassword;
+			Email = email;
+			CreationDate = DateTime.Now;
+		}
 	}
 }

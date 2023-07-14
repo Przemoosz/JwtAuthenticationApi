@@ -1,7 +1,6 @@
 ﻿namespace JwtAuthenticationApi.Security.Password.Salt
 {
 	using Commands.Models;
-	using Models;
 
 	/// <summary>
 	/// Implementation of <see cref="ISaltProvider"/>. Provides method for getting password salt.
@@ -20,16 +19,14 @@
 		}
 		
 		/// <inheritdoc/>
-		public async Task<string> GetPasswordSaltAsync(Guid userId, CancellationToken cancellationToken)
+		public async Task<string> GetPasswordSaltAsync(int userId, CancellationToken cancellationToken)
 		{
 			Result<string> saltFromDatabase = await _saltService.GetSaltAsync(userId, cancellationToken);
 			if (saltFromDatabase.IsSuccessful)
 			{
 				return saltFromDatabase.Value;
 			}
-
-			string createdSalt = await _saltService.CreateAndSaveSaltAsync(userId, cancellationToken);
-			return createdSalt;
+			throw new InvalidOperationException();
 		}
 	}
 }

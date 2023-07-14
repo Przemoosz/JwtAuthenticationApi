@@ -1,4 +1,5 @@
-﻿using JwtAuthenticationApi.Models;
+﻿using JwtAuthenticationApi.Entities;
+using JwtAuthenticationApi.Models;
 using JwtAuthenticationApi.Models.Requests;
 
 namespace JwtAuthenticationApi.Commands.Factory
@@ -16,7 +17,7 @@ namespace JwtAuthenticationApi.Commands.Factory
 			return new PasswordMixCommand(password, salt, pepper);
 		}
 
-		public ICommand<UserModel> CreateUserModelFromRequestCommand(RegisterUserRequest registerUserRequest, string hashedPassword)
+		public ICommand<UserEntity> CreateUserEntityFromRequestCommand(RegisterUserRequest registerUserRequest, string hashedPassword)
 		{
 			return new CreateUserModelFromRequestCommand(registerUserRequest, hashedPassword);
 		}

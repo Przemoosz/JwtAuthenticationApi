@@ -26,7 +26,7 @@
 			string salt = Guid.NewGuid().ToString();
 			Result<string> getSaltResult = new Result<string>(null, false);
 			_saltService.GetSaltAsync(userId).Returns(getSaltResult);
-			_saltService.CreateAndSaveSaltAsync(userId).Returns(salt);
+			_saltService.SaveSaltAsync(userId).Returns(salt);
 			
 			// Act
 			string actual = await _uut.GetPasswordSaltAsync(userId, CancellationToken.None);

@@ -19,8 +19,6 @@
 		/// </summary>
 	    public bool IsSuccessful { get; init; }
 
-		public string ErrorMessage { get; }
-
 		/// <summary>
 		/// Initializes new instance of <see cref="Result{TResult}"/>
 		/// </summary>

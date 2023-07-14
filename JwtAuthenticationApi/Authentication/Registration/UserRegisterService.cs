@@ -1,13 +1,15 @@
-﻿using JwtAuthenticationApi.Commands.Factory;
-using JwtAuthenticationApi.Commands.Models;
-using JwtAuthenticationApi.Handlers;
-using JwtAuthenticationApi.Models.Requests;
-using JwtAuthenticationApi.Security.Password;
-using JwtAuthenticationApi.Security.Password.Salt;
-using JwtAuthenticationApi.Validators.Password;
-
-namespace JwtAuthenticationApi.Authentication.Registration
+﻿namespace JwtAuthenticationApi.Authentication.Registration
 {
+	using Abstraction.Commands;
+	using Commands.Factory;
+	using Commands.Models;
+	using Entities;
+	using Handlers;
+	using Identity.User;
+	using Models.Requests;
+	using Security.Password;
+	using Security.Password.Salt;
+	using Validators.Password;
 
 	public class UserRegisterService: IUserRegisterService
 	{
@@ -15,43 +17,75 @@ namespace JwtAuthenticationApi.Authentication.Registration
 		private readonly IPasswordValidator _passwordValidator;
 		private readonly IPasswordHashingService _passwordHashingService;
 		private readonly ICommandHandler _commandHandler;
-		private readonly ICommandFactory _commandFactory;
 
-		public UserRegisterService(ISaltService saltService, IPasswordValidator passwordValidator,
-			IPasswordHashingService passwordHashingService, ICommandHandler commandHandler, ICommandFactory commandFactory)
+		private readonly ICommandFactory _commandFactory;
+		private readonly IUserService _userService;
+
+		public UserRegisterService(ISaltService saltService,
+			IPasswordValidator passwordValidator,
+			IPasswordHashingService passwordHashingService, 
+			ICommandHandler commandHandler, 
+			ICommandFactory commandFactory,
+			IUserService userService)
 		{
 			_saltService = saltService;
 			_passwordValidator = passwordValidator;
 			_passwordHashingService = passwordHashingService;
 			_commandHandler = commandHandler;
 			_commandFactory = commandFactory;
+			_userService = userService;
 		}
 
-		public async Task<Result<bool>> RegisterUserAsync(RegisterUserRequest registerUserRequest, CancellationToken cancellationToken)
+		public async Task<RegisterUserResponse> RegisterUserAsync(RegisterUserRequest registerUserRequest, CancellationToken cancellationToken)
 		{
-			// Validate Passwords, check numbers(at least one), special signs(at least one), capital (at least one) and lower letters and length (min 8)
-			var result = _passwordValidator.Validate(registerUserRequest.Password, registerUserRequest.PasswordConfirmation);
-			var userId = Guid.NewGuid(); // TODO change to int to boost performance
-			// Create and save salt
-			var salt =  await _saltService.CreateAndSaveSaltAsync(userId, cancellationToken);
-			// Create Password Hashes
-			var hashedPassword =
-				await _passwordHashingService.HashAsync(registerUserRequest.Password, salt, cancellationToken);
-			// Create User Model
-			var command = _commandFactory.CreateUserModelFromRequestCommand(registerUserRequest, hashedPassword);
-
-			var userModel = await _commandHandler.HandleAsync(command, cancellationToken);
+			if (!_passwordValidator.Validate(registerUserRequest.Password, registerUserRequest.PasswordConfirmation))
+			{
+				return  new RegisterUserResponse()
+				{
+					IsSuccessful = false,
+					ErrorMessage = "Error occurred during password validation - Provided password or password confirmation is now valid.",
+					ErrorType = ErrorType.PasswordValidationError
+				};
+			}
+			string salt = _saltService.GenerateSalt();
+			string hashedPassword =  await _passwordHashingService.HashPasswordAsync(registerUserRequest.Password, salt, cancellationToken);
+			ICommand<UserEntity> command = _commandFactory.CreateUserEntityFromRequestCommand(registerUserRequest, hashedPassword);
+			Result<UserEntity> userEntity = await _commandHandler.HandleAsync(command, cancellationToken);
+			if (!userEntity.IsSuccessful)
+			{
+				return new RegisterUserResponse()
+				{
+					IsSuccessful = false,
+					ErrorMessage = "Error occurred during password validation - Provided password or password confirmation is now valid.",
+					ErrorType = ErrorType.InternalError
+				};
+			}
 			// Save user model
+			var userId = await _userService.SaveUserAsync(userEntity.Value, cancellationToken);
+			
+			// Save salt
+			if (userId.HasValue)
+			{
+				await _saltService.SaveSaltAsync(salt, userId.Value, cancellationToken);
+			}
 
-			// If can not create user clean salt for user
-
-			// var saltForUser = _saltService.CreateAndSaveSaltAsync()
-			throw new NotImplementedException();
+			return null;
 		}
+
+
 	}
 
-	public interface IUserRegisterService
+	public class RegisterUserResponse
 	{
-		Task<Result<bool>> RegisterUserAsync(RegisterUserRequest registerUserRequest, CancellationToken cancellationToken);
+		public bool IsSuccessful { get; set; }
+		public ErrorType ErrorType { get; set; }
+		public string ErrorMessage { get; set; }
+	}
+
+	public enum ErrorType
+	{
+		DbError,
+		PasswordValidationError,
+		InternalError,
 	}
 }

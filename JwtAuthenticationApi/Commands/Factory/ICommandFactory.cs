@@ -1,8 +1,7 @@
-﻿using JwtAuthenticationApi.Models;
-
-namespace JwtAuthenticationApi.Commands.Factory
+﻿namespace JwtAuthenticationApi.Commands.Factory
 {
 	using Abstraction.Commands;
+	using Entities;
 	using global::JwtAuthenticationApi.Models.Requests;
 
 	/// <summary>
@@ -19,7 +18,7 @@ namespace JwtAuthenticationApi.Commands.Factory
 		/// <returns>Instance of <see cref="PasswordMixCommand"/> that implements <see cref="ICommand{TResult}"/></returns>
 		ICommand<string> CreatePasswordMixCommand(string password, string salt, string pepper);
 
-		ICommand<UserModel> CreateUserModelFromRequestCommand(RegisterUserRequest registerUserRequest,
+		ICommand<UserEntity> CreateUserEntityFromRequestCommand(RegisterUserRequest registerUserRequest,
 			string hashedPassword);
 	}
 }

@@ -13,6 +13,6 @@
 		/// <param name="userId">UserId for whom password salt will be queried.</param>
 		/// <param name="cancellationToken">Cancellation token.</param>
 		/// <returns>Password salt.</returns>
-		Task<string> GetPasswordSaltAsync(Guid userId, CancellationToken cancellationToken = new CancellationToken());
+		Task<string> GetPasswordSaltAsync(int userId, CancellationToken cancellationToken = new CancellationToken());
 	}
 }

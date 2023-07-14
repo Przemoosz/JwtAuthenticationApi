@@ -29,7 +29,7 @@
 		/// </summary>
 		public DateTime CreationDate { get; init; }
 
-		public UserModel(Guid id, string userName, string hashedPassword, string email) : base(id)
+		public UserModel(int id, string userName, string hashedPassword, string email) : base(id)
 		{
 			UserName = userName;
 			HashedPassword = hashedPassword;

@@ -41,7 +41,7 @@
 				.Returns(new Result<string>(mixedPassword, true));
 			
 			// Act
-			var actual = await _uut.HashAsync(password, salt, CancellationToken.None);
+			var actual = await _uut.HashPasswordAsync(password, salt, CancellationToken.None);
 
 			// Arrange
 			actual.Should().Be(expectedHash);

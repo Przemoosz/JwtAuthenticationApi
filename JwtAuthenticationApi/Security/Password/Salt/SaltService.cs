@@ -1,6 +1,4 @@
-﻿using JwtAuthenticationApi.Models.Password;
-
-namespace JwtAuthenticationApi.Security.Password.Salt
+﻿namespace JwtAuthenticationApi.Security.Password.Salt
 {
     using Commands.Models;
     using Wrappers;
@@ -11,9 +9,11 @@ namespace JwtAuthenticationApi.Security.Password.Salt
     using ILogger = Serilog.ILogger;
     using Factories.Polly;
     using Polly;
+    using Entities;
+    using Microsoft.EntityFrameworkCore.ChangeTracking;
 
-    /// <inheritdoc/>
-    public sealed class SaltService: ISaltService
+	/// <inheritdoc/>
+	public sealed class SaltService: ISaltService
 	{
 		private const int SemaphoreInitialCount = 1;
 		private const int SemaphoreMaximalCount = 1;
@@ -43,24 +43,25 @@ namespace JwtAuthenticationApi.Security.Password.Salt
 			_semaphoreWrapperFactory = semaphoreWrapperFactory;
 			_logger = logger;
 		}
+		public string GenerateSalt() => _guidWrapper.CreateGuid().ToString();
 
 		/// <inheritdoc/>
-		public async Task<string> CreateAndSaveSaltAsync(Guid userId, CancellationToken cancellationToken = new CancellationToken())
+		public async Task<int> SaveSaltAsync(string salt, int userId, CancellationToken cancellationToken = new CancellationToken())
 		{
 			ISemaphoreWrapper semaphore = _semaphoreWrapperFactory.Create(SemaphoreInitialCount, SemaphoreMaximalCount, userId.ToString());
-			_logger.Warning($"Trying to acquire lock in {nameof(CreateAndSaveSaltAsync)} method with lock id: {userId}.");
+			_logger.Warning($"Trying to acquire lock in {nameof(SaveSaltAsync)} method with lock id: {userId}.");
 			semaphore.WaitOne();
 
-			_logger.Warning($"Lock acquired in {nameof(CreateAndSaveSaltAsync)} method with lock id: {userId}.");
+			_logger.Warning($"Lock acquired in {nameof(SaveSaltAsync)} method with lock id: {userId}.");
 			var dbSavePolicy = Policy
 				.Handle<DbUpdateException>()
 				.Or<DbUpdateConcurrencyException>()
 				.WaitAndRetryAsync(_pollySleepingIntervalsFactory.CreateLinearInterval(2,2,3), (exception, span) => _logger.Error($"Error occurred during execution of {nameof(GetSaltAsync)}. Attempting to retry in {span.Seconds} seconds. Error Message: {exception.Message}."));
-			string salt = _guidWrapper.CreateGuid().ToString();
-			PasswordSaltModel passwordSaltContext = new PasswordSaltModel(new Guid(), salt, userId);
+			PasswordSaltEntity passwordSaltContext = new PasswordSaltEntity(salt, userId);
+			EntityEntry<PasswordSaltEntity> passwordSaltEntity;
 			try
 			{
-				await _context.PasswordSalt.AddAsync(passwordSaltContext, cancellationToken);
+				passwordSaltEntity = await _context.PasswordSalt.AddAsync(passwordSaltContext, cancellationToken);
 				await dbSavePolicy.ExecuteAsync(async () =>  await _context.SaveChangesAsync(cancellationToken).ConfigureAwait(false)).ConfigureAwait(false);
 				_logger.Information($"Password salt saved for user {userId}.");
 			}
@@ -72,18 +73,18 @@ namespace JwtAuthenticationApi.Security.Password.Salt
 			finally
 			{
 				semaphore.Release();
-				_logger.Warning($"Lock released (Lock id: {userId}) in {nameof(CreateAndSaveSaltAsync)} method.");
+				_logger.Warning($"Lock released (Lock id: {userId}) in {nameof(SaveSaltAsync)} method.");
 			}
-			return salt;
+			return passwordSaltEntity.Entity.Id;
 		}
 
 		/// <inheritdoc/>
-		public async Task<Result<string>> GetSaltAsync(Guid userId, CancellationToken cancellationToken = new CancellationToken())
+		public async Task<Result<string>> GetSaltAsync(int userId, CancellationToken cancellationToken = new CancellationToken())
 		{
 			ISemaphoreWrapper semaphore = _semaphoreWrapperFactory.Create(SemaphoreInitialCount, SemaphoreMaximalCount, userId.ToString());
 			_logger.Warning($"Trying to acquire lock in {nameof(GetSaltAsync)} method with lock id: {userId}.");
 			semaphore.WaitOne();
-			PasswordSaltModel passwordSaltModel = null;
+			PasswordSaltEntity passwordSaltModel = null;
 			try
 			{
 				_logger.Warning($"Lock acquired in {nameof(GetSaltAsync)} method with lock id: {userId}.");

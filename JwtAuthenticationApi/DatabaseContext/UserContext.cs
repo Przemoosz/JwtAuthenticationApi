@@ -1,7 +1,7 @@
 ﻿namespace JwtAuthenticationApi.DatabaseContext
 {
 	using Microsoft.EntityFrameworkCore;
-	using Models;
+	using Entities;
 	using System.Diagnostics.CodeAnalysis;
 
 	/// <summary>
@@ -12,7 +12,7 @@
 	public sealed class UserContext: DbContext, IUserContext
 	{
 		/// <inheritdoc	/>
-		public DbSet<UserModel> Users { get; set; }
+		public DbSet<UserEntity> Users { get; set; }
 
 		/// <summary>
 		/// Initializes new instance of <see cref="UserContext"/> class.

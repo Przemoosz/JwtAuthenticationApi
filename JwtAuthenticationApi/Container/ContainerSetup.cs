@@ -1,6 +1,4 @@
-﻿using JwtAuthenticationApi.Authentication.Registration;
-
-namespace JwtAuthenticationApi.Container
+﻿namespace JwtAuthenticationApi.Container
 {
     using DatabaseContext;
     using Models.Options;
@@ -16,7 +14,8 @@ namespace JwtAuthenticationApi.Container
     using Security.Password.Salt;
     using Validators.Password;
     using Wrappers;
-    using Wrappers.Threading;
+    using Authentication.Registration;
+	using Identity.User;
 
 	/// <summary>
 	/// Defines extensions methods for container setup.
@@ -67,19 +66,26 @@ namespace JwtAuthenticationApi.Container
 
 		public static void RegisterServices(this WebApplicationBuilder builder)
 		{
+			builder.Services.AddSingleton<IGuidWrapper, GuidWrapper>();
+			builder.Services.AddTransient<ICommandHandler, CommandHandler>();
+			builder.Services.AddTransient<IUserService, UserService>();
+			builder.Services.AddTransient(typeof(IRuleEngine<>), typeof(RuleEngine<>));
+			builder.Services.AddTransient<IUserRegisterService, UserRegisterService>();
+		}
+
+		public static void RegisterSecurityServices(this WebApplicationBuilder builder)
+		{
 			builder.Services.AddTransient<ISaltProvider, SaltProvider>();
 			builder.Services.AddTransient<ISaltService, SaltService>();
-			builder.Services.AddSingleton<IGuidWrapper, GuidWrapper>();
-			builder.Services.AddTransient<IPasswordHashingService, PasswordHashingService>();
-			builder.Services.AddTransient<ICommandFactory, CommandFactory>();
-			builder.Services.AddTransient<ICommandHandler, CommandHandler>();
-
 			builder.Services.AddTransient<IPasswordValidator, PasswordValidator>();
-			builder.Services.AddTransient(typeof(IRuleEngine<>), typeof(RuleEngine<>));
+			builder.Services.AddTransient<IPasswordHashingService, PasswordHashingService>();
 			builder.Services.AddTransient<IPasswordContextFactory, PasswordContextFactory>();
-			builder.Services.AddTransient<IPasswordRuleFactory, PasswordRuleFactory>();
-			builder.Services.AddTransient<IUserRegisterService, UserRegisterService>();
+		}
 
+		public static void RegisterFactories(this WebApplicationBuilder builder)
+		{
+			builder.Services.AddSingleton<ICommandFactory, CommandFactory>();
+			builder.Services.AddSingleton<IPasswordRuleFactory, PasswordRuleFactory>();
 			builder.Services.AddSingleton<IMutexWrapperFactory, MutexWrapperFactory>();
 			builder.Services.AddSingleton<IPollySleepingIntervalsFactory, PollySleepingIntervalsFactory>();
 			builder.Services.AddSingleton<ISemaphoreWrapperFactory, SemaphoreWrapperFactory>();

@@ -32,7 +32,7 @@
 		public void ShouldCreateUserModelFromRequestCommand()
 		{
 			// Act
-			var actual = _uut.CreateUserModelFromRequestCommand(null, null);
+			var actual = _uut.CreateUserEntityFromRequestCommand(null, null);
 
 			// Assert
 			actual.Should().NotBeNull();

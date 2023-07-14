@@ -54,7 +54,7 @@
 			_passwordSaltContext.PasswordSalt.Returns(saltDbSet);
 
 			// Act
-			var actual = await _uut.CreateAndSaveSaltAsync(userId);
+			var actual = await _uut.SaveSaltAsync(userId);
 
 			// Assert
 			actual.Should().Be(salt.ToString());
@@ -155,7 +155,7 @@
 			_passwordSaltContext.SaveChangesAsync(Arg.Any<CancellationToken>())
 				.ThrowsAsync(new DbUpdateException());
 
-			Func<Task<string>> func = async () => await _uut.CreateAndSaveSaltAsync(userId);
+			Func<Task<string>> func = async () => await _uut.SaveSaltAsync(userId);
 
 			// Act & Assert
 			await func.Should().ThrowAsync<DbUpdateException>();
@@ -198,7 +198,7 @@
 				.Returns(new List<TimeSpan>(2) { TimeSpan.Zero, TimeSpan.Zero });
 			
 			// Act
-			var actual = await _uut.CreateAndSaveSaltAsync(userId);
+			var actual = await _uut.SaveSaltAsync(userId);
 
 			// Assert
 			actual.Should().Be(salt.ToString());
@@ -222,7 +222,7 @@
 			_pollySleepingIntervalsFactory.CreateLinearInterval(Arg.Any<uint>(), Arg.Any<uint>(), Arg.Any<uint>())
 				.Returns(new List<TimeSpan>(2) { TimeSpan.Zero, TimeSpan.Zero });
 
-			Func<Task<string>> function = async () => await _uut.CreateAndSaveSaltAsync(userId);
+			Func<Task<string>> function = async () => await _uut.SaveSaltAsync(userId);
 
 			// Act & Assert
 			await function.Should().ThrowAsync<DbUpdateException>();

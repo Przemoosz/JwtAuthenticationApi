@@ -22,7 +22,7 @@
         [Required]
         public Guid UserId { get; init; }
 
-        public PasswordSaltModel(Guid id, string salt, Guid userId) : base(id)
+        public PasswordSaltModel(int id, string salt, Guid userId) : base(id)
         {
             Salt = salt;
             UserId = userId;

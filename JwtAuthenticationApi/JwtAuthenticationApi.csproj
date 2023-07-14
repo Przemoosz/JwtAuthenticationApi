@@ -28,7 +28,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Authentication\Commands\" />
+    <Folder Include="OAuth\" />
   </ItemGroup>
 
 </Project>

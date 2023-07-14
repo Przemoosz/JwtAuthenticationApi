@@ -1,11 +1,11 @@
-using JwtAuthenticationApi.Container.Logger;
-
 namespace JwtAuthenticationApi
 {
     using Container;
     using System.Diagnostics.CodeAnalysis;
+    using Container.Logger;
 
-    [ExcludeFromCodeCoverage]
+
+	[ExcludeFromCodeCoverage]
 	internal static class JwtAuthenticationApi
 	{
 		public static async Task Main(string[] args)
@@ -22,6 +22,8 @@ namespace JwtAuthenticationApi
 			builder.RegisterPasswordSaltDatabaseContext();
 			builder.SetupSerilog();
 			builder.RegisterServices();
+			builder.RegisterSecurityServices();
+			builder.RegisterFactories();
 			var app = builder.Build();
 			if (app.Environment.IsDevelopment())
 			{

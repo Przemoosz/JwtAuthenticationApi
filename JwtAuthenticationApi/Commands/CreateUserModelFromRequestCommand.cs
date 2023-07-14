@@ -1,11 +1,12 @@
 ﻿using JwtAuthenticationApi.Abstraction.Commands;
 using JwtAuthenticationApi.Commands.Models;
+using JwtAuthenticationApi.Entities;
 using JwtAuthenticationApi.Models;
 using JwtAuthenticationApi.Models.Requests;
 
 namespace JwtAuthenticationApi.Commands
 {
-    public class CreateUserModelFromRequestCommand : ICommand<UserModel>
+    public class CreateUserModelFromRequestCommand : ICommand<UserEntity>
     {
         private readonly RegisterUserRequest _registerUserRequest;
         private readonly string _hashedPassword;
@@ -16,11 +17,10 @@ namespace JwtAuthenticationApi.Commands
             _hashedPassword = hashedPassword;
         }
 
-        public Task<Result<UserModel>> ExecuteAsync(CancellationToken cancellationToken)
+        public Task<Result<UserEntity>> ExecuteAsync(CancellationToken cancellationToken)
         {
-            UserModel userModel = new UserModel(Guid.NewGuid(), _registerUserRequest.UserName, _hashedPassword,
-                _registerUserRequest.Email);
-            var result = new Result<UserModel>(userModel, true);
+            UserEntity userModel = new UserEntity(_registerUserRequest.UserName, _hashedPassword, _registerUserRequest.Email);
+            Result<UserEntity> result = new Result<UserEntity>(userModel, true);
             return Task.FromResult(result);
         }
     }
