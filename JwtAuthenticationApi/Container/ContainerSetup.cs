@@ -14,13 +14,13 @@
     using Security.Password.Salt;
     using Validators.Password;
     using Wrappers;
-    using Authentication.Registration;
-	using Identity.User;
+    using Registration;
+    using Identity.User;
 
-	/// <summary>
-	/// Defines extensions methods for container setup.
-	/// </summary>
-	[ExcludeFromCodeCoverage]
+    /// <summary>
+    /// Defines extensions methods for container setup.
+    /// </summary>
+    [ExcludeFromCodeCoverage]
 	public static class ContainerSetup
 	{
 		/// <summary>

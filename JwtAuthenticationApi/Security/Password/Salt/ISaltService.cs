@@ -15,7 +15,7 @@
 		/// <param name="cancellationToken">Cancellation token.</param>
 		/// <returns>A task that represents the asynchronous operation of creating and saving password salt.
 		/// The task result contains id of newly created salt.</returns>
-		Task<int> SaveSaltAsync(string salt, int userId, CancellationToken cancellationToken = new CancellationToken());
+		Task<int?> SaveSaltAsync(string salt, int userId, CancellationToken cancellationToken = new CancellationToken());
 
 		/// <summary>
 		/// Gets password salt associated with <paramref name="userId"/>.

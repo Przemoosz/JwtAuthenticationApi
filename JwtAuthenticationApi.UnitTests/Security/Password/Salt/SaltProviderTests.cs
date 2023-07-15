@@ -4,6 +4,7 @@
 	using Models;
 	using JwtAuthenticationApi.Security.Password.Salt;
 	using static TddXt.AnyRoot.Root;
+	using TddXt.AnyRoot.Numbers;
 
 	[TestFixture, Parallelizable]
 	public class SaltProviderTests
@@ -22,11 +23,11 @@
 		public async Task ShouldCreateSaltIfUserIsNotInDatabase()
 		{
 			// Arrange
-			Guid userId = Guid.Empty;
+			int userId = Any.Integer();
 			string salt = Guid.NewGuid().ToString();
 			Result<string> getSaltResult = new Result<string>(null, false);
 			_saltService.GetSaltAsync(userId).Returns(getSaltResult);
-			_saltService.SaveSaltAsync(userId).Returns(salt);
+			_saltService.GenerateSalt().Returns(salt);
 			
 			// Act
 			string actual = await _uut.GetPasswordSaltAsync(userId, CancellationToken.None);
@@ -39,7 +40,7 @@
 		public async Task ShouldReturnSaltFromDatabaseIfUserIsInDatabase()
 		{
 			// Arrange
-			Guid userId = Guid.Empty;
+			int userId = Any.Integer();
 			string salt = Guid.NewGuid().ToString();
 			Result<string> getSaltResult = new Result<string>(salt, true);
 			_saltService.GetSaltAsync(userId).Returns(getSaltResult);

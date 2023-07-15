@@ -26,7 +26,10 @@
 			{
 				return saltFromDatabase.Value;
 			}
-			throw new InvalidOperationException();
+
+			var salt = _saltService.GenerateSalt();
+			await _saltService.SaveSaltAsync(salt, userId, cancellationToken);
+			return salt;
 		}
 	}
 }

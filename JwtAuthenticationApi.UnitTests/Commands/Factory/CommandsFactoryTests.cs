@@ -1,4 +1,6 @@
-﻿namespace JwtAuthenticationApi.UnitTests.Commands.Factory
+﻿using JwtAuthenticationApi.Entities;
+
+namespace JwtAuthenticationApi.UnitTests.Commands.Factory
 {
     using JwtAuthenticationApi.Commands.Factory;
     using JwtAuthenticationApi.Abstraction.Commands;
@@ -37,7 +39,7 @@
 			// Assert
 			actual.Should().NotBeNull();
 			actual.Should().BeOfType<CreateUserModelFromRequestCommand>();
-			actual.Should().BeAssignableTo<ICommand<UserModel>>();
+			actual.Should().BeAssignableTo<ICommand<UserEntity>>();
 		}
 	}
 }

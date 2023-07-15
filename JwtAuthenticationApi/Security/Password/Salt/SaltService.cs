@@ -10,9 +10,8 @@
     using Factories.Polly;
     using Polly;
     using Entities;
-    using Microsoft.EntityFrameworkCore.ChangeTracking;
 
-	/// <inheritdoc/>
+    /// <inheritdoc/>
 	public sealed class SaltService: ISaltService
 	{
 		private const int SemaphoreInitialCount = 1;
@@ -46,7 +45,7 @@
 		public string GenerateSalt() => _guidWrapper.CreateGuid().ToString();
 
 		/// <inheritdoc/>
-		public async Task<int> SaveSaltAsync(string salt, int userId, CancellationToken cancellationToken = new CancellationToken())
+		public async Task<int?> SaveSaltAsync(string salt, int userId, CancellationToken cancellationToken = new CancellationToken())
 		{
 			ISemaphoreWrapper semaphore = _semaphoreWrapperFactory.Create(SemaphoreInitialCount, SemaphoreMaximalCount, userId.ToString());
 			_logger.Warning($"Trying to acquire lock in {nameof(SaveSaltAsync)} method with lock id: {userId}.");
@@ -58,16 +57,16 @@
 				.Or<DbUpdateConcurrencyException>()
 				.WaitAndRetryAsync(_pollySleepingIntervalsFactory.CreateLinearInterval(2,2,3), (exception, span) => _logger.Error($"Error occurred during execution of {nameof(GetSaltAsync)}. Attempting to retry in {span.Seconds} seconds. Error Message: {exception.Message}."));
 			PasswordSaltEntity passwordSaltContext = new PasswordSaltEntity(salt, userId);
-			EntityEntry<PasswordSaltEntity> passwordSaltEntity;
+			int? id;
 			try
 			{
-				passwordSaltEntity = await _context.PasswordSalt.AddAsync(passwordSaltContext, cancellationToken);
-				await dbSavePolicy.ExecuteAsync(async () =>  await _context.SaveChangesAsync(cancellationToken).ConfigureAwait(false)).ConfigureAwait(false);
+				await _context.PasswordSalt.AddAsync(passwordSaltContext, cancellationToken);
+				 id = await dbSavePolicy.ExecuteAsync(async () =>  await _context.SaveChangesAsync(cancellationToken).ConfigureAwait(false)).ConfigureAwait(false);
 				_logger.Information($"Password salt saved for user {userId}.");
 			}
-			catch (DbUpdateException)
+			catch (DbUpdateException ex)
 			{
-				_logger.Error($"Failed to save password salt in database for user: {userId}.");
+				_logger.Error(ex,$"Failed to save password salt in database for user: {userId}.");
 				throw;
 			}
 			finally
@@ -75,7 +74,8 @@
 				semaphore.Release();
 				_logger.Warning($"Lock released (Lock id: {userId}) in {nameof(SaveSaltAsync)} method.");
 			}
-			return passwordSaltEntity.Entity.Id;
+
+			return id;
 		}
 
 		/// <inheritdoc/>

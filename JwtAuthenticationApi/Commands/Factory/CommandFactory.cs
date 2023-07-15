@@ -1,5 +1,4 @@
 ﻿using JwtAuthenticationApi.Entities;
-using JwtAuthenticationApi.Models;
 using JwtAuthenticationApi.Models.Requests;
 
 namespace JwtAuthenticationApi.Commands.Factory
