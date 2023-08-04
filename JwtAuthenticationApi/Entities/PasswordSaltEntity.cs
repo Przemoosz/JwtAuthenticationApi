@@ -17,6 +17,11 @@
 		[Required]
 		public int UserId { get; init; }
 
+		/// <summary>
+		/// Initializes <see cref="PasswordSaltEntity"/>.
+		/// </summary>
+		/// <param name="salt">Password salt.</param>
+		/// <param name="userId">User identifier.</param>
 		public PasswordSaltEntity(string salt, int userId)
 		{
 			Salt = salt;

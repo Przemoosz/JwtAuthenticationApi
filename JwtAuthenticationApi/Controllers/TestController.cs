@@ -4,12 +4,12 @@ using ILogger = Serilog.ILogger;
 namespace JwtAuthenticationApi.Controllers
 {
 	using DatabaseContext;
-	using Models;
 	using Models.Options;
 	using Microsoft.AspNetCore.Mvc;
 	using Microsoft.Extensions.Options;
 	using System.Diagnostics.CodeAnalysis;
 
+	[Obsolete]
 	[ApiController]
 	[Route("[controller]")]
 	[ExcludeFromCodeCoverage]

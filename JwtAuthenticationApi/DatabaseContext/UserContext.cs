@@ -34,5 +34,11 @@
 		{
 			return await base.SaveChangesAsync();
 		}
+
+		protected override void OnModelCreating(ModelBuilder modelBuilder)
+		{
+			modelBuilder.Entity<UserEntity>().HasIndex(u => u.Username).IsUnique(true);
+			////base.OnModelCreating(modelBuilder);
+		}
 	}
 }

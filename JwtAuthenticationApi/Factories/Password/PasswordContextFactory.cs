@@ -3,7 +3,10 @@
 	using Models.Password;
 	using Constants;
 
-	public class PasswordContextFactory: IPasswordContextFactory
+	/// <summary>
+	/// Password context factory, responsible for creating <see cref="PasswordContext"/>. Implements <see cref="IPasswordContextFactory"/>
+	/// </summary>
+	public sealed class PasswordContextFactory: IPasswordContextFactory
 	{
 		public PasswordContext Create(string password, string passwordConfirmation)
 		{

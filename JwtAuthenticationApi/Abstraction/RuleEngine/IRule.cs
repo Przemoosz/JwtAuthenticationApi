@@ -3,11 +3,11 @@
 	/// <summary>
 	/// Defines methods for rule in rule engine.
 	/// </summary>
-	/// <typeparam name="TContext">Type of context.</typeparam>
+	/// <typeparam name="TContext">Type of rule context.</typeparam>
     public interface IRule<in TContext>
 	{
 		/// <summary>
-		/// Evaluate rule based on <paramref name="context"/>.
+		/// Evaluate rule.
 		/// </summary>
 		/// <param name="context">Context for rule.</param>
 		void Evaluate(TContext context);

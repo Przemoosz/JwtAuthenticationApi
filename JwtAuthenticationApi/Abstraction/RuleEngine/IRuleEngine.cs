@@ -8,7 +8,7 @@
 	public interface IRuleEngine<TContext>
 	{
 		/// <summary>
-		/// Runs validation of context based on provided rules.
+		/// Runs validation of context, based on provided rules.
 		/// </summary>
 		/// <param name="context">Context that will be validated.</param>
 		/// <param name="rules">Rules for validation.</param>

@@ -1,9 +1,12 @@
-﻿using JwtAuthenticationApi.Validators.Password.Rules;
-
-namespace JwtAuthenticationApi.Factories.Password
+﻿namespace JwtAuthenticationApi.Factories.Password
 {
 	using Abstraction.RuleEngine;
 	using Models.Password;
+	using Validators.Password.Rules;
+
+	/// <summary>
+	/// Password rule factory responsible for creating <see cref="IRule{TContext}"/>. Implements <see cref="IPasswordRuleFactory"/>.
+	/// </summary>
 	public sealed class PasswordRuleFactory: IPasswordRuleFactory
 	{
 		public IRule<PasswordContext> CreateEqualityRule() => new EqualityRule();

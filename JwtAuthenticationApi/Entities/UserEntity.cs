@@ -1,14 +1,13 @@
 ﻿namespace JwtAuthenticationApi.Entities
 {
 	using Abstraction.Entity;
-	using System.ComponentModel.DataAnnotations.Schema;
 
 	public class UserEntity: EntityBase
 	{
 		/// <summary>
 		/// Gets or sets username.
 		/// </summary>
-		public string UserName { get; set; }
+		public string Username { get; set; }
 
 		/// <summary>
 		/// Gets or sets user hashed password.
@@ -26,9 +25,15 @@
 		/// </summary>
 		public DateTime CreationDate { get; init; }
 
-		public UserEntity(string userName, string hashedPassword, string email)
+		/// <summary>
+		/// Initializes <see cref="UserEntity"/>.
+		/// </summary>
+		/// <param name="username">User name.</param>
+		/// <param name="hashedPassword">Hashed user password.</param>
+		/// <param name="email">User email.</param>
+		public UserEntity(string username, string hashedPassword, string email)
 		{
-			UserName = userName;
+			Username = username;
 			HashedPassword = hashedPassword;
 			Email = email;
 			CreationDate = DateTime.Now;

@@ -1,8 +1,11 @@
 ﻿namespace JwtAuthenticationApi.Constants
 {
+	using System.Diagnostics.CodeAnalysis;
+
 	/// <summary>
 	/// Contains constants for Jwt Authentication Api app.
 	/// </summary>
+	[ExcludeFromCodeCoverage]
 	public static class JaaConstants
 	{
 		/// <summary>
@@ -16,7 +19,7 @@
 		public const int MinPasswordLength = 8;
 
 		/// <summary>
-		/// Maximal password Length
+		/// Maximal password Length.
 		/// </summary>
 		public const int MaxPasswordLength = 100;
 		

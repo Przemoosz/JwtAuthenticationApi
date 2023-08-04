@@ -228,5 +228,16 @@ namespace JwtAuthenticationApi.UnitTests.Security.Password.Salt
 			await _passwordSaltContext.ReceivedWithAnyArgs(3).SaveChangesAsync(Arg.Any<CancellationToken>());
 			_semaphoreWrapper.Received(1).Release();
 		}
+
+		[Test]
+		public void ShouldGenerateSalt()
+		{
+			// Act
+			var actual = _uut.GenerateSalt();
+
+			// Assert
+			actual.Should().NotBeNull();
+			actual.Length.Should().BeGreaterThan(0);
+		}
 	}
 }

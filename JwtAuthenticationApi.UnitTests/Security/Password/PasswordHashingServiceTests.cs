@@ -1,14 +1,14 @@
 ﻿namespace JwtAuthenticationApi.UnitTests.Security.Password
 {
-	using JwtAuthenticationApi.Commands.Factory;
-	using JwtAuthenticationApi.Handlers;
-	using Models.Options;
-	using JwtAuthenticationApi.Security.Password;
-	using Microsoft.Extensions.Options;
-	using JwtAuthenticationApi.Abstraction.Commands;
-	using JwtAuthenticationApi.Commands.Models;
+    using JwtAuthenticationApi.Handlers;
+    using Models.Options;
+    using JwtAuthenticationApi.Security.Password;
+    using Microsoft.Extensions.Options;
+    using JwtAuthenticationApi.Abstraction.Commands;
+    using JwtAuthenticationApi.Commands.Models;
+    using JwtAuthenticationApi.Factories.Commands;
 
-	[TestFixture, Parallelizable]
+    [TestFixture, Parallelizable]
 	public class PasswordHashingServiceTests
 	{
 		private IOptions<PasswordPepper> _passwordOptions;

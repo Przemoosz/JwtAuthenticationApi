@@ -3,9 +3,9 @@
 	using Abstraction.RuleEngine;
 
 	/// <summary>
-	/// Extension methods for rules.
+	/// Extension methods for List to create list of rules.
 	/// </summary>
-	public static class RulesExtension
+	public static class ListExtension
 	{
 		/// <summary>
 		/// Adds rules to <see cref="rulesList"/> using params.

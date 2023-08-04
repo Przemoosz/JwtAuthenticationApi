@@ -1,7 +1,6 @@
-﻿using JwtAuthenticationApi.Commands.Factory;
-using JwtAuthenticationApi.Commands.Models;
-using Microsoft.EntityFrameworkCore;
-using ILogger = Serilog.ILogger;
+﻿using JwtAuthenticationApi.Models.Enums;
+using JwtAuthenticationApi.Models.Registration.Requests;
+using JwtAuthenticationApi.Models.Registration.Responses;
 
 namespace JwtAuthenticationApi.Registration
 {
@@ -9,11 +8,17 @@ namespace JwtAuthenticationApi.Registration
     using Entities;
     using Handlers;
     using Identity.User;
-    using Models.Requests;
     using Security.Password;
     using Security.Password.Salt;
     using Validators.Password;
+    using Commands.Models;
+    using Factories.Commands;
+    using Microsoft.EntityFrameworkCore;
+    using ILogger = Serilog.ILogger;
 
+    /// <summary>
+    /// Service that is responsible for registering user.
+    /// </summary>
     public class UserRegisterService : IUserRegisterService
     {
         private readonly ISaltService _saltService;
@@ -64,15 +69,14 @@ namespace JwtAuthenticationApi.Registration
                     await _passwordHashingService.HashPasswordAsync(registerUserRequest.Password, salt,
                         cancellationToken);
                 ICommand<UserEntity> command =
-                    _commandFactory.CreateUserEntityFromRequestCommand(registerUserRequest, hashedPassword);
+                    _commandFactory.CreateConvertRequestToUserEntityCommand(registerUserRequest, hashedPassword);
                 Result<UserEntity> userEntity = await _commandHandler.HandleAsync(command, cancellationToken);
                 if (!userEntity.IsSuccessful)
                 {
                     return new RegisterUserResponse()
                     {
                         IsSuccessful = false,
-                        ErrorMessage =
-                            "Error occurred during password validation - Provided password or password confirmation is now valid.",
+                        ErrorMessage = "Error occurred during entity creation",
                         ErrorType = ErrorType.InternalError
                     };
                 }
@@ -90,13 +94,25 @@ namespace JwtAuthenticationApi.Registration
                     return new RegisterUserResponse()
                     {
                         IsSuccessful = false,
-                        ErrorMessage = "Error occurred during saving user in database - No Id retrieved for new user ",
-                        ErrorType = ErrorType.InternalError
+                        ErrorMessage = "Error occurred during saving user in database - No Id retrieved for new user.",
+                        ErrorType = ErrorType.DbError
                     };
                 }
             }
-            catch (DbUpdateException)
+            catch (DbUpdateException exception)
             {
+	            if (await _userService.UserExistsAsync(registerUserRequest.Username))
+	            {
+		            _logger.Error($"User with username {registerUserRequest.Username} already exists in database");
+					return new RegisterUserResponse()
+		            {
+			            IsSuccessful = false,
+			            ErrorMessage = $"User with username {registerUserRequest.Username} already exists in database. Change username.",
+			            ErrorType = ErrorType.DbErrorEntityExists
+		            };
+				}
+
+                _logger.Error(exception, "Error occurred during database update");
                 return new RegisterUserResponse()
                 {
                     IsSuccessful = false,
@@ -123,20 +139,5 @@ namespace JwtAuthenticationApi.Registration
         }
 
 
-    }
-
-    public class RegisterUserResponse
-    {
-        public int UserId { get; set; }
-        public bool IsSuccessful { get; set; }
-        public ErrorType ErrorType { get; set; }
-        public string ErrorMessage { get; set; }
-    }
-
-    public enum ErrorType
-    {
-        DbError,
-        PasswordValidationError,
-        InternalError,
     }
 }

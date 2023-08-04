@@ -1,14 +1,15 @@
-﻿namespace JwtAuthenticationApi.Security.Password
-{
-	using System.Security.Cryptography;
-	using System.Text;
-	using Models.Options;
-	using Microsoft.Extensions.Options;
-	using Commands.Factory;
-	using Handlers;
+﻿using JwtAuthenticationApi.Factories.Commands;
 
-	/// <inheritdoc/>
-	public class PasswordHashingService: IPasswordHashingService
+namespace JwtAuthenticationApi.Security.Password
+{
+    using System.Security.Cryptography;
+    using System.Text;
+    using Models.Options;
+    using Microsoft.Extensions.Options;
+    using Handlers;
+
+    /// <inheritdoc/>
+    public class PasswordHashingService: IPasswordHashingService
 	{
 		private readonly IOptions<PasswordPepper> _passwordPepperOptions;
 		private readonly ICommandHandler _commandHandler;

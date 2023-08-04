@@ -17,12 +17,18 @@
         public string Salt { get; set; }
 
         /// <summary>
-        /// Gets <see cref="Guid"/> value of user that is associated with this salt.
+        /// Gets <see cref="int"/> value of user that is associated with this salt.
         /// </summary>
         [Required]
-        public Guid UserId { get; init; }
+        public int UserId { get; init; }
 
-        public PasswordSaltModel(int id, string salt, Guid userId) : base(id)
+		/// <summary>
+		/// Initializes <see cref="PasswordSaltModel"/>
+		/// </summary>
+		/// <param name="id">Identifier.</param>
+		/// <param name="salt">Salt.</param>
+		/// <param name="userId">User identifier associated with password salt.</param>
+		public PasswordSaltModel(int id, string salt, int userId) : base(id)
         {
             Salt = salt;
             UserId = userId;
