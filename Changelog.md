@@ -2,6 +2,32 @@
 
 Changelog for JwtAuthenticationApi System. 
 
+## [0.4.0] - 04.08.2023 - JAA-4-ImplementRegisterEndpoint 
+
+### Added
+- Register user controller with register user endpoint.
+- Password validation based on rule engine.
+- Rules for password validation.
+- SaltService method to create salt.
+- New command to create user entity from user register request.
+- ListExtension.
+- User service responsible for saving and getting user to and from database.
+- Error types enum.
+- Missing XML documentation.
+- User register services that handels registeration logic.
+- Password validation Exception.
+
+### Changed
+- SaltService CreateAndSave method are now separeted.
+- Test controller is now marked as obsolete
+- Models id is no longer GUID (Changed to int)
+- Models are no longer saved in database (changed to entity)
+- Username is now unique value
+
+
+### Removed
+- Microsoft.Extensions.Logging.ILogger is no longer basic logging system.
+
 ## [0.3.0] - 07.05.2023 - JAA-3-ImplementLoggingUsingSerilog
 
 ### Added

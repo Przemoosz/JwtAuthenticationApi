@@ -13,7 +13,6 @@
 		/// </summary>
 		public CommandExecutionException(): base()
 		{
-			var c = new AggregateException();
 		}
 
 		/// <summary>

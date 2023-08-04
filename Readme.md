@@ -14,11 +14,12 @@ C# language version is 10.
 - JAA-1-SetUpDatabaseWithUserAndSaltTables - Set up model for user and user password salt.
 - JAA-2-ImplementPasswordHashing - Implement password hashing based on salt and pepper.
 - JAA-3-ImplementLoggingUsingSerilog - Implement logging using serilog.
-- JAA-3-ImplementVerifyHashedPassword - Implement password verifying.
 - JAA-4-ImplementRegisterEndpoint - Implement register endpoint
-- JAA-5-ImplementJWTFactory - Implement class that will create JWT based on secret and claims.
-- JAA-6-ImplementLogInEndpoint - Implement log in endpoint that returns JWT.
-- JAA-7-ImplementCreateAdminUserEndpoint - Implement create admin user endpoint that will authorize if provided JWT is correct.
+- JAA-5-ImplementVerifyHashedPassword - Implement password verifying.
+- JAA-6-ImplementLoginEndpoint - Implement login endpoint and return access grant.
+- JAA-7-ImplementJWTFactory - Implement class that will create JWT based on secret and claims.
+- JAA-8-ImplementLogInEndpoint - Implement log in endpoint that returns JWT.
+- JAA-9-ImplementCreateAdminUserEndpoint - Implement create admin user endpoint that will authorize if provided JWT is correct.
 
 ## Architecture
 TODO

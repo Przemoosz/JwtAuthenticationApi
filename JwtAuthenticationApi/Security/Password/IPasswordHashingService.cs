@@ -13,6 +13,6 @@
 		/// <param name="cancellationToken">Cancellation token.</param>
 		/// <returns>A task that represents the asynchronous password mix operation.
 		/// The task result contains Base64 hashed password.</returns>
-		Task<string> HashAsync(string password, string salt, CancellationToken cancellationToken);
+		Task<string> HashPasswordAsync(string password, string salt, CancellationToken cancellationToken);
 	}
 }

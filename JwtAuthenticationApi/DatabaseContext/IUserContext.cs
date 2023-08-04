@@ -1,8 +1,8 @@
 ﻿namespace JwtAuthenticationApi.DatabaseContext
 {
-    using Models;
-    using Microsoft.EntityFrameworkCore;
+	using Microsoft.EntityFrameworkCore;
     using Abstraction.DatabaseContext;
+	using Entities;
 
 	/// <summary>
 	/// Defines properties for user database context.
@@ -12,6 +12,6 @@
 		/// <summary>
 		/// Gets users database set.
 		/// </summary>
-		DbSet<UserModel> Users { get; }
+		DbSet<UserEntity> Users { get; }
 	}
 }

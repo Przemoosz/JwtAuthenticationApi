@@ -11,6 +11,11 @@
 		/// <summary>
 		/// Entity unique identifier.
 		/// </summary>
-		public Guid Id { get; init; }
+		public int Id { get; init; }
+
+		protected ModelBase(int id)
+		{
+			Id = id;
+		}
 	}
 }

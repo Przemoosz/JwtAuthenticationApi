@@ -1,19 +1,19 @@
 ﻿namespace JwtAuthenticationApi.UnitTests.Security.Password
 {
-	using JwtAuthenticationApi.Commands.Factory;
-	using JwtAuthenticationApi.Handlers;
-	using Models.Options;
-	using JwtAuthenticationApi.Security.Password;
-	using Microsoft.Extensions.Options;
-	using JwtAuthenticationApi.Abstraction.Commands;
-	using JwtAuthenticationApi.Commands.Models;
+    using JwtAuthenticationApi.Handlers;
+    using Models.Options;
+    using JwtAuthenticationApi.Security.Password;
+    using Microsoft.Extensions.Options;
+    using JwtAuthenticationApi.Abstraction.Commands;
+    using JwtAuthenticationApi.Commands.Models;
+    using JwtAuthenticationApi.Factories.Commands;
 
-	[TestFixture, Parallelizable]
+    [TestFixture, Parallelizable]
 	public class PasswordHashingServiceTests
 	{
 		private IOptions<PasswordPepper> _passwordOptions;
 		private ICommandHandler _commandHandler;
-		private ICommandsFactory _commandFactory;
+		private ICommandFactory _commandFactory;
 		private PasswordHashingService _uut;
 
 		[SetUp]
@@ -21,7 +21,7 @@
 		{
 			_passwordOptions = Substitute.For<IOptions<PasswordPepper>>();
 			_commandHandler = Substitute.For<ICommandHandler>();
-			_commandFactory = Substitute.For<ICommandsFactory>();
+			_commandFactory = Substitute.For<ICommandFactory>();
 			_uut = new PasswordHashingService(_passwordOptions, _commandHandler, _commandFactory);
 		}
 
@@ -41,7 +41,7 @@
 				.Returns(new Result<string>(mixedPassword, true));
 			
 			// Act
-			var actual = await _uut.HashAsync(password, salt, CancellationToken.None);
+			var actual = await _uut.HashPasswordAsync(password, salt, CancellationToken.None);
 
 			// Arrange
 			actual.Should().Be(expectedHash);

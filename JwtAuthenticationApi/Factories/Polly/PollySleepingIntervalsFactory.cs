@@ -2,7 +2,7 @@
 {
 
 	/// <summary>
-	/// Implementation of <see cref="IPollySleepingIntervalsFactory"/> interface.
+	/// Polly sleeping intervals factory that creates intervals for polly. Implementation of <see cref="IPollySleepingIntervalsFactory"/> interface.
 	/// </summary>
 	public class PollySleepingIntervalsFactory : IPollySleepingIntervalsFactory
     {

@@ -1,5 +1,8 @@
-﻿namespace JwtAuthenticationApi.Wrappers.Threading
+﻿using System.Diagnostics.CodeAnalysis;
+
+namespace JwtAuthenticationApi.Wrappers.Threading
 {
+	[ExcludeFromCodeCoverage]
 	/// <inheritdoc/>
 	public sealed class SemaphoreWrapper: ISemaphoreWrapper
 	{
