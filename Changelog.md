@@ -2,6 +2,18 @@
 
 Changelog for JwtAuthenticationApi System. 
 
+## [1.0.0] - 03.01.2024 - JAA-5-ImplementConnectionToPostgreSQL
+
+### Added
+- NuGet package: Npgsql.EntityFrameworkCore.PostgreSQL version 7.0.11
+
+### Changed
+- Changed supported database to PostgreSQL
+- Updated EntityFramework to version 7.0.14 
+
+### Removed
+- Nuget package: Microsoft.EntityFrameworkCore.SqlServer
+
 ## [0.4.0] - 04.08.2023 - JAA-4-ImplementRegisterEndpoint 
 
 ### Added

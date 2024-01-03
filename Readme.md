@@ -15,11 +15,16 @@ C# language version is 10.
 - JAA-2-ImplementPasswordHashing - Implement password hashing based on salt and pepper.
 - JAA-3-ImplementLoggingUsingSerilog - Implement logging using serilog.
 - JAA-4-ImplementRegisterEndpoint - Implement register endpoint
-- JAA-5-ImplementVerifyHashedPassword - Implement password verifying.
-- JAA-6-ImplementLoginEndpoint - Implement login endpoint and return access grant.
-- JAA-7-ImplementJWTFactory - Implement class that will create JWT based on secret and claims.
-- JAA-8-ImplementLogInEndpoint - Implement log in endpoint that returns JWT.
-- JAA-9-ImplementCreateAdminUserEndpoint - Implement create admin user endpoint that will authorize if provided JWT is correct.
+- JAA-5-ImplementConnectionToPostgreSQL - Implement Connection to PostgreSQL
+
+## Future
+- Update framework to latest .NET 8
+- Implement password verifying.
+- Implement login endpoint and return access grant.
+- Implement class that will create JWT based on secret and claims.
+- Implement log in endpoint that returns JWT.
+- Implement create admin user endpoint that will authorize if provided JWT is correct.
+
 
 ## Architecture
 TODO
@@ -65,14 +70,14 @@ To run application locally. After this you should see in console that applicatio
 - coverlet.collector - ver. 3.2.0
 - EmailValidation - ver. 1.0.8
 - FluentAssertions - ver. 6.10.0
-- Microsoft.EntityFrameworkCore - ver. 7.0.4
-- Microsoft.EntityFrameworkCore.Design - ver. 7.0.4
-- Microsoft.EntityFrameworkCore.SqlServer - ver. 7.0.4
+- Microsoft.EntityFrameworkCore - ver. 7.0.14
+- Microsoft.EntityFrameworkCore.Design - ver. 7.0.14
 - Microsoft.NET.Test.Sdk - ver. 17.5.0
 - NSubstitute - ver. 5.0.0
 - NUnit - ver. 3.13.3
 - NUnit.Analyzers - ver. 3.6.1
 - NUnit3TestAdapter - ver. 4.4.2
+- Npgsql.EntityFrameworkCore.PostgreSQL - ver. 7.0.11
 - Polly - ver. 7.2.3
 - Serilog - ver 2.12.0
 - Serilog.AspNetCore - ver. 6.1.0
