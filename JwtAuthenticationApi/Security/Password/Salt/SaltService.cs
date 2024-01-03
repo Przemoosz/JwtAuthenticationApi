@@ -1,9 +1,9 @@
 ﻿namespace JwtAuthenticationApi.Security.Password.Salt
 {
-    using Commands.Models;
+	using Abstraction.DatabaseContext;
+	using Commands.Models;
     using Wrappers;
     using Microsoft.EntityFrameworkCore;
-    using DatabaseContext;
     using Factories.Wrappers;
     using Wrappers.Threading;
     using ILogger = Serilog.ILogger;
@@ -12,7 +12,7 @@
     using Entities;
 
     /// <inheritdoc/>
-	public sealed class SaltService: ISaltService
+    public sealed class SaltService: ISaltService
 	{
 		private const int SemaphoreInitialCount = 1;
 		private const int SemaphoreMaximalCount = 1;

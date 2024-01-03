@@ -16,6 +16,7 @@ namespace JwtAuthenticationApi.UnitTests.Security.Password.Salt
     using JwtAuthenticationApi.Wrappers.Threading;
     using NSubstitute.ExceptionExtensions;
     using static TddXt.AnyRoot.Root;
+    using JwtAuthenticationApi.Abstraction.DatabaseContext;
 
     [TestFixture, Parallelizable]
 	public class SaltServiceTests

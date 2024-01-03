@@ -1,16 +1,17 @@
 ﻿namespace JwtAuthenticationApi.UnitTests.Identity.User
 {
-	using DatabaseContext;
-	using JwtAuthenticationApi.Factories.Polly;
-	using JwtAuthenticationApi.Identity.User;
-	using Serilog;
-	using Entities;
-	using Microsoft.EntityFrameworkCore;
-	using TddXt.AnyRoot.Numbers;
-	using static TddXt.AnyRoot.Root;
-	using MockQueryable.NSubstitute;
+    using DatabaseContext;
+    using JwtAuthenticationApi.Factories.Polly;
+    using JwtAuthenticationApi.Identity.User;
+    using Serilog;
+    using Entities;
+    using Microsoft.EntityFrameworkCore;
+    using TddXt.AnyRoot.Numbers;
+    using static TddXt.AnyRoot.Root;
+    using MockQueryable.NSubstitute;
+    using JwtAuthenticationApi.Abstraction.DatabaseContext;
 
-	[TestFixture, Parallelizable]
+    [TestFixture, Parallelizable]
 	public sealed class UserServiceTests
 	{
 		private IUserContext _userContext;

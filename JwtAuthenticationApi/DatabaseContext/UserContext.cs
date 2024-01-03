@@ -1,8 +1,9 @@
 ﻿namespace JwtAuthenticationApi.DatabaseContext
 {
-	using Microsoft.EntityFrameworkCore;
-	using Entities;
-	using System.Diagnostics.CodeAnalysis;
+    using Microsoft.EntityFrameworkCore;
+    using Entities;
+    using System.Diagnostics.CodeAnalysis;
+    using Abstraction.DatabaseContext;
 
 	/// <summary>
 	/// Represents database context that contains user identity table and handles saving changes.

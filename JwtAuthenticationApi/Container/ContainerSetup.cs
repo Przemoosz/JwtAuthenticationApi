@@ -16,6 +16,7 @@
     using Registration;
     using Identity.User;
     using Factories.Commands;
+    using Abstraction.DatabaseContext;
 
 	/// <summary>
 	/// Defines extensions methods for container setup.
@@ -42,7 +43,7 @@
 		{
 			builder.Services.AddDbContext<IUserContext, UserContext>(options =>
 			{
-				options.UseSqlServer(builder.Configuration
+				options.UseNpgsql(builder.Configuration
 					.GetSection(
 						$"{nameof(DatabaseConnectionStrings)}:{nameof(DatabaseConnectionStrings.IdentityDatabaseConnectionString)}")
 					.Value);
@@ -57,7 +58,7 @@
 		{
 			builder.Services.AddDbContext<IPasswordSaltContext, PasswordSaltContext>(options =>
 			{
-				options.UseSqlServer(builder.Configuration
+				options.UseNpgsql(builder.Configuration
 					.GetSection(
 						$"{nameof(DatabaseConnectionStrings)}:{nameof(DatabaseConnectionStrings.SaltDatabaseConnectionString)}")
 					.Value);
