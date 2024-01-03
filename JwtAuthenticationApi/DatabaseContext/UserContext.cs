@@ -20,6 +20,7 @@
 		/// </summary>
 		public UserContext(): base()
 		{
+			AppContext.SetSwitch("Npgsql.EnableLegacyTimestampBehavior", true);
 		}
 
 		/// <summary>
@@ -28,6 +29,7 @@
 		/// <param name="dbContextOptions">Database context options.</param>
 		public UserContext(DbContextOptions<UserContext> dbContextOptions) : base(dbContextOptions)
 		{
+			AppContext.SetSwitch("Npgsql.EnableLegacyTimestampBehavior", true);
 		}
 
 		/// <inheritdoc	/>

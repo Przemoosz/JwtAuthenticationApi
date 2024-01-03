@@ -20,6 +20,7 @@
 		/// </summary>
 		public PasswordSaltContext() : base()
 		{
+			AppContext.SetSwitch("Npgsql.EnableLegacyTimestampBehavior", true);
 		}
 
 		/// <summary>
@@ -28,6 +29,7 @@
 		/// <param name="dbContextOptions">Database context options.</param>
 		public PasswordSaltContext(DbContextOptions<PasswordSaltContext> dbContextOptions) : base(dbContextOptions)
 		{
+			AppContext.SetSwitch("Npgsql.EnableLegacyTimestampBehavior", true);
 		}
 
 		/// <inheritdoc/>
