@@ -1,8 +1,9 @@
 ﻿namespace JwtAuthenticationApi.DatabaseContext
 {
-	using Microsoft.EntityFrameworkCore;
-	using Entities;
-	using System.Diagnostics.CodeAnalysis;
+    using Microsoft.EntityFrameworkCore;
+    using Entities;
+    using System.Diagnostics.CodeAnalysis;
+    using Abstraction.DatabaseContext;
 
 	/// <summary>
 	/// Represents database context that contains user identity table and handles saving changes.
@@ -19,6 +20,7 @@
 		/// </summary>
 		public UserContext(): base()
 		{
+			AppContext.SetSwitch("Npgsql.EnableLegacyTimestampBehavior", true);
 		}
 
 		/// <summary>
@@ -27,6 +29,7 @@
 		/// <param name="dbContextOptions">Database context options.</param>
 		public UserContext(DbContextOptions<UserContext> dbContextOptions) : base(dbContextOptions)
 		{
+			AppContext.SetSwitch("Npgsql.EnableLegacyTimestampBehavior", true);
 		}
 
 		/// <inheritdoc	/>

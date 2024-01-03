@@ -1,12 +1,13 @@
 ﻿namespace JwtAuthenticationApi.Identity.User
 {
-	using DatabaseContext;
 	using Entities;
-	using Factories.Polly;
-	using ILogger = Serilog.ILogger;
-	using Polly;
-	using Polly.Retry;
-	using Microsoft.EntityFrameworkCore;
+    using Factories.Polly;
+    using ILogger = Serilog.ILogger;
+    using Polly;
+    using Polly.Retry;
+    using Microsoft.EntityFrameworkCore;
+    using Abstraction.DatabaseContext;
+
 
 	/// <summary>
 	/// User service that is responsible for saving user in database. Implements <see cref="IUserService"/>.

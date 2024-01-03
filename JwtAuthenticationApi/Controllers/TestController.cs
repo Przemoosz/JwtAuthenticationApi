@@ -1,13 +1,13 @@
-using JwtAuthenticationApi.Security.Password.Salt;
-using ILogger = Serilog.ILogger;
-
 namespace JwtAuthenticationApi.Controllers
 {
-	using DatabaseContext;
 	using Models.Options;
-	using Microsoft.AspNetCore.Mvc;
-	using Microsoft.Extensions.Options;
-	using System.Diagnostics.CodeAnalysis;
+    using Microsoft.AspNetCore.Mvc;
+    using Microsoft.Extensions.Options;
+    using System.Diagnostics.CodeAnalysis;
+    using Abstraction.DatabaseContext;
+    using Security.Password.Salt;
+    using ILogger = Serilog.ILogger;
+
 
 	[Obsolete]
 	[ApiController]
