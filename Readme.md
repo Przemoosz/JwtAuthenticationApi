@@ -6,8 +6,8 @@ Generated token will have claims that You can use in your app to authorize user.
 API also will provide endpoints for administrator.
 
 ## Background
-Application is based on ASP.NET Core Web Api 6.0 (.NET 6) and uses Azure SQL as database. Unit test project is also based on .NET 6.
-C# language version is 10.
+Application is based on ASP.NET Core Web Api 8.0 (.NET 8) and uses Azure SQL as database. Unit test project is also based on .NET 8.
+C# language version is 12.
 
 ## Branches
 - JAA-0-SetUpSolutionAndProjects - Set up JWT Authentication API project and JWT Authentication API unit tests project.
@@ -16,9 +16,9 @@ C# language version is 10.
 - JAA-3-ImplementLoggingUsingSerilog - Implement logging using serilog.
 - JAA-4-ImplementRegisterEndpoint - Implement register endpoint
 - JAA-5-ImplementConnectionToPostgreSQL - Implement Connection to PostgreSQL
+- JAA-6-UpdateFrameworkToNet8 - Updated .NET version to .NET 8
 
 ## Future
-- Update framework to latest .NET 8
 - Implement password verifying.
 - Implement login endpoint and return access grant.
 - Implement class that will create JWT based on secret and claims.
@@ -70,14 +70,14 @@ To run application locally. After this you should see in console that applicatio
 - coverlet.collector - ver. 3.2.0
 - EmailValidation - ver. 1.0.8
 - FluentAssertions - ver. 6.10.0
-- Microsoft.EntityFrameworkCore - ver. 7.0.14
-- Microsoft.EntityFrameworkCore.Design - ver. 7.0.14
+- Microsoft.EntityFrameworkCore - ver. 8.0.0
+- Microsoft.EntityFrameworkCore.Design - ver. 8.0.0
 - Microsoft.NET.Test.Sdk - ver. 17.5.0
 - NSubstitute - ver. 5.0.0
 - NUnit - ver. 3.13.3
 - NUnit.Analyzers - ver. 3.6.1
 - NUnit3TestAdapter - ver. 4.4.2
-- Npgsql.EntityFrameworkCore.PostgreSQL - ver. 7.0.11
+- Npgsql.EntityFrameworkCore.PostgreSQL - ver. 8.0.0
 - Polly - ver. 7.2.3
 - Serilog - ver 2.12.0
 - Serilog.AspNetCore - ver. 6.1.0

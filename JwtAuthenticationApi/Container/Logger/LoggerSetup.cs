@@ -23,7 +23,6 @@
             Serilog.Core.Logger logger = new LoggerConfiguration()
                 .MinimumLevel.Information()
                 .Enrich.WithThreadId()
-                .Enrich.WithHttpRequestId()
                 .Enrich.WithThreadName()
                 .WriteTo.Async(w => w.Console(outputTemplate: consoleOutputTemplate!))
                 .WriteTo.Async(w => w.File(
