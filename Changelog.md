@@ -2,6 +2,13 @@
 
 Changelog for JwtAuthenticationApi System. 
 
+## [2.0.0] - 05.01.2024 - JAA-6-UpdateFrameworkToNet8
+
+### Changed
+- Changed .NET version from .NET 6 to .NET 8 in all projects
+- Updated nugets to match new framework version
+
+
 ## [1.0.0] - 03.01.2024 - JAA-5-ImplementConnectionToPostgreSQL
 
 ### Added
