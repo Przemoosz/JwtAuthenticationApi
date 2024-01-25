@@ -1,0 +1,12 @@
+C:\Przemek\Net\JAA\from dell\JwtAuthenticationApi\JwtAuthenticationApi\JwtAuthenticationApi.Common\bin\Debug\net8.0\JwtAuthenticationApi.Common.deps.json
+C:\Przemek\Net\JAA\from dell\JwtAuthenticationApi\JwtAuthenticationApi\JwtAuthenticationApi.Common\bin\Debug\net8.0\JwtAuthenticationApi.Common.dll
+C:\Przemek\Net\JAA\from dell\JwtAuthenticationApi\JwtAuthenticationApi\JwtAuthenticationApi.Common\bin\Debug\net8.0\JwtAuthenticationApi.Common.pdb
+C:\Przemek\Net\JAA\from dell\JwtAuthenticationApi\JwtAuthenticationApi\JwtAuthenticationApi.Common\obj\Debug\net8.0\JwtAuthenticationApi.Common.GeneratedMSBuildEditorConfig.editorconfig
+C:\Przemek\Net\JAA\from dell\JwtAuthenticationApi\JwtAuthenticationApi\JwtAuthenticationApi.Common\obj\Debug\net8.0\JwtAuthenticationApi.Common.AssemblyInfoInputs.cache
+C:\Przemek\Net\JAA\from dell\JwtAuthenticationApi\JwtAuthenticationApi\JwtAuthenticationApi.Common\obj\Debug\net8.0\JwtAuthenticationApi.Common.AssemblyInfo.cs
+C:\Przemek\Net\JAA\from dell\JwtAuthenticationApi\JwtAuthenticationApi\JwtAuthenticationApi.Common\obj\Debug\net8.0\JwtAuthenticationApi.Common.csproj.CoreCompileInputs.cache
+C:\Przemek\Net\JAA\from dell\JwtAuthenticationApi\JwtAuthenticationApi\JwtAuthenticationApi.Common\obj\Debug\net8.0\JwtAuthenticationApi.Common.sourcelink.json
+C:\Przemek\Net\JAA\from dell\JwtAuthenticationApi\JwtAuthenticationApi\JwtAuthenticationApi.Common\obj\Debug\net8.0\JwtAuthenticationApi.Common.dll
+C:\Przemek\Net\JAA\from dell\JwtAuthenticationApi\JwtAuthenticationApi\JwtAuthenticationApi.Common\obj\Debug\net8.0\refint\JwtAuthenticationApi.Common.dll
+C:\Przemek\Net\JAA\from dell\JwtAuthenticationApi\JwtAuthenticationApi\JwtAuthenticationApi.Common\obj\Debug\net8.0\JwtAuthenticationApi.Common.pdb
+C:\Przemek\Net\JAA\from dell\JwtAuthenticationApi\JwtAuthenticationApi\JwtAuthenticationApi.Common\obj\Debug\net8.0\ref\JwtAuthenticationApi.Common.dll

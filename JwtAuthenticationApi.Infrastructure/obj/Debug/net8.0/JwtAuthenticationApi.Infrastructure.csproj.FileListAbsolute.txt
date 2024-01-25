@@ -1,0 +1,15 @@
+C:\Przemek\Net\JAA\from dell\JwtAuthenticationApi\JwtAuthenticationApi\JwtAuthenticationApi.Infrastructure\bin\Debug\net8.0\JwtAuthenticationApi.Infrastructure.deps.json
+C:\Przemek\Net\JAA\from dell\JwtAuthenticationApi\JwtAuthenticationApi\JwtAuthenticationApi.Infrastructure\bin\Debug\net8.0\JwtAuthenticationApi.Infrastructure.runtimeconfig.json
+C:\Przemek\Net\JAA\from dell\JwtAuthenticationApi\JwtAuthenticationApi\JwtAuthenticationApi.Infrastructure\bin\Debug\net8.0\JwtAuthenticationApi.Infrastructure.dll
+C:\Przemek\Net\JAA\from dell\JwtAuthenticationApi\JwtAuthenticationApi\JwtAuthenticationApi.Infrastructure\bin\Debug\net8.0\JwtAuthenticationApi.Infrastructure.pdb
+C:\Przemek\Net\JAA\from dell\JwtAuthenticationApi\JwtAuthenticationApi\JwtAuthenticationApi.Infrastructure\obj\Debug\net8.0\JwtAuthenticationApi.Infrastructure.csproj.AssemblyReference.cache
+C:\Przemek\Net\JAA\from dell\JwtAuthenticationApi\JwtAuthenticationApi\JwtAuthenticationApi.Infrastructure\obj\Debug\net8.0\JwtAuthenticationApi.Infrastructure.GeneratedMSBuildEditorConfig.editorconfig
+C:\Przemek\Net\JAA\from dell\JwtAuthenticationApi\JwtAuthenticationApi\JwtAuthenticationApi.Infrastructure\obj\Debug\net8.0\JwtAuthenticationApi.Infrastructure.AssemblyInfoInputs.cache
+C:\Przemek\Net\JAA\from dell\JwtAuthenticationApi\JwtAuthenticationApi\JwtAuthenticationApi.Infrastructure\obj\Debug\net8.0\JwtAuthenticationApi.Infrastructure.AssemblyInfo.cs
+C:\Przemek\Net\JAA\from dell\JwtAuthenticationApi\JwtAuthenticationApi\JwtAuthenticationApi.Infrastructure\obj\Debug\net8.0\JwtAuthenticationApi.Infrastructure.csproj.CoreCompileInputs.cache
+C:\Przemek\Net\JAA\from dell\JwtAuthenticationApi\JwtAuthenticationApi\JwtAuthenticationApi.Infrastructure\obj\Debug\net8.0\JwtAuthenticationApi.Infrastructure.sourcelink.json
+C:\Przemek\Net\JAA\from dell\JwtAuthenticationApi\JwtAuthenticationApi\JwtAuthenticationApi.Infrastructure\obj\Debug\net8.0\JwtAuthenticationApi.Infrastructure.dll
+C:\Przemek\Net\JAA\from dell\JwtAuthenticationApi\JwtAuthenticationApi\JwtAuthenticationApi.Infrastructure\obj\Debug\net8.0\refint\JwtAuthenticationApi.Infrastructure.dll
+C:\Przemek\Net\JAA\from dell\JwtAuthenticationApi\JwtAuthenticationApi\JwtAuthenticationApi.Infrastructure\obj\Debug\net8.0\JwtAuthenticationApi.Infrastructure.pdb
+C:\Przemek\Net\JAA\from dell\JwtAuthenticationApi\JwtAuthenticationApi\JwtAuthenticationApi.Infrastructure\obj\Debug\net8.0\JwtAuthenticationApi.Infrastructure.genruntimeconfig.cache
+C:\Przemek\Net\JAA\from dell\JwtAuthenticationApi\JwtAuthenticationApi\JwtAuthenticationApi.Infrastructure\obj\Debug\net8.0\ref\JwtAuthenticationApi.Infrastructure.dll

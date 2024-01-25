@@ -1,0 +1,15 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\JwtAuthenticationApi.Common\JwtAuthenticationApi.Common.csproj" />
+    <ProjectReference Include="..\JwtAuthenticationApi.Infrastructure\JwtAuthenticationApi.Infrastructure.csproj" />
+    <ProjectReference Include="..\JwtAuthenticationApi.Security\JwtAuthenticationApi.Security.csproj" />
+  </ItemGroup>
+
+</Project>
