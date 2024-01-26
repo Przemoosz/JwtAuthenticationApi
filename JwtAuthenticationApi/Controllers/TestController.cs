@@ -1,11 +1,12 @@
 namespace JwtAuthenticationApi.Controllers
 {
-	using Models.Options;
     using Microsoft.AspNetCore.Mvc;
     using Microsoft.Extensions.Options;
     using System.Diagnostics.CodeAnalysis;
-    using Abstraction.DatabaseContext;
-    using Security.Password.Salt;
+	using Common.Options;
+	using Infrastructure.Abstraction.Database;
+	using Options;
+	using Security.Abstraction.Salt;
     using ILogger = Serilog.ILogger;
 
 

@@ -1,6 +1,4 @@
-﻿using JwtAuthenticationApi.Security.Commands;
-
-namespace JwtAuthenticationApi.Security.Cryptography
+﻿namespace JwtAuthenticationApi.Security.Cryptography
 {
 	using System.Security.Cryptography;
 	using System.Text;
@@ -8,6 +6,7 @@ namespace JwtAuthenticationApi.Security.Cryptography
 	using Common.Options;
 	using JwtAuthenticationApi.Security.Abstraction.Cryptography;
 	using Microsoft.Extensions.Options;
+	using Commands;
 
 	/// <inheritdoc/>
 	public class PasswordHashingService: IPasswordHashingService

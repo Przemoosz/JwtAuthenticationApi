@@ -4,7 +4,6 @@ using JwtAuthenticationApi.Entities;
 using JwtAuthenticationApi.Factories.Commands;
 using JwtAuthenticationApi.Handlers;
 using JwtAuthenticationApi.Identity.User;
-using JwtAuthenticationApi.Models.Enums;
 using JwtAuthenticationApi.Models.Registration.Requests;
 using JwtAuthenticationApi.Registration;
 using JwtAuthenticationApi.Security.Password;

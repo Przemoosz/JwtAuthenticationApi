@@ -1,6 +1,5 @@
 ﻿using System.Net;
 using JwtAuthenticationApi.Controllers;
-using JwtAuthenticationApi.Models.Enums;
 using JwtAuthenticationApi.Models.Registration.Requests;
 using JwtAuthenticationApi.Models.Registration.Responses;
 using JwtAuthenticationApi.Registration;

@@ -1,11 +1,11 @@
-﻿using JwtAuthenticationApi.Abstraction.Commands;
-using JwtAuthenticationApi.Commands.Models;
-using JwtAuthenticationApi.Entities;
-using JwtAuthenticationApi.Models.Registration.Requests;
-
-namespace JwtAuthenticationApi.Commands
+﻿namespace JwtAuthenticationApi.Commands
 {
-    /// <summary>
+	using Common.Abstraction.Commands;
+	using Common.Models;
+	using Infrastructure.Entities;
+	using Services.Models.Registration.Requests;
+
+	/// <summary>
     /// Command that is responsible for creating <see cref="UserEntity"/> from request. Implements <see cref="ICommand{TResult}"/>.
     /// </summary>
     public class ConvertRequestToUserEntityCommand : ICommand<UserEntity>

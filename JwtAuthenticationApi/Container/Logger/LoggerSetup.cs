@@ -2,11 +2,11 @@
 {
     using System.Diagnostics.CodeAnalysis;
     using Exceptions;
-    using Models.Options;
     using Serilog;
     using Serilog.Events;
     using ILogger = Serilog.ILogger;
     using Models;
+    using Options;
 
 
     [ExcludeFromCodeCoverage]

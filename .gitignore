@@ -1,6 +1,16 @@
 # Build Files
 JwtAuthenticationApi/bin/*
 JwtAuthenticationApi/obj/*
+JwtAuthenticationApi.Services/bin/*
+JwtAuthenticationApi.Services/obj/*
+JwtAuthenticationApi.Common/bin/*
+JwtAuthenticationApi.Common/obj/*
+JwtAuthenticationApi.Controllers/bin/*
+JwtAuthenticationApi.Controllers/obj/*
+JwtAuthenticationApi.Security/bin/*
+JwtAuthenticationApi.Security/obj/*
+JwtAuthenticationApi.Infrastructure/bin/*
+JwtAuthenticationApi.Infrastructure/obj/*
 JwtAuthenticationApi.UnitTests/bin/*
 JwtAuthenticationApi.UnitTests/obj/*
 
