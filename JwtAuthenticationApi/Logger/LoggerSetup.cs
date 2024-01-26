@@ -1,4 +1,4 @@
-﻿namespace JwtAuthenticationApi.Container.Logger
+﻿namespace JwtAuthenticationApi.Logger
 {
     using System.Diagnostics.CodeAnalysis;
     using Exceptions;
@@ -26,7 +26,7 @@
                 .Enrich.WithThreadName()
                 .WriteTo.Async(w => w.Console(outputTemplate: consoleOutputTemplate!))
                 .WriteTo.Async(w => w.File(
-                    path: JaaPaths.LogsStorageFullPath,
+                    path: LoggerPath.LogsStorageFullPath,
                     outputTemplate: fileOutputTemplate!,
                     restrictedToMinimumLevel: LogEventLevel.Warning,
                     rollOnFileSizeLimit: true,

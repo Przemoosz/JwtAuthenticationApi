@@ -22,7 +22,6 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\JwtAuthenticationApi.Common\JwtAuthenticationApi.Common.csproj" />
-    <ProjectReference Include="..\JwtAuthenticationApi.Controllers\JwtAuthenticationApi.Controllers.csproj" />
     <ProjectReference Include="..\JwtAuthenticationApi.Infrastructure\JwtAuthenticationApi.Infrastructure.csproj" />
     <ProjectReference Include="..\JwtAuthenticationApi.Security\JwtAuthenticationApi.Security.csproj" />
     <ProjectReference Include="..\JwtAuthenticationApi.Services\JwtAuthenticationApi.Services.csproj" />
