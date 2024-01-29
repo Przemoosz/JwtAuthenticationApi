@@ -13,5 +13,7 @@
 		/// </summary>
 		/// <value><see cref="string"/> value of password pepper.</value>
 		public string Pepper { get; init; }
+
+		public const string Position = "PasswordPepper";
 	}
 }

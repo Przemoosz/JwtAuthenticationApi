@@ -1,10 +1,10 @@
 namespace JwtAuthenticationApi
 {
-    using Container;
     using System.Diagnostics.CodeAnalysis;
     using Common;
-    using Container.Logger;
+    using Common.Options;
     using Infrastructure;
+    using Logger;
     using Options;
     using Security;
     using Services;
@@ -26,14 +26,8 @@ namespace JwtAuthenticationApi
 			builder.Services.InstallSecurity();
 			builder.Services.InstallServices();
 			builder.Services.InstallInfrastructureProject(builder.GetIdentityConnectionString, builder.GetSaltConnectionString);
-
-			// builder.RegisterOptions();
-			// builder.RegisterUserIdentityDatabaseContext();
-			// builder.RegisterPasswordSaltDatabaseContext();
 			builder.SetupSerilog();
-			// builder.RegisterServices();
-			// builder.RegisterSecurityServices();
-			// builder.RegisterFactories();
+			builder.Services.Configure<PasswordPepper>(builder.Configuration.GetSection(PasswordPepper.Position));
 			var app = builder.Build();
 			if (app.Environment.IsDevelopment())
 			{

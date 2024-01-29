@@ -19,7 +19,6 @@
 		/// </summary>
 		/// <param name="passwordPepperOptions">Password pepper option as <see cref="IOptions{TOptions}"/>.</param>
 		/// <param name="commandHandler">Command Handler.</param>
-		/// <param name="commandFactory">Commands Factory.</param>
 		public PasswordHashingService(IOptions<PasswordPepper> passwordPepperOptions, ICommandHandler commandHandler)
 		{
 			_passwordPepperOptions = passwordPepperOptions;
