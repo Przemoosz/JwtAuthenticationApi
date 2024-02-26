@@ -7,7 +7,7 @@
 	/// <summary>
 	/// Command that is responsible for mixing password in predefined way. Implements <see cref="ICommand{TResult}"/>.
 	/// </summary>
-	public sealed class PasswordMixCommand: ICommand<string>
+	internal sealed class PasswordMixCommand: ICommand<string>
 	{
 		private readonly string _password;
 		private readonly string _salt;

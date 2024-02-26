@@ -14,11 +14,19 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "SourceCode", "SourceCode", 
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "JwtAuthenticationApi.Services", "JwtAuthenticationApi.Services\JwtAuthenticationApi.Services.csproj", "{2DECB90A-2121-4589-ABC9-D097D51F0E5F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JwtAuthenticationApi.Controllers", "JwtAuthenticationApi.Controllers\JwtAuthenticationApi.Controllers.csproj", "{E829EEA0-358F-4A49-B311-614AEBF88116}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "JwtAuthenticationApi.Controllers", "JwtAuthenticationApi.Controllers\JwtAuthenticationApi.Controllers.csproj", "{E829EEA0-358F-4A49-B311-614AEBF88116}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JwtAuthenticationApi.Security", "JwtAuthenticationApi.Security\JwtAuthenticationApi.Security.csproj", "{59379F0B-8C84-436B-BB2D-BB600ED44EC4}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "JwtAuthenticationApi.Security", "JwtAuthenticationApi.Security\JwtAuthenticationApi.Security.csproj", "{59379F0B-8C84-436B-BB2D-BB600ED44EC4}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JwtAuthenticationApi.Common", "JwtAuthenticationApi.Common\JwtAuthenticationApi.Common.csproj", "{8D7E0BF8-E7C0-4C52-B72D-E593AEC4AD52}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "JwtAuthenticationApi.Common", "JwtAuthenticationApi.Common\JwtAuthenticationApi.Common.csproj", "{8D7E0BF8-E7C0-4C52-B72D-E593AEC4AD52}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JwtAuthenticationApi.Common.Tests", "JwtAuthenticationApi.Common.Tests\JwtAuthenticationApi.Common.Tests.csproj", "{0913B478-E66F-42F5-9FD1-B295D7CBE55B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JwtAuthenticationApi.Infrastructure.Tests", "JwtAuthenticationApi.Infrastructure.Tests\JwtAuthenticationApi.Infrastructure.Tests.csproj", "{9D671041-2F4D-4135-AB52-F0CCE9398A61}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JwtAuthenticationApi.Security.Tests", "JwtAuthenticationApi.Security.Tests\JwtAuthenticationApi.Security.Tests.csproj", "{735C061E-AA63-44D8-8FE3-711D843D1628}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JwtAuthenticationApi.Services.Tests", "JwtAuthenticationApi.Services.Tests\JwtAuthenticationApi.Services.Tests.csproj", "{2FDB8BB3-9126-4B54-933B-CAF36740CB9A}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -54,6 +62,22 @@ Global
 		{8D7E0BF8-E7C0-4C52-B72D-E593AEC4AD52}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{8D7E0BF8-E7C0-4C52-B72D-E593AEC4AD52}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{8D7E0BF8-E7C0-4C52-B72D-E593AEC4AD52}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0913B478-E66F-42F5-9FD1-B295D7CBE55B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0913B478-E66F-42F5-9FD1-B295D7CBE55B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0913B478-E66F-42F5-9FD1-B295D7CBE55B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0913B478-E66F-42F5-9FD1-B295D7CBE55B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9D671041-2F4D-4135-AB52-F0CCE9398A61}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9D671041-2F4D-4135-AB52-F0CCE9398A61}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9D671041-2F4D-4135-AB52-F0CCE9398A61}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9D671041-2F4D-4135-AB52-F0CCE9398A61}.Release|Any CPU.Build.0 = Release|Any CPU
+		{735C061E-AA63-44D8-8FE3-711D843D1628}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{735C061E-AA63-44D8-8FE3-711D843D1628}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{735C061E-AA63-44D8-8FE3-711D843D1628}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{735C061E-AA63-44D8-8FE3-711D843D1628}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2FDB8BB3-9126-4B54-933B-CAF36740CB9A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2FDB8BB3-9126-4B54-933B-CAF36740CB9A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2FDB8BB3-9126-4B54-933B-CAF36740CB9A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2FDB8BB3-9126-4B54-933B-CAF36740CB9A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -66,6 +90,10 @@ Global
 		{E829EEA0-358F-4A49-B311-614AEBF88116} = {4E806FA8-E219-42BC-8191-1C237DCA977F}
 		{59379F0B-8C84-436B-BB2D-BB600ED44EC4} = {4E806FA8-E219-42BC-8191-1C237DCA977F}
 		{8D7E0BF8-E7C0-4C52-B72D-E593AEC4AD52} = {4E806FA8-E219-42BC-8191-1C237DCA977F}
+		{0913B478-E66F-42F5-9FD1-B295D7CBE55B} = {2A735D45-97A8-46FE-A12D-83FCE55A77C8}
+		{9D671041-2F4D-4135-AB52-F0CCE9398A61} = {2A735D45-97A8-46FE-A12D-83FCE55A77C8}
+		{735C061E-AA63-44D8-8FE3-711D843D1628} = {2A735D45-97A8-46FE-A12D-83FCE55A77C8}
+		{2FDB8BB3-9126-4B54-933B-CAF36740CB9A} = {2A735D45-97A8-46FE-A12D-83FCE55A77C8}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {4FBE2AA5-1DC0-47F0-9864-6D4DF9C2EFDD}

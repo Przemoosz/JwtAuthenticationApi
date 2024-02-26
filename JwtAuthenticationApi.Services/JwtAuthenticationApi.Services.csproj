@@ -15,5 +15,9 @@
     <ProjectReference Include="..\JwtAuthenticationApi.Infrastructure\JwtAuthenticationApi.Infrastructure.csproj" />
     <ProjectReference Include="..\JwtAuthenticationApi.Security\JwtAuthenticationApi.Security.csproj" />
   </ItemGroup>
-
+	<ItemGroup>
+		<AssemblyAttribute Include="System.Runtime.CompilerServices.InternalsVisibleToAttribute">
+			<_Parameter1>JwtAuthenticationApi.Services.Tests</_Parameter1>
+		</AssemblyAttribute>
+	</ItemGroup>
 </Project>

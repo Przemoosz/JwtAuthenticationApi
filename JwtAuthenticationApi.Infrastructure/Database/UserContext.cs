@@ -10,7 +10,7 @@
 	/// Inherits from <see cref="DbContext"/>.
 	/// </summary>
 	[ExcludeFromCodeCoverage]
-	public sealed class UserContext: DbContext, IUserContext
+	internal sealed class UserContext: DbContext, IUserContext
 	{
 		/// <inheritdoc	/>
 		public DbSet<UserEntity> Users { get; set; }

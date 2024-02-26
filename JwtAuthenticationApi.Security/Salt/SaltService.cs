@@ -12,8 +12,8 @@
     using Polly;
     using JwtAuthenticationApi.Common.Abstraction.Factories;
 
-    /// <inheritdoc/>
-    public sealed class SaltService: ISaltService
+	/// <inheritdoc/>
+	internal sealed class SaltService: ISaltService
 	{
 		private const int SemaphoreInitialCount = 1;
 		private const int SemaphoreMaximalCount = 1;

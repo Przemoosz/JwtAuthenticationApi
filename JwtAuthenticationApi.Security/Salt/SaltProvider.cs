@@ -6,7 +6,7 @@
 	/// <summary>
 	/// Implementation of <see cref="ISaltProvider"/>. Provides method for getting password salt.
 	/// </summary>
-	public sealed class SaltProvider: ISaltProvider
+	internal sealed class SaltProvider: ISaltProvider
 	{
 		private readonly ISaltService _saltService;
 

@@ -10,7 +10,7 @@
 	/// Inherits from <see cref="DbContext"/>.
 	/// </summary>
 	[ExcludeFromCodeCoverage]
-	public sealed class PasswordSaltContext : DbContext, IPasswordSaltContext
+	internal sealed class PasswordSaltContext : DbContext, IPasswordSaltContext
 	{
 		/// <inheritdoc/>
 		public DbSet<PasswordSaltEntity> PasswordSalt { get; set; }

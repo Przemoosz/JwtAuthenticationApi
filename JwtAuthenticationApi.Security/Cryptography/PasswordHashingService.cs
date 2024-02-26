@@ -9,7 +9,7 @@
 	using Commands;
 
 	/// <inheritdoc/>
-	public class PasswordHashingService: IPasswordHashingService
+	internal class PasswordHashingService: IPasswordHashingService
 	{
 		private readonly IOptions<PasswordPepper> _passwordPepperOptions;
 		private readonly ICommandHandler _commandHandler;
