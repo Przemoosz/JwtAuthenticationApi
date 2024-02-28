@@ -1,14 +1,14 @@
-﻿namespace JwtAuthenticationApi.Commands
+﻿namespace JwtAuthenticationApi.Services.Commands
 {
-	using Common.Abstraction.Commands;
-	using Common.Models;
+	using JwtAuthenticationApi.Common.Abstraction.Commands;
+	using JwtAuthenticationApi.Common.Models;
 	using Infrastructure.Entities;
-	using Services.Models.Registration.Requests;
+	using JwtAuthenticationApi.Services.Models.Registration.Requests;
 
 	/// <summary>
-    /// Command that is responsible for creating <see cref="UserEntity"/> from request. Implements <see cref="ICommand{TResult}"/>.
-    /// </summary>
-    public class ConvertRequestToUserEntityCommand : ICommand<UserEntity>
+	/// Command that is responsible for creating <see cref="UserEntity"/> from request. Implements <see cref="ICommand{TResult}"/>.
+	/// </summary>
+	internal class ConvertRequestToUserEntityCommand : ICommand<UserEntity>
     {
         private readonly RegisterUserRequest _registerUserRequest;
         private readonly string _hashedPassword;

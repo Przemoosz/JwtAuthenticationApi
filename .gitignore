@@ -1,8 +1,28 @@
 # Build Files
 JwtAuthenticationApi/bin/*
 JwtAuthenticationApi/obj/*
-JwtAuthenticationApi.UnitTests/bin/*
-JwtAuthenticationApi.UnitTests/obj/*
+JwtAuthenticationApi.Services/bin/*
+JwtAuthenticationApi.Services/obj/*
+JwtAuthenticationApi.Common/bin/*
+JwtAuthenticationApi.Common/obj/*
+JwtAuthenticationApi.Controllers/bin/*
+JwtAuthenticationApi.Controllers/obj/*
+JwtAuthenticationApi.Security/bin/*
+JwtAuthenticationApi.Security/obj/*
+JwtAuthenticationApi.Infrastructure/bin/*
+JwtAuthenticationApi.Infrastructure/obj/*
+
+# Build Files - Tests Projects
+JwtAuthenticationApi.Services.Tests/bin/*
+JwtAuthenticationApi.Services.Tests/obj/*
+JwtAuthenticationApi.Common.Tests/bin/*
+JwtAuthenticationApi.Common.Tests/obj/*
+JwtAuthenticationApi.Controllers.Tests/bin/*
+JwtAuthenticationApi.Controllers.Tests/obj/*
+JwtAuthenticationApi.Security.Tests/bin/*
+JwtAuthenticationApi.Security.Tests/obj/*
+JwtAuthenticationApi.Infrastructure.Tests/bin/*
+JwtAuthenticationApi.Infrastructure.Tests/obj/*
 
 # Migrations 
 JwtAuthenticationApi/Migrations/*

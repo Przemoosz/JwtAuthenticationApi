@@ -1,11 +1,16 @@
 namespace JwtAuthenticationApi
 {
-    using Container;
     using System.Diagnostics.CodeAnalysis;
-    using Container.Logger;
+    using Common;
+    using Common.Options;
+    using Infrastructure;
+    using Logger;
+    using Options;
+    using Security;
+    using Services;
 
 
-	[ExcludeFromCodeCoverage]
+    [ExcludeFromCodeCoverage]
 	internal static class JwtAuthenticationApi
 	{
 		public static async Task Main(string[] args)
@@ -17,13 +22,12 @@ namespace JwtAuthenticationApi
 			}); 
 			builder.Services.AddEndpointsApiExplorer();
 			builder.Services.AddSwaggerGen();
-			builder.RegisterOptions();
-			builder.RegisterUserIdentityDatabaseContext();
-			builder.RegisterPasswordSaltDatabaseContext();
+			builder.Services.InstallCommon();
+			builder.Services.InstallSecurity();
+			builder.Services.InstallServices();
+			builder.Services.InstallInfrastructureProject(builder.GetIdentityConnectionString, builder.GetSaltConnectionString);
 			builder.SetupSerilog();
-			builder.RegisterServices();
-			builder.RegisterSecurityServices();
-			builder.RegisterFactories();
+			builder.Services.Configure<PasswordPepper>(builder.Configuration.GetSection(PasswordPepper.Position));
 			var app = builder.Build();
 			if (app.Environment.IsDevelopment())
 			{
@@ -40,5 +44,19 @@ namespace JwtAuthenticationApi
 			
 			await app.RunAsync();
 		}
+
+
+		private static string GetSaltConnectionString(this WebApplicationBuilder webApplicationBuilder)
+		{
+			return webApplicationBuilder.Configuration.GetSection(
+					$"{nameof(DatabaseConnectionStrings)}:{nameof(DatabaseConnectionStrings.SaltDatabaseConnectionString)}").Value;
+		}
+
+		private static string GetIdentityConnectionString(this WebApplicationBuilder webApplicationBuilder)
+		{
+			return webApplicationBuilder.Configuration.GetSection(
+				$"{nameof(DatabaseConnectionStrings)}:{nameof(DatabaseConnectionStrings.IdentityDatabaseConnectionString)}").Value;
+		}
+
 	}
 }
