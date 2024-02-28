@@ -18,7 +18,7 @@
 		[TestCase("AAAaaaAAA",6)]
 		[TestCase("CvCvCC", 4)]
 		[TestCase("aaa", 0)]
-		public void ShouldCountCorrectlyUpperLetters(string password, int totalUpperLetters)
+		public void Create_CountsCorrectlyUpperLetters(string password, int totalUpperLetters)
 		{
 			// Act
 			var actual = _sut.Create(password, password);
@@ -30,7 +30,7 @@
 		[TestCase("AAAaaaAAA", 3)]
 		[TestCase("CvCvCC", 2)]
 		[TestCase("AAA", 0)]
-		public void ShouldCountCorrectlyLowerLetters(string password, int totalUpperLetters)
+		public void Create_CountsCorrectlyLowerLetters(string password, int totalUpperLetters)
 		{
 			// Act
 			var actual = _sut.Create(password, password);
@@ -42,7 +42,7 @@
 		[TestCase("!Password!", 2)]
 		[TestCase("!;[]ggg78CCSs&^", 8)]
 		[TestCase("AAA", 0)]
-		public void ShouldCountCorrectlySpecialLetters(string password, int totalUpperLetters)
+		public void Create_CountsCorrectlySpecialLetters(string password, int totalUpperLetters)
 		{
 			// Act
 			var actual = _sut.Create(password, password);
@@ -52,7 +52,7 @@
 		}
 
 		[Test]
-		public void ShouldCorrectlyCreatePasswordContext()
+		public void Create_CorrectlyCreatePasswordContext()
 		{
 			// Arrange
 			const string password = "!HArDToBr3a4Passw0rd%";

@@ -26,7 +26,7 @@
 		}
 
 		[Test]
-		public async Task ShouldHashPassword()
+		public async Task HashPasswordAsync_HashesPassword()
 		{
 			// Arrange
 			const string salt = "SALT";
@@ -34,9 +34,8 @@
 			const string password = "PASSWORD";
 			const string expectedHash = "FsjT2moPUhUXzwImF0vUbj+Rd4QFgfYvOFcKbqSL4rY=";
 			const string mixedPassword = $"{password}{pepper}{salt}";
-			ICommand<string> command = Substitute.For<ICommand<string>>();
-			_passwordOptions.Value.Returns(new PasswordPepper() { Pepper = pepper });
-			_commandHandler.HandleAsync(command, Arg.Any<CancellationToken>())
+			_passwordOptions.Value.Returns(new PasswordPepper { Pepper = pepper });
+			_commandHandler.HandleAsync(Arg.Any<ICommand<string>>(), Arg.Any<CancellationToken>())
 				.Returns(new Result<string>(mixedPassword, true));
 			
 			// Act

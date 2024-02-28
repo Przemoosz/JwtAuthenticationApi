@@ -1,15 +1,18 @@
-﻿using System.Net;
-using JwtAuthenticationApi.Controllers;
-using JwtAuthenticationApi.Models.Registration.Requests;
-using JwtAuthenticationApi.Models.Registration.Responses;
-using JwtAuthenticationApi.Registration;
-using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
-using TddXt.AnyRoot.Numbers;
-using static TddXt.AnyRoot.Root;
-
-namespace JwtAuthenticationApi.UnitTests.Controllers
+﻿namespace JwtAuthenticationApi.Controllers.Tests.Controllers
 {
+	using System.Net;
+	using FluentAssertions;
+	using JwtAuthenticationApi.Controllers.Controllers;
+	using Microsoft.AspNetCore.Mvc;
+	using NSubstitute;
+	using NUnit.Framework;
+	using Services.Abstraction.Registration;
+	using Services.Models.Enums;
+	using Services.Models.Registration.Requests;
+	using Services.Models.Registration.Responses;
+	using TddXt.AnyRoot.Numbers;
+	using static TddXt.AnyRoot.Root;
+
 	[TestFixture, Parallelizable]
 	public sealed class UserRegisterControllerTests
 	{
@@ -24,7 +27,7 @@ namespace JwtAuthenticationApi.UnitTests.Controllers
 		}
 
 		[Test]
-		public async Task ShouldReturn201IfUserIsCreated()
+		public async Task RegisterUserAsync_IfUserIsCreated_Returns201Created()
 		{
 			// Arrange
 			var userId = Any.Integer();
@@ -48,7 +51,7 @@ namespace JwtAuthenticationApi.UnitTests.Controllers
 		}
 
 		[Test]
-		public async Task ShouldReturn400IfPasswordValidationFails()
+		public async Task RegisterUserAsync_IfPasswordValidationFails_Return400BadRequest()
 		{
 			// Arrange
 			var userId = Any.Integer();
@@ -72,10 +75,9 @@ namespace JwtAuthenticationApi.UnitTests.Controllers
 		}
 
 		[Test]
-		public async Task ShouldReturn409IfUserWithThatUserNameExists()
+		public async Task RegisterUserAsync_IfUserNameExists_Return409Conflict()
 		{
 			// Arrange
-			var userId = Any.Integer();
 			var serviceResponse = new RegisterUserResponse()
 			{
 				IsSuccessful = false,
@@ -96,10 +98,9 @@ namespace JwtAuthenticationApi.UnitTests.Controllers
 		}
 
 		[Test]
-		public async Task ShouldReturn500IfDbErrorOccurred()
+		public async Task RegisterUserAsync_IfDbErrorOccurred_Returns500InternalServerError()
 		{
 			// Arrange
-			var userId = Any.Integer();
 			var serviceResponse = new RegisterUserResponse()
 			{
 				IsSuccessful = false,
@@ -120,10 +121,9 @@ namespace JwtAuthenticationApi.UnitTests.Controllers
 		}
 
 		[Test]
-		public async Task ShouldReturn500IfInternalErrorOccurred()
+		public async Task RegisterUserAsync_IfUnexpectedErrorOccured_Return500InternalServerError()
 		{
 			// Arrange
-			var userId = Any.Integer();
 			var serviceResponse = new RegisterUserResponse()
 			{
 				IsSuccessful = false,

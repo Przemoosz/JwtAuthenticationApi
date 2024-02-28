@@ -17,7 +17,7 @@
 
 		[TestCase(1u,6u)]
 		[TestCase(6u,9u)]
-		public void ShouldCreateConstantSleepingInterval(uint sleepTime, uint totalRetries)
+		public void CreateConstantInterval_CreatesConstantSleepingInterval(uint sleepTime, uint totalRetries)
 		{
 			// Act
 			var actual = _uut.CreateConstantInterval(sleepTime, totalRetries).ToList();
@@ -33,7 +33,7 @@
 
 		[TestCase(2u,1u, 6u)]
 		[TestCase(3u,4u, 9u)]
-		public void ShouldCreateLinearSleepingInterval(uint baseSleepTime, uint sleepIncreaseTime, uint totalRetries)
+		public void CreateLinearInterval_CreateLinearSleepingInterval(uint baseSleepTime, uint sleepIncreaseTime, uint totalRetries)
 		{
 			// Act
 			var actual = _uut.CreateLinearInterval(baseSleepTime,sleepIncreaseTime, totalRetries).ToList();

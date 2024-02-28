@@ -1,8 +1,11 @@
-﻿namespace JwtAuthenticationApi.UnitTests.Handlers
+﻿namespace JwtAuthenticationApi.Common.Tests.Handlers
 {
-	using JwtAuthenticationApi.Abstraction.Commands;
-	using JwtAuthenticationApi.Commands.Models;
-	using JwtAuthenticationApi.Handlers;
+	using Abstraction.Commands;
+	using Common.Handlers;
+	using FluentAssertions;
+	using Models;
+	using NSubstitute;
+	using NUnit.Framework;
 	using TddXt.AnyRoot.Strings;
 	using static TddXt.AnyRoot.Root;
 
@@ -18,7 +21,7 @@
 		}
 
 		[Test]
-		public async Task ShouldHandleCommandExecutionAndReturnResult()
+		public async Task HandleAsync_HandlesCommandExecutionAndReturnResult()
 		{
 			// Arrange
 			string stringResult = Any.String();

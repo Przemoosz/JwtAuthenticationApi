@@ -12,7 +12,7 @@
 	public class PasswordMixCommandTests
 	{
 		[Test]
-		public async Task ShouldMixPasswordWithPepperAndSalt()
+		public async Task ExecuteAsync_MixesPasswordWithPepperAndSalt()
 		{
 			// Arrange
 			var password = Any.String();
@@ -30,7 +30,7 @@
 
 		[TestCase(null)]
 		[TestCase("")]
-		public async Task ShouldThrowExceptionIfProvidedPasswordIsNullOrEmpty(string password)
+		public async Task ExecuteAsync_IfProvidedPasswordIsNullOrEmpty_ThrowsCommandExecutionException(string password)
 		{
 			// Arrange
 			var salt = Any.String();
@@ -48,7 +48,7 @@
 
 		[TestCase(null)]
 		[TestCase("")]
-		public async Task ShouldThrowExceptionIfProvidedSaltIsNullOrEmpty(string salt)
+		public async Task ExecuteAsync_IfProvidedSaltIsNullOrEmpty_ThrowsCommandExecutionException(string salt)
 		{
 			// Arrange
 			var password = Any.String();
@@ -66,7 +66,7 @@
 
 		[TestCase(null)]
 		[TestCase("")]
-		public async Task ShouldThrowExceptionIfProvidedPepperIsNullOrEmpty(string pepper)
+		public async Task ExecuteAsync_IfProvidedPepperIsNullOrEmpty_ThrowsCommandExecutionException(string pepper)
 		{
 			// Arrange
 			var password = Any.String();

@@ -20,7 +20,7 @@
 		[TestCase(0,2,"yyy")]
 		[TestCase(1, 9, "zzz")]
 
-		public void ShouldCreateSemaphoreWrapper(int initial, int max, string name)
+		public void Create_CreatesSemaphoreWrapper(int initial, int max, string name)
 		{
 			// Act
 			var actual = _uut.Create(initial, max, name);
@@ -28,6 +28,7 @@
 			// Assert
 			actual.Should().BeAssignableTo<ISemaphoreWrapper>();
 			actual.Should().BeOfType<SemaphoreWrapper>();
+			actual.Dispose();
 		}
 	}
 }

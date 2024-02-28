@@ -27,7 +27,9 @@
 		private IGuidFactory _guidWrapper;
 		private IPollySleepingIntervalsFactory _pollySleepingIntervalsFactory;
 		private ILogger _logger;
+		#pragma warning disable NUnit1032
 		private ISemaphoreWrapper _semaphoreWrapper;
+		#pragma warning restore NUnit1032
 		private ISemaphoreWrapperFactory _semaphoreWrapperFactory;
 
 		[SetUp]
@@ -46,7 +48,7 @@
 		}
 
 		[Test]
-		public async Task ShouldCreateAndSaveNewSalt()
+		public async Task SaveSaltAsync_CreatesAndSavesNewSalt()
 		{
 			// Arrange
 			int userId = Any.Integer();
@@ -64,7 +66,7 @@
 		}
 
 		[Test]
-		public async Task ShouldReturnNotSuccessfulResultIfUserDoesNotExists()
+		public async Task GetSaltAsync_IfUserDoesNotExists_ReturnsNotSuccessfulResult()
 		{
 			// Arrange
 			int userId = Any.Integer();
@@ -81,7 +83,7 @@
 		}
 
 		[Test]
-		public async Task ShouldRetryGettingSaltIfExceptionOccurs()
+		public async Task GetSaltAsync_IfExceptionOccurs_ShouldRetryGettingSalt()
 		{
 			// Arrange
 			int userId = Any.Integer();
@@ -103,7 +105,7 @@
 		}
 
 		[Test]
-		public async Task ShouldReturnNotSuccessfulResultIfGettingSaltThrowsExceptionAfterRetries()
+		public async Task GetSaltAsync_IfGettingSaltThrowsExceptionAfterRetries_ReturnsNotSuccessfulResult()
 		{
 			// Arrange
 			int userId = Any.Integer();
@@ -126,7 +128,7 @@
 		}
 
 		[Test]
-		public async Task ShouldReturnSuccessfulResultWithSaltIfUserExists()
+		public async Task GetSaltAsync_IfUserExists_ReturnsSuccessfulResultWithSalt()
 		{
 			// Arrange
 			int userId = Any.Integer();
@@ -145,7 +147,7 @@
 		}
 
 		[Test]
-		public async Task ShouldReleaseSemaphoreAfterDatabaseExceptionOccursInSavingSaltMethod()
+		public async Task SaveSaltAsync_ReleasesSemaphoreAfterDatabaseExceptionOccursInSavingSaltMethod()
 		{
 			// Arrange
 			int userId = Any.Integer();
@@ -165,7 +167,7 @@
 		}
 
 		[Test]
-		public async Task ShouldReleaseSemaphoreAfterExceptionOccursInGettingSaltMethod()
+		public async Task GetSaltAsync_ShouldReleaseSemaphoreAfterExceptionOccursInGettingSaltMethod()
 		{
 			// Arrange
 			int userId = Any.Integer();
@@ -185,7 +187,7 @@
 		}
 
 		[Test]
-		public async Task ShouldRetrySavingChangesIfExceptionOccurs()
+		public async Task SaveSaltAsync_IfExceptionOccurs_RetriesSavingChanges()
 		{
 			// Arrange
 			int userId = Any.Integer();
@@ -208,7 +210,7 @@
 		}
 
 		[Test]
-		public async Task ShouldThrowExceptionIfExceptionStillOccursAfterRetries()
+		public async Task SaveSaltAsync_IfExceptionStillOccursAfterRetries_ShouldThrowDbUpdateException()
 		{
 			// Arrange
 			int userId = Any.Integer();
@@ -232,7 +234,7 @@
 		}
 
 		[Test]
-		public void ShouldGenerateSalt()
+		public void GenerateSalt_GeneratesSalt()
 		{
 			// Act
 			var actual = _uut.GenerateSalt();

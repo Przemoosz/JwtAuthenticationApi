@@ -19,7 +19,7 @@
 
         [TestCase(true, "Name")]
         [TestCase(false, "")]
-        public void ShouldCreateMutexWrapper(bool initiallyOwned, string name)
+        public void Create_CreatesMutexWrapper(bool initiallyOwned, string name)
         {
             // Act
             using IMutexWrapper actual = _uut.Create(initiallyOwned, name);

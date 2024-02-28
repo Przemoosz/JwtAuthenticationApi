@@ -5,7 +5,7 @@
 	using Models.Password;
 	using NUnit.Framework;
 	using Services.Factories.Password;
-	using Validators.Password.Rules;
+	using Services.Validators.Password.Rules;
 
 	[TestFixture, Parallelizable]
 	public sealed class PasswordRuleFactoryTests
@@ -19,7 +19,7 @@
 		}
 
 		[Test]
-		public void ShouldCreateEqualityRule()
+		public void CreateEqualityRule_CreatesEqualityRule()
 		{
 			// Act
 			var actual = _sut.CreateEqualityRule();
@@ -30,7 +30,7 @@
 		}
 
 		[Test]
-		public void ShouldCreateLengthRule()
+		public void CreateLengthRule_CreatesLengthRule()
 		{
 			// Act
 			var actual = _sut.CreateLengthRule();
@@ -41,7 +41,7 @@
 		}
 
 		[Test]
-		public void ShouldCreateLowerLettersRule()
+		public void CreateLowerLettersRule_CreatesLowerLettersRule()
 		{
 			// Act
 			var actual = _sut.CreateLowerLettersRule();
@@ -52,7 +52,7 @@
 		}
 
 		[Test]
-		public void ShouldCreateUpperLettersRule()
+		public void CreateUpperLettersRule_CreatesUpperLettersRule()
 		{
 			// Act
 			var actual = _sut.CreateUpperLettersRule();
@@ -63,7 +63,7 @@
 		}
 
 		[Test]
-		public void ShouldCreateSpecialLettersRule()
+		public void CreateSpecialLetterRule_CreatesSpecialLettersRule()
 		{
 			// Act
 			var actual = _sut.CreateSpecialLetterRule();

@@ -32,7 +32,7 @@
 		}
 
 		[Test]
-		public void ShouldReturnTrueIfPasswordIsValid()
+		public void Validate_IfPasswordIsValid_ReturnsTrue()
 		{
 			// Arrange
 			string password = Any.String();
@@ -54,7 +54,7 @@
 		}
 
 		[Test]
-		public void ShouldReturnFalseIfPasswordIsInvalid()
+		public void Validate_IfPasswordIsInvalid_ReturnsFalse()
 		{
 			// Arrange
 			string password = Any.String();

@@ -19,7 +19,7 @@
         }
 
         [Test]
-        public void ShouldEvaluateAllRules()
+        public void Validate_EvaluatesAllRules()
         {
             // Arrange
             PasswordContext passwordContext = new PasswordContext(null, null, 0, 0, 0, 0);

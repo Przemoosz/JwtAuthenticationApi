@@ -23,7 +23,7 @@
 		}
 
 		[Test]
-		public async Task ShouldCreateSaltIfUserIsNotInDatabase()
+		public async Task GetPasswordSaltAsync_IfUserIsNotInDatabase_CreatesSalt()
 		{
 			// Arrange
 			int userId = Any.Integer();
@@ -40,7 +40,7 @@
 		}
 
 		[Test]
-		public async Task ShouldReturnSaltFromDatabaseIfUserIsInDatabase()
+		public async Task GetPasswordSaltAsync_IfUserIsInDatabase_ReturnsSaltFromDatabase()
 		{
 			// Arrange
 			int userId = Any.Integer();

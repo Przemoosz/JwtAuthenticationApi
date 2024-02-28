@@ -12,7 +12,7 @@
 	public class ConvertRequestToUserEntityCommandTests
 	{
 		[Test]
-		public async Task ShouldCreateUserModelFromRequest()
+		public async Task ExecuteAsync_CreatesUserModelFromRequest()
 		{
 			// Arrange
 			RegisterUserRequest request = Any.Instance<RegisterUserRequest>();

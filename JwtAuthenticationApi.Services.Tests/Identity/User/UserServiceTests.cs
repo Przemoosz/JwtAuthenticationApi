@@ -31,7 +31,7 @@
 		}
 
 		[Test]
-		public async Task ShouldSaveUserInDatabase()
+		public async Task SaveUserAsync_SavesUserInDatabase()
 		{
 			// Arrange
 			UserEntity userEntity = Any.Instance<UserEntity>();
@@ -45,15 +45,15 @@
 			_userContext.SaveChangesAsync(CancellationToken.None).Returns(1);
 
 			// Act
-			int? acutal = await _sut.SaveUserAsync(userEntity, CancellationToken.None);
+			int? actual = await _sut.SaveUserAsync(userEntity, CancellationToken.None);
 
 			// Assert
-			acutal.HasValue.Should().BeTrue();
+			actual.HasValue.Should().BeTrue();
 			await _userContext.Received(1).SaveChangesAsync(CancellationToken.None);
 		}
 
 		[Test]
-		public async Task ShouldRetrySavingUserIfDbUpdateExceptionOccurs()
+		public async Task SaveUserAsync_IfDbUpdateExceptionOccurs_RetriesSavingUser()
 		{
 			// Arrange
 			UserEntity userEntity = Any.Instance<UserEntity>();
@@ -74,7 +74,7 @@
 		}
 
 		[Test]
-		public async Task ShouldThrowDbUpdateExceptionIfExceptionIsReceivedAfterMaxRetryCount()
+		public async Task SaveUserAsync_IfExceptionIsReceivedAfterMaxRetryCount_ThrowsDbUpdateException()
 		{
 			// Arrange
 			int id = Any.Integer();
@@ -99,7 +99,7 @@
 		}
 
 		[Test]
-		public async Task ShouldReturnTrueIfUserExistsBasedOnUserName()
+		public async Task UserExistsAsync_IfUserExistsBasedOnUsername_ReturnsTrue()
 		{
 			// Arrange
 			UserEntity userEntity = Any.Instance<UserEntity>();
@@ -114,7 +114,7 @@
 		}
 
 		[Test]
-		public async Task ShouldReturnFalseIfUserDoesNotExistsBasedOnUserName()
+		public async Task UserExistsAsync_IfUserDoesNotExistsBasedOnUsername_ReturnsFalse()
 		{
 			// Arrange
 			UserEntity userEntity = Any.Instance<UserEntity>();
@@ -129,7 +129,7 @@
 		}
 
 		[Test]
-		public async Task ShouldReturnTrueIfUserExistsBasedOnUserId()
+		public async Task UserExistsAsync_IUserExistsBasedOnUserId_ReturnsTrue()
 		{
 			// Arrange
 			UserEntity userEntity = Any.Instance<UserEntity>();
@@ -144,7 +144,7 @@
 		}
 
 		[Test]
-		public async Task ShouldReturnFalseIfUserDoesNotExistsBasedOnUserID()
+		public async Task UserExistsAsync_IfUserDoesNotExistsBasedOnUserID_ReturnsFalse()
 		{
 			// Arrange
 			UserEntity userEntity = Any.Instance<UserEntity>();

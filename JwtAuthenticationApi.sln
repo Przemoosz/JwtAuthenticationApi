@@ -4,8 +4,6 @@ VisualStudioVersion = 17.4.33213.308
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "JwtAuthenticationApi", "JwtAuthenticationApi\JwtAuthenticationApi.csproj", "{1C6EEF71-D66B-416F-A402-D94C5F0F11D8}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "JwtAuthenticationApi.UnitTests", "JwtAuthenticationApi.UnitTests\JwtAuthenticationApi.UnitTests.csproj", "{D7377D72-C271-4928-8102-4F7C2C49CA2D}"
-EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "JwtAuthenticationApi.Infrastructure", "JwtAuthenticationApi.Infrastructure\JwtAuthenticationApi.Infrastructure.csproj", "{69E991F4-51A4-4DA1-AAD6-A8D50D7FF873}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "UnitTests", "UnitTests", "{2A735D45-97A8-46FE-A12D-83FCE55A77C8}"
@@ -20,13 +18,15 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "JwtAuthenticationApi.Securi
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "JwtAuthenticationApi.Common", "JwtAuthenticationApi.Common\JwtAuthenticationApi.Common.csproj", "{8D7E0BF8-E7C0-4C52-B72D-E593AEC4AD52}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JwtAuthenticationApi.Common.Tests", "JwtAuthenticationApi.Common.Tests\JwtAuthenticationApi.Common.Tests.csproj", "{0913B478-E66F-42F5-9FD1-B295D7CBE55B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "JwtAuthenticationApi.Common.Tests", "JwtAuthenticationApi.Common.Tests\JwtAuthenticationApi.Common.Tests.csproj", "{0913B478-E66F-42F5-9FD1-B295D7CBE55B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JwtAuthenticationApi.Infrastructure.Tests", "JwtAuthenticationApi.Infrastructure.Tests\JwtAuthenticationApi.Infrastructure.Tests.csproj", "{9D671041-2F4D-4135-AB52-F0CCE9398A61}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "JwtAuthenticationApi.Infrastructure.Tests", "JwtAuthenticationApi.Infrastructure.Tests\JwtAuthenticationApi.Infrastructure.Tests.csproj", "{9D671041-2F4D-4135-AB52-F0CCE9398A61}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JwtAuthenticationApi.Security.Tests", "JwtAuthenticationApi.Security.Tests\JwtAuthenticationApi.Security.Tests.csproj", "{735C061E-AA63-44D8-8FE3-711D843D1628}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "JwtAuthenticationApi.Security.Tests", "JwtAuthenticationApi.Security.Tests\JwtAuthenticationApi.Security.Tests.csproj", "{735C061E-AA63-44D8-8FE3-711D843D1628}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JwtAuthenticationApi.Services.Tests", "JwtAuthenticationApi.Services.Tests\JwtAuthenticationApi.Services.Tests.csproj", "{2FDB8BB3-9126-4B54-933B-CAF36740CB9A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "JwtAuthenticationApi.Services.Tests", "JwtAuthenticationApi.Services.Tests\JwtAuthenticationApi.Services.Tests.csproj", "{2FDB8BB3-9126-4B54-933B-CAF36740CB9A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JwtAuthenticationApi.Controllers.Tests", "JwtAuthenticationApi.Controllers.Tests\JwtAuthenticationApi.Controllers.Tests.csproj", "{B49736C9-85D4-42D3-9FA7-1946259D1931}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -38,10 +38,6 @@ Global
 		{1C6EEF71-D66B-416F-A402-D94C5F0F11D8}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{1C6EEF71-D66B-416F-A402-D94C5F0F11D8}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{1C6EEF71-D66B-416F-A402-D94C5F0F11D8}.Release|Any CPU.Build.0 = Release|Any CPU
-		{D7377D72-C271-4928-8102-4F7C2C49CA2D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{D7377D72-C271-4928-8102-4F7C2C49CA2D}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{D7377D72-C271-4928-8102-4F7C2C49CA2D}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{D7377D72-C271-4928-8102-4F7C2C49CA2D}.Release|Any CPU.Build.0 = Release|Any CPU
 		{69E991F4-51A4-4DA1-AAD6-A8D50D7FF873}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{69E991F4-51A4-4DA1-AAD6-A8D50D7FF873}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{69E991F4-51A4-4DA1-AAD6-A8D50D7FF873}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -78,13 +74,16 @@ Global
 		{2FDB8BB3-9126-4B54-933B-CAF36740CB9A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{2FDB8BB3-9126-4B54-933B-CAF36740CB9A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{2FDB8BB3-9126-4B54-933B-CAF36740CB9A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B49736C9-85D4-42D3-9FA7-1946259D1931}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B49736C9-85D4-42D3-9FA7-1946259D1931}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B49736C9-85D4-42D3-9FA7-1946259D1931}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B49736C9-85D4-42D3-9FA7-1946259D1931}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{1C6EEF71-D66B-416F-A402-D94C5F0F11D8} = {4E806FA8-E219-42BC-8191-1C237DCA977F}
-		{D7377D72-C271-4928-8102-4F7C2C49CA2D} = {2A735D45-97A8-46FE-A12D-83FCE55A77C8}
 		{69E991F4-51A4-4DA1-AAD6-A8D50D7FF873} = {4E806FA8-E219-42BC-8191-1C237DCA977F}
 		{2DECB90A-2121-4589-ABC9-D097D51F0E5F} = {4E806FA8-E219-42BC-8191-1C237DCA977F}
 		{E829EEA0-358F-4A49-B311-614AEBF88116} = {4E806FA8-E219-42BC-8191-1C237DCA977F}
@@ -94,6 +93,7 @@ Global
 		{9D671041-2F4D-4135-AB52-F0CCE9398A61} = {2A735D45-97A8-46FE-A12D-83FCE55A77C8}
 		{735C061E-AA63-44D8-8FE3-711D843D1628} = {2A735D45-97A8-46FE-A12D-83FCE55A77C8}
 		{2FDB8BB3-9126-4B54-933B-CAF36740CB9A} = {2A735D45-97A8-46FE-A12D-83FCE55A77C8}
+		{B49736C9-85D4-42D3-9FA7-1946259D1931} = {2A735D45-97A8-46FE-A12D-83FCE55A77C8}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {4FBE2AA5-1DC0-47F0-9864-6D4DF9C2EFDD}
